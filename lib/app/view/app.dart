@@ -12,6 +12,7 @@ class App extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       locale: DevicePreview.locale(context),
+      useInheritedMediaQuery: true,
       builder: DevicePreview.appBuilder,
       title: 'Shipoka',
       theme: AppTheme.themeData,
