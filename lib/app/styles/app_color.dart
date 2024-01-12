@@ -13,6 +13,7 @@ class AppColors{
   static const Color background = Color(0xffffffff);
   static const Color textFieldBackground = Color(0xffFAFAFA);
 
+
   static const Map<int, Color> colorScratch  = {
     50: Color.fromRGBO(242, 101, 32, .1),
     100: Color.fromRGBO(242, 101, 32, .2),
