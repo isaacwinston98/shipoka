@@ -1,16 +1,52 @@
-# shipoka
+# Shipoka
 
-A new Flutter project.
+![Flutter](https://img.shields.io/badge/Flutter-%2302569B.svg?style=for-the-badge&logo=Flutter&logoColor=white)
 
-## Getting Started
 
-This project is a starting point for a Flutter application.
+A Thirdparty Logistics Mobile App
 
-A few resources to get you started if this is your first Flutter project:
+---
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## Getting Started 🚀
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+This project contains 3 flavors:
+
+- development
+- staging
+- production
+
+To run the desired flavor either use the launch configuration in VSCode/Android Studio or use the following commands:
+
+```sh
+# Development
+$ flutter run --flavor development --target lib/main_development.dart
+
+# Staging
+$ flutter run --flavor staging --target lib/main_staging.dart
+
+# Production
+$ flutter run --flavor production --target lib/main_production.dart
+```
+
+_\*Shipoka works on iOS and Android._
+
+
+## Running Tests 🧪
+
+To run all unit and widget tests use the following command:
+
+```sh
+$ flutter test --coverage --test-randomize-ordering-seed random
+```
+
+To view the generated coverage report you can use [lcov](https://github.com/linux-test-project/lcov).
+
+```sh
+# Generate Coverage Report
+$ genhtml coverage/lcov.info -o coverage/
+
+# Open Coverage Report
+$ open coverage/index.html
+```
+
+---
