@@ -6,11 +6,11 @@ class AppColors{
   static const Color primaryColor = Color(0xffF26520);
   static const Color black = Color(0xff000000);
   static const Color deepBlue = Color(0xff001F3F);
-  static const Color textColor = Color(0Xff101828);
+  static const Color textColor = Color(0xff101828);
   static const Color lighOrange = Color(0xffE39671);
   static const Color white = Color(0xffffffff);
   static const Color textSecondaryColor = Color(0xff667085);
-  static const Color background = Color(0XFFFFFFFF);
+  static const Color background = Color(0xffffffff);
   static const Color textFieldBackground = Color(0xffFAFAFA);
 
   static const Map<int, Color> colorScratch  = {
