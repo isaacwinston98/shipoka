@@ -1,0 +1,60 @@
+name: shipoka
+description: Shipoka Mobile Application
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.2.3 <4.0.0'
+
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+
+
+
+  animations: ^2.0.4
+  cupertino_icons: ^1.0.2
+  device_info_plus: ^9.1.1
+  device_preview: ^1.1.0
+  flutter_svg: ^2.0.9
+  google_fonts: ^6.1.0
+  gap: ^3.0.1
+  injectable: ^2.3.2
+  package_info_plus: ^5.0.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^2.0.0
+
+flutter:
+  fonts:
+    - family: Aeonik
+      fonts:
+        - asset: assets/font/Aeonik-Air.otf
+        - asset: assets/font/Aeonik-AirItalic.otf
+        - asset: assets/font/Aeonik-Black.otf
+        - asset: assets/font/Aeonik-BlackItalic.otf
+        - asset: assets/font/Aeonik-Bold.otf
+        - asset: assets/font/Aeonik-BoldItalic.otf
+        - asset: assets/font/Aeonik-Light.otf
+        - asset: assets/font/Aeonik-LightItalic.otf
+        - asset: assets/font/Aeonik-Medium.otf
+        - asset: assets/font/Aeonik-MediumItalic.otf
+        - asset: assets/font/Aeonik-Regular.otf
+        - asset: assets/font/Aeonik-RegularItalic.otf
+        - asset: assets/font/Aeonik-Thin.otf
+        - asset: assets/font/Aeonik-ThinItalic.otf
+
+  uses-material-design: true
+  generate: true
+
+  assets:
+    - assets/images/
+    - assets/icons/
+
+
+
