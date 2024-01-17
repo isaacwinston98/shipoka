@@ -12,6 +12,8 @@ class AppColors{
   static const Color textSecondaryColor = Color(0xff667085);
   static const Color background = Color(0xffffffff);
   static const Color textFieldBackground = Color(0xffFAFAFA);
+  static const Color red = Color(0xffD8304A);
+  static const Color grey3 = Color(0xffD9DDEE);
 
 
   static const Map<int, Color> colorScratch  = {
