@@ -22,7 +22,7 @@ class App extends StatelessWidget {
       title: 'Shipoka',
       theme: AppTheme.themeData,
       onGenerateRoute: onGenerateRoute,
-      initialRoute: RouteName.setupProfile,
+      initialRoute: RouteName.personalProfile,
     );
   }
 }

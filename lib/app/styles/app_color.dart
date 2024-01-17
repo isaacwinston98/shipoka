@@ -16,6 +16,8 @@ class AppColors{
   static const Color grey3 = Color(0xffD9DDEE);
   static const Color lightBackground = Color(0xffF7F7F7);
   static const Color smallTextColor = Color(0xff344054);
+  static const Color editPersonColor = Color(0xffF5F5F8);
+  static const Color personalProfileHint = Color(0xff9E9E9E);
 
 
   static const Map<int, Color> colorScratch  = {

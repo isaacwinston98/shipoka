@@ -10,5 +10,7 @@ class AppAssets {
   static const String visibility = 'assets/icons/visibility.svg';
   static const String flag = 'assets/icons/flag.svg';
   static const String arrowBack = 'assets/icons/backArrow.svg';
+  static const String user = 'assets/icons/user.svg';
+  static const String edit = 'assets/icons/edit.svg';
 
 }
