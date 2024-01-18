@@ -6,6 +6,7 @@ import 'package:shipoka/app/styles/app_color.dart';
 import 'package:shipoka/app/styles/fonts.dart';
 import 'package:shipoka/app/view/widget/busy_button.dart';
 import 'package:shipoka/app/view/widget/input_field.dart';
+import 'package:shipoka/core/navigator/route_name.dart';
 import 'package:shipoka/core/utils/custom_form_validator.dart';
 
 
@@ -226,6 +227,7 @@ class _SignupState extends State<Signup> {
                           },
                         ),
                       ),
+                      Gap(5),
                       Padding(
                         padding: const EdgeInsets.only(bottom: 0),
                         child: StreamBuilder<String>(
@@ -264,6 +266,7 @@ class _SignupState extends State<Signup> {
                           },
                         ),
                       ),
+                      Gap(5),
                       Padding(
                         padding: const EdgeInsets.only(bottom: 5),
                         child: StreamBuilder<String>(
@@ -305,6 +308,7 @@ class _SignupState extends State<Signup> {
                           },
                         ),
                       ),
+                      Gap(5),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
@@ -337,6 +341,7 @@ class _SignupState extends State<Signup> {
                         child: BusyButton(
                           title: 'Sign Up',
                           onTap: () {
+                            Navigator.pushNamed(context, RouteName.setupProfile);
                             // Provider.of<AuthNotifier>(context, listen: false)
                             //     .register(
                             //   context,
@@ -348,7 +353,7 @@ class _SignupState extends State<Signup> {
                             //   phoneNumber: phoneController.text.trim(),
                             // );
                           },
-                          disabled: !canSubmit,
+                          // disabled: !canSubmit,
                         ),
                       ),
 
