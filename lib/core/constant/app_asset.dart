@@ -6,5 +6,6 @@ class AppAssets {
 
   // app asset Icons here
   static const String visibility = 'assets/icons/visibility.svg';
+  static const String flag = 'assets/icons/flag.svg';
 
 }
