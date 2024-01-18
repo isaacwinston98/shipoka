@@ -8,7 +8,7 @@ Route<T> onGenerateRoute<T>(RouteSettings settings) {
     case RouteName.splashScreen:
       return _getPageRoute(
         routeName: settings.name!,
-        viewToShow: const SplashScreen(),
+        viewToShow: const CustomSplashScreen(),
       );
     default:
       return MaterialPageRoute<T>(
