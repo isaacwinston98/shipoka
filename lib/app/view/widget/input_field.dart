@@ -103,7 +103,7 @@ class _InputFieldState extends State<InputField> {
                   child: Container(
                     height: widget.height,
                     alignment: Alignment.centerLeft,
-                    padding: const EdgeInsets.symmetric(horizontal: 18),
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
                     decoration: BoxDecoration(
                       color: widget.backgroundColor,
                       border: Border.all(color: widget.validationColor),
@@ -146,7 +146,7 @@ class _InputFieldState extends State<InputField> {
                                 fontSize: 14,
                               ),
                               hintStyle: TextStyle(
-                                fontSize: 14,
+                                fontSize: 12,
                                 fontWeight: FontWeight.w400,
                                 color: widget.placeholderColor,
                                 fontFamily: AppFonts.aeonik,

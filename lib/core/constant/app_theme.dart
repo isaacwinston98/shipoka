@@ -28,7 +28,7 @@ class AppTheme {
     ),
     textTheme: GoogleFonts.ubuntuTextTheme(),
     primarySwatch: const MaterialColor(
-      0xFF072D72,
+      0xffF26520,
       AppColors.colorScratch,
     ),
   );
