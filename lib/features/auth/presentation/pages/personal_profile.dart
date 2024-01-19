@@ -1,8 +1,11 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:shipoka/app/styles/app_color.dart';
 import 'package:shipoka/app/styles/fonts.dart';
 import 'package:shipoka/app/view/widget/app_back_button.dart';
@@ -21,6 +24,10 @@ class PersonalProfile extends StatefulWidget {
 
 class _PersonalProfileState extends State<PersonalProfile> {
 
+  File? image;
+
+
+
   late StreamController<String> _firstNameStreamController;
   late StreamController<String> _surnameStreamController;
   late StreamController<String> _phoneStreamController;
@@ -34,6 +41,7 @@ class _PersonalProfileState extends State<PersonalProfile> {
   final firstNameController = TextEditingController();
   final surnameController = TextEditingController();
   final phoneController = TextEditingController();
+  final searchController = TextEditingController();
 
 
   @override
@@ -42,6 +50,7 @@ class _PersonalProfileState extends State<PersonalProfile> {
     _firstNameStreamController = StreamController<String>.broadcast();
     _surnameStreamController = StreamController<String>.broadcast();
     _phoneStreamController = StreamController<String>.broadcast();
+
 
 
 
@@ -109,6 +118,22 @@ class _PersonalProfileState extends State<PersonalProfile> {
     }
     //_canSubmit.value = canSumit;
   }
+
+  //Image Picker method to select image from gallery or camera
+  Future pickImage(ImageSource source)async{
+   try {
+     final image =  await ImagePicker().pickImage(source: source);
+     if(image == null)return;
+     final temporaryImage = File(image.path);
+     setState(() {
+       this.image = temporaryImage;
+     });
+   } on PlatformException catch (e) {
+    //
+   }
+
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -135,31 +160,128 @@ class _PersonalProfileState extends State<PersonalProfile> {
 
                           ],
                         ),
-                        const Gap(25),
+                        const Gap(15),
                         Stack(
                           alignment: Alignment.bottomRight,
                           children: [
                             Container(
+                              height:130,
+                              width:130,
                               decoration: const BoxDecoration(
                                 shape: BoxShape.circle,
                                 color: AppColors.editPersonColor,
                               ),
-                              child: Padding(
+                              child: image != null
+                              ? ClipOval(
+                                child: Image.file(
+                                  image!,
+                                  width: 130.0,
+                                  height: 130.0,
+                                  fit: BoxFit.cover,
+                                ),
+                              )
+                              : Padding(
                                 padding: const EdgeInsets.all(30.0),
                                 child: SvgPicture.asset(
+                                  width: 60,
                                   AppAssets.user,
                                 ),
                               ),
                             ),
                             Positioned(
-                              bottom: 0,
+                              bottom: -10,
                               right: 0,
                               child: IconButton(
                                 icon: SvgPicture.asset(
                                   AppAssets.edit,
                                 ),
                                 onPressed: () {
-                                  // Add logic to handle selecting a picture
+                                  showModalBottomSheet(
+                                    backgroundColor: AppColors.white,
+                                    showDragHandle: true,
+                                      shape: const RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.only(
+                                              topLeft: Radius.circular(20),
+                                              topRight: Radius.circular(20)
+                                          )
+                                      ),
+                                      context: context,
+                                      builder: (BuildContext context){
+                                        SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+                                          statusBarColor: Colors.transparent, // Change this to your preferred status bar color
+                                        ));
+                                        return Padding(
+                                          padding: const EdgeInsets.symmetric(horizontal: 15,),
+                                          child: SizedBox(
+                                            height: MediaQuery.of(context).size.height * 0.2,
+                                            child: Column(
+                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                              children: [
+                                                Row(
+                                                  mainAxisAlignment: MainAxisAlignment.center,
+                                                  children: [
+                                                    TextSemiBold(
+                                                      'Upload Image',
+                                                      fontSize: 17,
+                                                    ),
+                                                  ],
+                                                ),
+                                                const Gap(20),
+                                                SizedBox(
+                                                  width: double.infinity,
+                                                  child: Column(
+                                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                                    children: [
+                                                      GestureDetector(
+                                                        onTap: (){
+                                                          pickImage(ImageSource.camera);
+                                                          Navigator.pop(context);
+
+                                                        },
+                                                        child: Row(
+                                                          children: [
+                                                            SvgPicture.asset(
+                                                              AppAssets.camera,
+                                                            ),
+                                                            const Gap(10),
+                                                            TextBody(
+                                                                'Take a picture',
+                                                              fontWeight: FontWeight.w500,
+                                                              fontSize: 16,
+                                                            )
+                                                          ],
+                                                        ),
+                                                      ),
+                                                      const Gap(20),
+                                                      GestureDetector(
+                                                        onTap: (){
+                                                          pickImage(ImageSource.gallery);
+                                                          Navigator.pop(context);
+                                                        },
+                                                        child: Row(
+                                                          children: [
+                                                            SvgPicture.asset(
+                                                              AppAssets.gallery,
+                                                            ),
+                                                            const Gap(10),
+                                                            TextBody(
+                                                                'Choose from gallery',
+                                                              fontWeight: FontWeight.w500,
+                                                              fontSize: 16,
+                                                            )
+                                                          ],
+                                                        ),
+                                                      ),
+                                                      const Gap(10),
+                                                    ],
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        );
+                                      }
+                                  );
                                 },
                               ),
                             ),
@@ -216,52 +338,314 @@ class _PersonalProfileState extends State<PersonalProfile> {
                             );
                           },
                         ),
-                        StreamBuilder<String>(
-                          stream: _phoneStreamController.stream,
-                          builder: (context, snapshot) {
-                            return InputField(
-                              fieldFocusNode: phoneFocus,
-                              label: 'Phone number',
-                              prefix: Container(
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            // Country Code Dropdown
+                            GestureDetector(
+                              onTap: (){
+                                showModalBottomSheet(
+                                  showDragHandle: true,
+                                  backgroundColor: AppColors.white,
+                                    shape: const RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.only(
+                                            topLeft: Radius.circular(20),
+                                            topRight: Radius.circular(20)
+                                        )
+                                    ),
+                                    context: context,
+                                    builder: (BuildContext context){
+                                      SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+                                        statusBarColor: Colors.transparent, // Change this to your preferred status bar color
+                                      ));
+                                      return Padding(
+                                        padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 10),
+                                        child: SizedBox(
+
+                                          height: MediaQuery.of(context).size.height * 0.38,
+                                          child: Column(
+                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                            children: [
+                                              Row(
+                                                mainAxisAlignment: MainAxisAlignment.center,
+                                                children: [
+                                                  TextSemiBold(
+                                                    'Select your country',
+                                                    fontSize: 17,
+                                                  ),
+                                                ],
+                                              ),
+                                              const Gap(15),
+                                              InputField(
+                                                  controller: searchController,
+                                                  placeholder: 'Search Country',
+                                                  suffix: SvgPicture.asset(
+                                                  AppAssets.search,
+                                                ),
+                                              ),
+                                              const Gap(20),
+                                              Expanded(
+                                                child: SingleChildScrollView(
+                                                  child: SizedBox(
+                                                    width: double.infinity,
+                                                    child: Column(
+                                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                                      children: [
+                                                        Row(
+                                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                          children: [
+                                                            Row(
+                                                              children: [
+                                                                Image.asset(AppAssets.flag),
+                                                                const Gap(10),
+                                                                TextBody(
+                                                                    'Afghanistan',
+                                                                  fontWeight: FontWeight.w500,
+                                                                )
+                                                              ],
+                                                            ),
+                                                            TextBody(
+                                                              '(+93)',
+                                                              fontWeight: FontWeight.w500,
+                                                            )
+
+                                                          ],
+                                                        ),
+                                                        const Gap(15),
+                                                        Row(
+                                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                          children: [
+                                                            Row(
+                                                              children: [
+                                                                Image.asset(AppAssets.flag),
+                                                                const Gap(10),
+                                                                TextBody(
+                                                                  'Afghanistan',
+                                                                  fontWeight: FontWeight.w500,
+                                                                )
+                                                              ],
+                                                            ),
+                                                            TextBody(
+                                                              '(+93)',
+                                                              fontWeight: FontWeight.w500,
+                                                            )
+
+                                                          ],
+                                                        ),
+                                                        const Gap(15),
+                                                        Row(
+                                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                          children: [
+                                                            Row(
+                                                              children: [
+                                                                Image.asset(AppAssets.flag),
+                                                                const Gap(10),
+                                                                TextBody(
+                                                                  'Afghanistan',
+                                                                  fontWeight: FontWeight.w500,
+                                                                )
+                                                              ],
+                                                            ),
+                                                            TextBody(
+                                                              '(+93)',
+                                                              fontWeight: FontWeight.w500,
+                                                            )
+
+                                                          ],
+                                                        ),
+                                                        const Gap(15),
+                                                        Row(
+                                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                          children: [
+                                                            Row(
+                                                              children: [
+                                                                Image.asset(AppAssets.flag),
+                                                                const Gap(10),
+                                                                TextBody(
+                                                                  'Afghanistan',
+                                                                  fontWeight: FontWeight.w500,
+                                                                )
+                                                              ],
+                                                            ),
+                                                            TextBody(
+                                                              '(+93)',
+                                                              fontWeight: FontWeight.w500,
+                                                            )
+
+                                                          ],
+                                                        ),
+                                                        const Gap(15),
+                                                        Row(
+                                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                          children: [
+                                                            Row(
+                                                              children: [
+                                                                Image.asset(AppAssets.flag),
+                                                                const Gap(10),
+                                                                TextBody(
+                                                                  'Afghanistan',
+                                                                  fontWeight: FontWeight.w500,
+                                                                )
+                                                              ],
+                                                            ),
+                                                            TextBody(
+                                                              '(+93)',
+                                                              fontWeight: FontWeight.w500,
+                                                            )
+
+                                                          ],
+                                                        ),
+                                                        const Gap(15),
+                                                        Row(
+                                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                          children: [
+                                                            Row(
+                                                              children: [
+                                                                Image.asset(AppAssets.flag),
+                                                                const Gap(10),
+                                                                TextBody(
+                                                                  'Afghanistan',
+                                                                  fontWeight: FontWeight.w500,
+                                                                )
+                                                              ],
+                                                            ),
+                                                            TextBody(
+                                                              '(+93)',
+                                                              fontWeight: FontWeight.w500,
+                                                            )
+
+                                                          ],
+                                                        ),
+                                                        const Gap(15),
+                                                        Row(
+                                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                          children: [
+                                                            Row(
+                                                              children: [
+                                                                Image.asset(AppAssets.flag),
+                                                                const Gap(10),
+                                                                TextBody(
+                                                                  'Afghanistan',
+                                                                  fontWeight: FontWeight.w500,
+                                                                )
+                                                              ],
+                                                            ),
+                                                            TextBody(
+                                                              '(+93)',
+                                                              fontWeight: FontWeight.w500,
+                                                            )
+
+                                                          ],
+                                                        ),
+                                                        const Gap(15),
+                                                        Row(
+                                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                          children: [
+                                                            Row(
+                                                              children: [
+                                                                Image.asset(AppAssets.flag),
+                                                                const Gap(10),
+                                                                TextBody(
+                                                                  'Afghanistan',
+                                                                  fontWeight: FontWeight.w500,
+                                                                )
+                                                              ],
+                                                            ),
+                                                            TextBody(
+                                                              '(+93)',
+                                                              fontWeight: FontWeight.w500,
+                                                            )
+
+                                                          ],
+                                                        ),
+                                                        const Gap(15),
+                                                        Row(
+                                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                          children: [
+                                                            Row(
+                                                              children: [
+                                                                Image.asset(AppAssets.flag),
+                                                                const Gap(10),
+                                                                TextBody(
+                                                                  'Afghanistan',
+                                                                  fontWeight: FontWeight.w500,
+                                                                )
+                                                              ],
+                                                            ),
+                                                            TextBody(
+                                                              '(+93)',
+                                                              fontWeight: FontWeight.w500,
+                                                            )
+
+                                                          ],
+                                                        ),
+                                                        const Gap(15),
+
+                                                      ],
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      );
+                                    }
+                                );
+                              },
+                              child: Container(
+                                height: 50,
                                 decoration: BoxDecoration(
-                                  color: AppColors.white.withOpacity(0.1),
-                                  borderRadius: BorderRadius.circular(8),
+                                  color: AppColors.textFieldBackground,
+                                  border: Border.all(color: AppColors.textFieldBackground),
+                                  borderRadius: BorderRadius.circular(10),
                                 ),
                                 child: Padding(
-                                  padding: const EdgeInsets.all(8),
-                                  child: Row(
-                                    children: [
-                                      const SizedBox(
-                                        width: 5,
+                                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                                    child: Row(
+                                      children: [
+                                        TextSmall('Code'),
+                                        const Gap(5),
+                                        const Icon(
+                                            Icons.arrow_drop_down_outlined
+                                        )
+                                      ],
+                                    )
+                                ),
+                              ),
+                            ),
+                            const Gap(5),
+                            Expanded(
+                              child: StreamBuilder<String>(
+                                stream: _phoneStreamController.stream,
+                                builder: (context, snapshot) {
+                                  return InputField(
+                                    //
+                                    // fieldFocusNode: phoneFocus,
+                                    label: 'Phone number',
+                                    validationColor: snapshot.data == null
+                                        ? AppColors.white
+                                        : CustomFormValidation.getColor(
+                                      snapshot.data,
+                                      phoneFocus,
+                                      CustomFormValidation.errorPhoneNumber2(
+                                        snapshot.data,
+                                        'phone number is required',
                                       ),
-                                      TextBody(
-                                        '+234',
-                                        fontSize: 14,
-                                      )
-                                    ],
-                                  ),
-                                ),
+                                    ),
+                                    controller: phoneController,
+                                    placeholder: 'Phone number',
+                                    validationMessage:
+                                    CustomFormValidation.errorPhoneNumber2(
+                                      snapshot.data,
+                                      'phone number is required',
+                                    ),
+                                    textInputType: TextInputType.number,
+                                  );
+                                },
                               ),
-                              validationColor: snapshot.data == null
-                                  ? AppColors.white
-                                  : CustomFormValidation.getColor(
-                                snapshot.data,
-                                phoneFocus,
-                                CustomFormValidation.errorPhoneNumber2(
-                                  snapshot.data,
-                                  'phone number is required',
-                                ),
-                              ),
-                              controller: phoneController,
-                              placeholder: 'Phone number',
-                              validationMessage:
-                              CustomFormValidation.errorPhoneNumber2(
-                                snapshot.data,
-                                'phone number is required',
-                              ),
-                              textInputType: TextInputType.number,
-                            );
-                          },
+                            ),
+                          ],
                         ),
                       ],
 
@@ -274,16 +658,6 @@ class _PersonalProfileState extends State<PersonalProfile> {
                     title: 'Continue',
                     onTap: () {
                       Navigator.pushNamed(context, RouteName.getOTP);
-                      // Provider.of<AuthNotifier>(context, listen: false)
-                      //     .register(
-                      //   context,
-                      //   firstName: firstNameController.text.trim(),
-                      //   lastName: surnameController.text.trim(),
-                      //   email: emailController.text.trim(),
-                      //   countryCode: 'NG',
-                      //   pin: pinController.text.trim(),
-                      //   phoneNumber: phoneController.text.trim(),
-                      // );
                     },
                     // disabled: true,
                   ),

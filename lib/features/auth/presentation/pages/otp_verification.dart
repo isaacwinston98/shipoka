@@ -84,7 +84,7 @@ class _VerifyOTPState extends State<VerifyOTP> {
               Padding(
                 padding: const EdgeInsets.only(top: 30),
                 child: BusyButton(
-                  title: 'Change',
+                  title: 'Continue',
                   onTap: () {
                     Navigator.pushNamed(context, RouteName.signUp);
                     // Provider.of<AuthNotifier>(context, listen: false)

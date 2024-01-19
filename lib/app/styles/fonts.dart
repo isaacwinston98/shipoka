@@ -43,7 +43,7 @@ class TextBody extends ShipokaTextBase {
         Color? color,
         double? fontSize,
         TextAlign textAlign = TextAlign.left,
-        FontWeight fontWeight = FontWeight.w400,
+        FontWeight fontWeight = FontWeight.w500,
         TextOverflow overflow = TextOverflow.visible,
         int maxLines = 2,
         double? height,

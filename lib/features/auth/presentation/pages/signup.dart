@@ -1,11 +1,13 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:shipoka/app/styles/app_color.dart';
 import 'package:shipoka/app/styles/fonts.dart';
 import 'package:shipoka/app/view/widget/busy_button.dart';
 import 'package:shipoka/app/view/widget/input_field.dart';
+import 'package:shipoka/core/constant/app_asset.dart';
 import 'package:shipoka/core/navigator/route_name.dart';
 import 'package:shipoka/core/utils/custom_form_validator.dart';
 
@@ -197,12 +199,11 @@ class _SignupState extends State<Signup> {
                           builder: (context, snapshot) {
                             return InputField(
                               fieldFocusNode: emailFocus,
-                              prefix: const Padding(
-                                padding: EdgeInsets.only(top: 6),
-                                child: Icon(
-                                  Icons.email,
-                                  color: AppColors.textSecondaryColor,
-                                  size: 15,
+                              prefix:  Padding(
+                                padding: const EdgeInsets.only(top: 6),
+                                child: SvgPicture.asset(
+                                  AppAssets.email,
+                                  color: AppColors.smallTextColor,
                                 ),
                               ),
                               label: 'Email',
@@ -238,12 +239,10 @@ class _SignupState extends State<Signup> {
                               fieldFocusNode: pinFocus,
                               textInputType: TextInputType.text,
                               password: true,
-                              prefix: const Padding(
-                                padding: EdgeInsets.only(top: 6),
-                                child: Icon(
-                                  Icons.lock,
-                                  color: AppColors.textSecondaryColor,
-                                  size: 15,
+                              prefix: Padding(
+                                padding: const EdgeInsets.only(top: 6),
+                                child: SvgPicture.asset(
+                                  AppAssets.password,
                                 ),
                               ),
                               validationColor: snapshot.data == null
@@ -275,12 +274,10 @@ class _SignupState extends State<Signup> {
                             return InputField(
                               fieldFocusNode: refferalPinFocus,
                               label: 'Confirm password',
-                              prefix: const Padding(
-                                padding: EdgeInsets.only(top: 6),
-                                child: Icon(
-                                  Icons.lock,
-                                  color: AppColors.textSecondaryColor,
-                                  size: 15,
+                              prefix:  Padding(
+                                padding: const EdgeInsets.only(top: 6),
+                                child: SvgPicture.asset(
+                                  AppAssets.password,
                                 ),
                               ),
                               validationColor: snapshot.data == null

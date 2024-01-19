@@ -1,8 +1,11 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:shipoka/app/styles/app_color.dart';
 import 'package:shipoka/app/styles/fonts.dart';
 import 'package:shipoka/app/view/widget/app_back_button.dart';
@@ -20,6 +23,8 @@ class BusinessProfile extends StatefulWidget {
 
 class _BusinessProfileState extends State<BusinessProfile> {
 
+  File? image;
+
   late StreamController<String> _firstNameStreamController;
   late StreamController<String> _surnameStreamController;
   late StreamController<String> _phoneStreamController;
@@ -34,6 +39,21 @@ class _BusinessProfileState extends State<BusinessProfile> {
   final surnameController = TextEditingController();
   final phoneController = TextEditingController();
 
+
+  //Image Picker method to select image from gallery or camera
+  Future pickImage(ImageSource source)async{
+    try {
+      final image =  await ImagePicker().pickImage(source: source);
+      if(image == null)return;
+      final temporaryImage = File(image.path);
+      setState(() {
+        this.image = temporaryImage;
+      });
+    } on PlatformException catch (e) {
+      //
+    }
+
+  }
 
   @override
   void initState() {
@@ -107,6 +127,8 @@ class _BusinessProfileState extends State<BusinessProfile> {
     }
     //_canSubmit.value = canSumit;
   }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -133,39 +155,146 @@ class _BusinessProfileState extends State<BusinessProfile> {
 
                           ],
                         ),
-                        const Gap(25),
+                        const Gap(15),
                         Column(
                           children: [
                             Stack(
                               alignment: Alignment.bottomRight,
                               children: [
                                 Container(
+                                  height:130,
+                                  width:130,
                                   decoration: const BoxDecoration(
                                     shape: BoxShape.circle,
                                     color: AppColors.editPersonColor,
                                   ),
-                                  child: Padding(
+                                  child: image != null
+                                      ? ClipOval(
+                                    child: Image.file(
+                                      image!,
+                                      width: 130.0,
+                                      height: 130.0,
+                                      fit: BoxFit.cover,
+                                    ),
+                                  )
+                                      : Padding(
                                     padding: const EdgeInsets.all(30.0),
                                     child: SvgPicture.asset(
+                                      width: 60,
                                       AppAssets.user,
                                     ),
                                   ),
                                 ),
                                 Positioned(
-                                  bottom: 0,
+                                  bottom: -10,
                                   right: 0,
                                   child: IconButton(
                                     icon: SvgPicture.asset(
                                       AppAssets.edit,
                                     ),
                                     onPressed: () {
-                                      // Add logic to handle selecting a picture
+                                      showModalBottomSheet(
+                                          shape: const RoundedRectangleBorder(
+                                              borderRadius: BorderRadius.only(
+                                                  topLeft: Radius.circular(20),
+                                                  topRight: Radius.circular(20)
+                                              )
+                                          ),
+                                          context: context,
+                                          builder: (BuildContext context){
+                                            SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+                                              statusBarColor: Colors.transparent, // Change this to your preferred status bar color
+                                            ));
+                                            return Padding(
+                                              padding: const EdgeInsets.symmetric(horizontal: 15,),
+                                              child: Container(
+                                                color: AppColors.editPersonColor,
+                                                height: MediaQuery.of(context).size.height * 0.25,
+                                                child: Column(
+                                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                                  children: [
+                                                    const Gap(10),
+                                                    Row(
+                                                      mainAxisAlignment: MainAxisAlignment.center,
+                                                      children: [
+                                                        Container(
+                                                          height: 3.0,
+                                                          width: 50,
+                                                          color: Colors.grey,
+                                                        ),
+                                                      ],
+                                                    ),
+                                                    const Gap(15),
+                                                    Row(
+                                                      mainAxisAlignment: MainAxisAlignment.center,
+                                                      children: [
+                                                        TextSemiBold(
+                                                          'Upload Image',
+                                                          fontSize: 17,
+                                                        ),
+                                                      ],
+                                                    ),
+                                                    const Gap(20),
+                                                    SizedBox(
+                                                      width: double.infinity,
+                                                      child: Column(
+                                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                                        children: [
+                                                          GestureDetector(
+                                                            onTap: (){
+                                                              pickImage(ImageSource.camera);
+                                                              Navigator.pop(context);
+                                                            },
+                                                            child: Row(
+                                                              children: [
+                                                                SvgPicture.asset(
+                                                                  AppAssets.camera,
+                                                                ),
+                                                                const Gap(10),
+                                                                TextBody(
+                                                                  'Take a picture',
+                                                                  fontWeight: FontWeight.w500,
+                                                                  fontSize: 16,
+                                                                )
+                                                              ],
+                                                            ),
+                                                          ),
+                                                          const Gap(20),
+                                                          GestureDetector(
+                                                            onTap: (){
+                                                              pickImage(ImageSource.gallery);
+                                                              Navigator.pop(context);
+                                                            },
+                                                            child: Row(
+                                                              children: [
+                                                                SvgPicture.asset(
+                                                                  AppAssets.gallery,
+                                                                ),
+                                                                const Gap(10),
+                                                                TextBody(
+                                                                  'Choose from gallery',
+                                                                  fontWeight: FontWeight.w500,
+                                                                  fontSize: 16,
+                                                                )
+                                                              ],
+                                                            ),
+                                                          ),
+                                                          const Gap(10),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                            );
+                                          }
+                                      );
                                     },
                                   ),
                                 ),
                               ],
                             ),
-                            Gap(5),
+                            const Gap(5),
                             TextSmall('Business logo')
                           ],
                         ),
@@ -175,7 +304,6 @@ class _BusinessProfileState extends State<BusinessProfile> {
                           builder: (context, snapshot) {
                             return InputField(
                               fieldFocusNode: surnameFocus,
-                              label: 'Business name',
                               validationColor: snapshot.data == null
                                   ? AppColors.white
                                   : CustomFormValidation.getColor(
@@ -183,74 +311,289 @@ class _BusinessProfileState extends State<BusinessProfile> {
                                 surnameFocus,
                                 CustomFormValidation.errorMessage(
                                   snapshot.data,
-                                  'LastName is required',
+                                  'Business Name is required',
                                 ),
                               ),
                               controller: surnameController,
-                              placeholder: 'Business type',
+                              placeholder: 'Business Name',
                               validationMessage: CustomFormValidation.errorMessage(
                                 snapshot.data,
-                                'LastName is required',
+                                'Business Name is required',
                               ),
                             );
                           },
                         ),
-                        StreamBuilder<String>(
-                          stream: _firstNameStreamController.stream,
-                          builder: (context, snapshot) {
-                            return InputField(
-                              label: 'Business name',
-                              suffix: Icon(
-                                  Icons.arrow_drop_down
-                              ),
-                              fieldFocusNode: firstNameFocus,
-                              validationColor: snapshot.data == null
-                                  ? AppColors.white
-                                  : CustomFormValidation.getColor(
-                                snapshot.data,
-                                firstNameFocus,
-                                CustomFormValidation.errorMessage(
-                                  snapshot.data,
-                                  'First name is required',
+                        GestureDetector(
+                          onTap: (){
+                            showModalBottomSheet(
+                                shape: const RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.only(
+                                        topLeft: Radius.circular(20),
+                                        topRight: Radius.circular(20)
+                                    )
                                 ),
-                              ),
-                              controller: firstNameController,
-                              placeholder: 'Business name',
-                              validationMessage: CustomFormValidation.errorMessage(
-                                snapshot.data,
-                                'First name is required',
-                              ),
+                                context: context,
+                                builder: (BuildContext context){
+                                  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+                                    statusBarColor: Colors.transparent, // Change this to your preferred status bar color
+                                  ));
+                                  return Padding(
+                                    padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 10),
+                                    child: SizedBox(
+                                      height: MediaQuery.of(context).size.height * 0.28,
+                                      child: Column(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: [
+                                          const Gap(10),
+                                          Row(
+                                            mainAxisAlignment: MainAxisAlignment.center,
+                                            children: [
+                                              Container(
+                                                height: 3.0,
+                                                width: 50,
+                                                color: Colors.grey,
+                                              ),
+                                            ],
+                                          ),
+                                          const Gap(15),
+                                          Row(
+                                            mainAxisAlignment: MainAxisAlignment.center,
+                                            children: [
+                                              TextSemiBold(
+                                                'Business Type',
+                                                fontSize: 17,
+                                              ),
+                                            ],
+                                          ),
+                                          const Gap(20),
+                                          Expanded(
+                                            child: SingleChildScrollView(
+                                              child: SizedBox(
+                                                width: double.infinity,
+                                                child: Column(
+                                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                                  children: [
+                                                    TextBody(
+                                                      'Fashion',
+                                                      fontWeight: FontWeight.w500,
+                                                    ),
+                                                    const Gap(13),
+                                                    TextBody(
+                                                      'Healthcare',
+                                                      fontWeight: FontWeight.w500,
+                                                    ),
+                                                    const Gap(13),
+                                                    TextBody(
+                                                      'Real Estate',
+                                                      fontWeight: FontWeight.w500,
+                                                    ),
+                                                    const Gap(13),
+                                                    TextBody(
+                                                        'Agriculture',
+                                                      fontWeight: FontWeight.w500,
+                                                    ),
+                                                    const Gap(13),
+                                                    TextBody(
+                                                        'Painting',
+                                                      fontWeight: FontWeight.w500,
+                                                    ),
+                                                    const Gap(13),
+                                                    TextBody(
+                                                        'Media',
+                                                      fontWeight: FontWeight.w500,
+                                                    ),
+                                                    const Gap(13),
+                                                    TextBody(
+                                                        'Education',
+                                                      fontWeight: FontWeight.w500,
+                                                    ),
+                                                    const Gap(13),
+                                                    TextBody('Politics'),
+                                                    const Gap(13),
+                                                    TextBody('text'),
+                                                    const Gap(13),
+                                                    TextBody('text'),
+                                                    const Gap(10),
+                                                    TextBody('text'),
+                                                    const Gap(10),
+                                                    TextBody('text'),
+                                                    TextBody('text'),
+                                                    TextBody('text'),
+                                                    TextBody('text'),
+                                                    TextBody('text'),
+                                                    TextBody('text'),
+                                                    TextBody('text'),
+                                                    TextBody('text'),
+                                                  ],
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  );
+                                }
                             );
                           },
-                        ),
-                        StreamBuilder<String>(
-                          stream: _firstNameStreamController.stream,
-                          builder: (context, snapshot) {
-                            return InputField(
-                              label: 'Business name',
-                              suffix: Icon(
-                                  Icons.arrow_drop_down
+                          child: Container(
+                            decoration: BoxDecoration(
+                                color: AppColors.textFieldBackground,
+                                borderRadius: BorderRadius.circular(10)
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 15),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  TextSmall(
+                                    'Business  Type',
+                                    fontWeight: FontWeight.w400,
+                                    color: AppColors.personalProfileHint,
+                                  ),
+                                  const Icon(
+                                      Icons.arrow_drop_down
+                                  ),
+                                ],
                               ),
-                              fieldFocusNode: firstNameFocus,
-                              validationColor: snapshot.data == null
-                                  ? AppColors.white
-                                  : CustomFormValidation.getColor(
-                                snapshot.data,
-                                firstNameFocus,
-                                CustomFormValidation.errorMessage(
-                                  snapshot.data,
-                                  'First name is required',
+                            ),
+                          ),
+                        ),
+                        const Gap(10),
+                        GestureDetector(
+                          onTap: (){
+                            showModalBottomSheet(
+                                shape: const RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(20),
+                                    topRight: Radius.circular(20)
+                                  )
                                 ),
-                              ),
-                              controller: firstNameController,
-                              placeholder: 'Employee size',
-                              validationMessage: CustomFormValidation.errorMessage(
-                                snapshot.data,
-                                'First name is required',
-                              ),
+                                context: context,
+                                builder: (BuildContext context){
+                                  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+                                    statusBarColor: Colors.transparent, // Change this to your preferred status bar color
+                                  ));
+                                  return Padding(
+                                    padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 10),
+                                    child: SizedBox(
+                                     height: MediaQuery.of(context).size.height * 0.28,
+                                      child: Column(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: [
+                                          const Gap(10),
+                                          Row(
+                                            mainAxisAlignment: MainAxisAlignment.center,
+                                            children: [
+                                              Container(
+                                                height: 3.0,
+                                                width: 50,
+                                                color: Colors.grey,
+                                              ),
+                                            ],
+                                          ),
+                                          const Gap(15),
+                                          Row(
+                                            mainAxisAlignment: MainAxisAlignment.center,
+                                            children: [
+                                              TextSemiBold(
+                                                'Employee Size',
+                                                fontSize: 17,
+                                              ),
+                                            ],
+                                          ),
+                                          const Gap(20),
+                                          Expanded(
+                                            child: SingleChildScrollView(
+                                              child: SizedBox(
+                                                width: double.infinity,
+                                                child: Column(
+                                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                                  children: [
+                                                    TextBody(
+                                                        '0 - 10',
+                                                      fontWeight: FontWeight.w500,
+                                                    ),
+                                                    const Gap(12),
+                                                    TextBody(
+                                                        '11 - 50',
+                                                      fontWeight: FontWeight.w500,
+                                                    ),
+                                                    const Gap(12),
+                                                    TextBody(
+                                                        '51 - 100',
+                                                      fontWeight: FontWeight.w500,
+                                                    ),
+                                                    const Gap(12),
+                                                    TextBody(
+                                                        '101 - 1000',
+                                                      fontWeight: FontWeight.w500,
+                                                    ),
+                                                    const Gap(12),
+                                                    TextBody(
+                                                        '1001 - 5000',
+                                                      fontWeight: FontWeight.w500,
+                                                    ),
+                                                    const Gap(12),
+                                                    TextBody(
+                                                        'Above 5000',
+                                                      fontWeight: FontWeight.w500,
+                                                    ),
+                                                    const Gap(12),
+                                                    TextBody('Education'),
+                                                    const Gap(12),
+                                                    TextBody('Politics'),
+                                                    const Gap(12),
+                                                    TextBody('text'),
+                                                    const Gap(12),
+                                                    TextBody('text'),
+                                                    const Gap(10),
+                                                    TextBody('text'),
+                                                    const Gap(10),
+                                                    TextBody('text'),
+                                                    TextBody('text'),
+                                                    TextBody('text'),
+                                                    TextBody('text'),
+                                                    TextBody('text'),
+                                                    TextBody('text'),
+                                                    TextBody('text'),
+                                                    TextBody('text'),
+                                                  ],
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  );
+                                }
                             );
                           },
+                          child: Container(
+                            decoration: BoxDecoration(
+                                color: AppColors.textFieldBackground,
+                                borderRadius: BorderRadius.circular(10)
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 15),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  TextSmall(
+                                    'Employee size',
+                                    fontWeight: FontWeight.w400,
+                                    color: AppColors.personalProfileHint,
+                                  ),
+                                  const Icon(
+                                      Icons.arrow_drop_down
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
                         ),
+                        const Gap(10),
                         StreamBuilder<String>(
                           stream: _surnameStreamController.stream,
                           builder: (context, snapshot) {

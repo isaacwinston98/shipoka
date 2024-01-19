@@ -10,18 +10,23 @@ class AppBackButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 50.0,
-      height: 50.0,
-      decoration: const BoxDecoration(
-        shape: BoxShape.circle,
-        color: AppColors.lightBackground,
-      ),
-      child: Padding(
-        padding: EdgeInsets.zero,
-        child: Center(
-          child: SvgPicture.asset(
-            AppAssets.arrowBack,
+    return GestureDetector(
+      onTap: (){
+        Navigator.pop(context);
+      },
+      child: Container(
+        width: 50.0,
+        height: 50.0,
+        decoration: const BoxDecoration(
+          shape: BoxShape.circle,
+          color: AppColors.lightBackground,
+        ),
+        child: Padding(
+          padding: EdgeInsets.zero,
+          child: Center(
+            child: SvgPicture.asset(
+              AppAssets.arrowBack,
+            ),
           ),
         ),
       ),

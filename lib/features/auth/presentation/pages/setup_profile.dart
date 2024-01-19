@@ -15,6 +15,19 @@ class SetupProfile extends StatefulWidget {
 }
 
 class _SetupProfileState extends State<SetupProfile> {
+
+
+  late int selectedBusinessContainerIndex;
+  late int selectedPersonalContainerIndex;
+
+  @override
+  void initState() {
+    super.initState();
+
+    selectedBusinessContainerIndex = -1;
+    selectedPersonalContainerIndex = -1;
+
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,15 +67,26 @@ class _SetupProfileState extends State<SetupProfile> {
                         const Gap(30),
                         GestureDetector(
                           onTap: (){
-                            Navigator.pushNamed(context, RouteName.businessProfile);
+                            setState(() {
+                              selectedBusinessContainerIndex=0;
+                              selectedPersonalContainerIndex = -1;
+                            });
+
                           },
                           child: Container(
                             decoration: BoxDecoration(
-                              color: AppColors.lightBackground,
-                              borderRadius: BorderRadius.circular(20.0), // Set the border radius for curved corners
+                              color: selectedBusinessContainerIndex == 0
+                              ? AppColors.lightPrimaryBackground
+                              : AppColors.lightBackground,
+                              borderRadius: BorderRadius.circular(20.0),
+                              border: Border.all(
+                                color: selectedBusinessContainerIndex == 0
+                                    ? AppColors.primaryColor
+                                    : AppColors.lightBackground,
+                              )// Set the border radius for curved corners
                             ),
                             child: Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+                              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
                               child: Row(
                                 children: [
                                   Container(
@@ -71,7 +95,7 @@ class _SetupProfileState extends State<SetupProfile> {
                                       borderRadius: BorderRadius.circular(15.0),
                                     ),
                                     child: Padding(
-                                      padding: const EdgeInsets.all(20.0),
+                                      padding: const EdgeInsets.all(15.0),
                                       child: Image.asset(AppAssets.shop),
                                     ),
                                   ),
@@ -98,18 +122,28 @@ class _SetupProfileState extends State<SetupProfile> {
                             ),
                           ),
                         ),
-                        const Gap(30),
+                        const Gap(15),
                         GestureDetector(
                           onTap: (){
-                            Navigator.pushNamed(context, RouteName.personalProfile);
+                            setState(() {
+                              selectedPersonalContainerIndex=0;
+                              selectedBusinessContainerIndex = -1;
+                            });
                           },
                           child: Container(
                             decoration: BoxDecoration(
-                              color: AppColors.lightBackground,
-                              borderRadius: BorderRadius.circular(20.0), // Set the border radius for curved corners
+                                color: selectedPersonalContainerIndex == 0
+                                    ? AppColors.lightPrimaryBackground
+                                    : AppColors.lightBackground,
+                                borderRadius: BorderRadius.circular(20.0),
+                                border: Border.all(
+                                  color: selectedPersonalContainerIndex == 0
+                                      ? AppColors.primaryColor
+                                      : AppColors.lightBackground,
+                                )// Set the border radius for curved corners
                             ),
                             child: Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+                              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
                               child: Row(
                                 children: [
                                   Container(
@@ -118,7 +152,7 @@ class _SetupProfileState extends State<SetupProfile> {
                                       borderRadius: BorderRadius.circular(15.0),
                                     ),
                                     child: Padding(
-                                      padding: const EdgeInsets.all(20.0),
+                                      padding: const EdgeInsets.all(15.0),
                                       child: Image.asset(AppAssets.box),
                                     ),
                                   ),
@@ -151,21 +185,18 @@ class _SetupProfileState extends State<SetupProfile> {
                 Padding(
                   padding: const EdgeInsets.only(bottom: 20),
                   child: BusyButton(
-                    title: 'Sign Up',
+                    title: 'Continue',
                     onTap: () {
-                      Navigator.pushNamed(context, RouteName.setupProfile);
-                      // Provider.of<AuthNotifier>(context, listen: false)
-                      //     .register(
-                      //   context,
-                      //   firstName: firstNameController.text.trim(),
-                      //   lastName: surnameController.text.trim(),
-                      //   email: emailController.text.trim(),
-                      //   countryCode: 'NG',
-                      //   pin: pinController.text.trim(),
-                      //   phoneNumber: phoneController.text.trim(),
-                      // );
+                      if(selectedBusinessContainerIndex == 0 ){
+                        Navigator.pushNamed(context, RouteName.businessProfile);
+                      }else if(selectedPersonalContainerIndex == 0){
+                        Navigator.pushNamed(context, RouteName.personalProfile);
+                      }
+
                     },
-                   // disabled: !canSubmit,
+                   disabled: selectedBusinessContainerIndex == 0 || selectedPersonalContainerIndex == 0
+                    ? false
+                    : true,
                   ),
                 ),
 

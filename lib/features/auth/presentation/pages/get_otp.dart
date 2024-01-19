@@ -41,6 +41,7 @@ class _GetOTPState extends State<GetOTP> {
                 TextBody(
                     'Phone Number Verification',
                   color: AppColors.smallTextColor,
+                  fontWeight: FontWeight.w500,
                   fontSize: 16,
                 ),
                 const Gap(9),
@@ -51,7 +52,8 @@ class _GetOTPState extends State<GetOTP> {
                         TextSpan(
                             text: 'An OTP  will be sent to this number ',
                           style: TextStyle(
-                              color: AppColors.textSecondaryColor
+                              color: AppColors.textSecondaryColor,
+                            fontSize: 12
                           ),
                         ),
                         TextSpan(
@@ -63,7 +65,8 @@ class _GetOTPState extends State<GetOTP> {
                         TextSpan(
                             text: 'to verify your identity and ensure the security of your account.',
                           style: TextStyle(
-                              color: AppColors.textSecondaryColor
+                              color: AppColors.textSecondaryColor,
+                              fontSize: 14
                           ),
                         ),
                       ],
@@ -74,11 +77,10 @@ class _GetOTPState extends State<GetOTP> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    TextSmall(
+                    TextBody(
                       'Use Another Number? ',
                       fontSize: 14,
-                      fontWeight: FontWeight.bold,
-                      color: AppColors.smallTextColor,
+
                     ),
                     GestureDetector(
                       onTap: (){

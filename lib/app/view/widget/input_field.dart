@@ -32,8 +32,8 @@ class InputField extends StatefulWidget {
     this.height = 50,
     this.label,
     this.showLabel = false,
-    this.placeholderColor = AppColors.textSecondaryColor,
-    this.labelTextColor = AppColors.textSecondaryColor,
+    this.placeholderColor = AppColors.personalProfileHint,
+    this.labelTextColor = AppColors.personalProfileHint,
     Key? key,
   }) : super(key: key);
   final Color labelTextColor;
@@ -166,11 +166,11 @@ class _InputFieldState extends State<InputField> {
                                       alignment: Alignment.center,
                                       child: isPassword
                                           ? SvgPicture.asset(
-                                              AppAssets.visibility)
+                                              AppAssets.invisible)
                                           : const Icon(
-                                              Icons.visibility_off_outlined,
+                                              Icons.visibility_rounded,
                                               color: Color(0xff71759D),
-                                              size: 25,
+                                              size: 20,
                                             ),
                                     )
                                   : Container(

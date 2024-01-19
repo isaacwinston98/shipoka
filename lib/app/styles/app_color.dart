@@ -8,7 +8,7 @@ class AppColors{
   static const Color deepBlue = Color(0xff001F3F);
   static const Color textColor = Color(0xff101828);
   static const Color lighOrange = Color(0xffE39671);
-  static const Color white = Color(0xffffffff);
+  static const Color white = Color(0xffFFFFFF);
   static const Color textSecondaryColor = Color(0xff667085);
   static const Color background = Color(0xffffffff);
   static const Color textFieldBackground = Color(0xffFAFAFA);
@@ -18,7 +18,7 @@ class AppColors{
   static const Color smallTextColor = Color(0xff344054);
   static const Color editPersonColor = Color(0xffF5F5F8);
   static const Color personalProfileHint = Color(0xff9E9E9E);
-
+  static const Color lightPrimaryBackground = Color(0xffFFFCF5);
 
   static const Map<int, Color> colorScratch  = {
     50: Color.fromRGBO(242, 101, 32, .1),
