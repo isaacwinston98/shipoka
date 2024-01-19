@@ -14,6 +14,7 @@ class AppColors{
   static const Color textFieldBackground = Color(0xffFAFAFA);
   static const Color red = Color(0xffD8304A);
   static const Color grey3 = Color(0xffD9DDEE);
+  static const Color grey4 = Color(0xff344054);
 
 
   static const Map<int, Color> colorScratch  = {

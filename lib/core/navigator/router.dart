@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:shipoka/core/navigator/route_extentions.dart';
 import 'package:shipoka/core/navigator/route_name.dart';
+import 'package:shipoka/features/auth/presentation/pages/forgot_password.dart';
+import 'package:shipoka/features/auth/presentation/pages/signup.dart';
 import 'package:shipoka/features/onboarding/presentation/pages/splash_screen.dart';
 
 Route<T> onGenerateRoute<T>(RouteSettings settings) {
