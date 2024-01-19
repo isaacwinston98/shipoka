@@ -16,12 +16,12 @@ class _CustomSplashScreenState extends State<CustomSplashScreen> with SingleTick
   void initState (){
     super.initState();
    // After a delay, navigate to the onboarding screen
-    Timer(const Duration(seconds: 4), () {
-      Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(builder: (context) => const OnboardingScreen()),
-      );
-    });
+   //  Timer(const Duration(seconds: 4), () {
+   //    Navigator.pushReplacement(
+   //        context,
+   //        MaterialPageRoute(builder: (context) => const OnboardingScreen()),
+   //    );
+   //  });
   }
   @override
   Widget build(BuildContext context) {
