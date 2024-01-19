@@ -5,10 +5,12 @@ import 'package:shipoka/features/auth/presentation/pages/add_person.dart';
 import 'package:shipoka/features/auth/presentation/pages/business_profile.dart';
 import 'package:shipoka/features/auth/presentation/pages/change_number.dart';
 import 'package:shipoka/features/auth/presentation/pages/get_otp.dart';
+import 'package:shipoka/features/auth/presentation/pages/login.dart';
 import 'package:shipoka/features/auth/presentation/pages/otp_verification.dart';
 import 'package:shipoka/features/auth/presentation/pages/personal_profile.dart';
 import 'package:shipoka/features/auth/presentation/pages/setup_profile.dart';
 import 'package:shipoka/features/auth/presentation/pages/signup.dart';
+import 'package:shipoka/features/auth/presentation/pages/verify_email.dart';
 import 'package:shipoka/features/onboarding/presentation/pages/splash_screen.dart';
 
 Route<T> onGenerateRoute<T>(RouteSettings settings) {
@@ -57,6 +59,16 @@ Route<T> onGenerateRoute<T>(RouteSettings settings) {
       return _getPageRoute(
         routeName: settings.name!,
         viewToShow: const AddPersonContact(),
+      );
+    case RouteName.verifyEmail:
+      return _getPageRoute(
+        routeName: settings.name!,
+        viewToShow: const VerifyEmail(),
+      );
+    case RouteName.login:
+      return _getPageRoute(
+        routeName: settings.name!,
+        viewToShow: const Login(),
       );
     default:
       return MaterialPageRoute<T>(

@@ -17,4 +17,5 @@ class AppAssets {
   static const String search = 'assets/icons/search.svg';
   static const String camera = 'assets/icons/camera.svg';
   static const String gallery = 'assets/icons/gallery.svg';
+  static const String fingerPrint = 'assets/icons/fingerPrint.svg';
 }

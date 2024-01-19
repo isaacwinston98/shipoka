@@ -5,21 +5,21 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:shipoka/app/styles/app_color.dart';
 import 'package:shipoka/app/styles/fonts.dart';
+import 'package:shipoka/app/view/widget/app_back_button.dart';
 import 'package:shipoka/app/view/widget/busy_button.dart';
 import 'package:shipoka/app/view/widget/input_field.dart';
 import 'package:shipoka/core/constant/app_asset.dart';
 import 'package:shipoka/core/navigator/route_name.dart';
 import 'package:shipoka/core/utils/custom_form_validator.dart';
 
-
-class Signup extends StatefulWidget {
-  const Signup({Key? key}) : super(key: key);
+class Login extends StatefulWidget {
+  const Login({super.key});
 
   @override
-  State<Signup> createState() => _SignupState();
+  State<Login> createState() => _LoginState();
 }
 
-class _SignupState extends State<Signup> {
+class _LoginState extends State<Login> {
   var canSubmit = false;
 
   late StreamController<String> _emailStreamController;
@@ -154,7 +154,6 @@ class _SignupState extends State<Signup> {
       canSubmit =false ;
     });
   }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -172,15 +171,22 @@ class _SignupState extends State<Signup> {
                     children: [
                       Padding(
                         padding: const EdgeInsets.only(bottom: 20,top: 20),
-                        child:TextSemiBold(
-                          'Sign Up',
-                          fontSize: 16,
+                        child: Row(
+                          children: [
+                            const AppBackButton(),
+                            const Gap(20),
+                            TextSemiBold(
+                              'Login',
+                              fontSize: 16,
+                            ),
 
+
+                          ],
                         ),
                       ),
                       const Gap(15),
                       TextBold(
-                        'Create your',
+                        'Login your ',
                         fontSize: 33,
 
                       ),
@@ -238,7 +244,9 @@ class _SignupState extends State<Signup> {
                               label: 'Password',
                               fieldFocusNode: pinFocus,
                               textInputType: TextInputType.text,
-                              password: true,
+                              suffix:  SvgPicture.asset(
+                                AppAssets.fingerPrint,
+                              ),
                               prefix: Padding(
                                 padding: const EdgeInsets.only(top: 6),
                                 child: SvgPicture.asset(
@@ -260,83 +268,17 @@ class _SignupState extends State<Signup> {
                                 'Password is required',
                               ),
                               controller: pinController,
-                              placeholder: 'Password (Must be at least 8 characters )',
+                              placeholder: 'Password',
                             );
                           },
                         ),
                       ),
                       const Gap(5),
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: 5),
-                        child: StreamBuilder<String>(
-                          stream: _repeatPinStreamController.stream,
-                          builder: (context, snapshot) {
-                            return InputField(
-                              fieldFocusNode: refferalPinFocus,
-                              label: 'Confirm password',
-                              prefix:  Padding(
-                                padding: const EdgeInsets.only(top: 6),
-                                child: SvgPicture.asset(
-                                  AppAssets.password,
-                                ),
-                              ),
-                              validationColor: snapshot.data == null
-                                  ? AppColors.white
-                                  : CustomFormValidation.getColor(
-                                snapshot.data,
-                                repeatPinFocus,
-                                CustomFormValidation.errorMessageConfirmPassword(
-                                  snapshot.data,
-                                  're-enter password',
-                                  pinController.text,
-                                ),
-                              ),
-                              controller: repeatPinController,
-                              placeholder: 'Confirm password',
-                              password: true,
-                              validationMessage:
-                              CustomFormValidation.errorMessageConfirmPassword(
-                                snapshot.data,
-                                'Re-enter password',
-                                pinController.text,
-                              ),
-                              textInputType: TextInputType.text,
-                            );
-                          },
-                        ),
-                      ),
                       const Gap(5),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Checkbox(
-                            visualDensity: const VisualDensity(horizontal: -4.0, vertical: -4.0),
-                            value: isChecked,
-                            side: const BorderSide(
-                              color: AppColors.primaryColor
-                            ),
-                            onChanged: (bool? value) {
-                              setState(() {
-                                isChecked = value!;
-                              });
-
-                            },
-                            activeColor: AppColors.primaryColor, // Make the actual checkbox transparent
-                             // Set the check color to orange
-                          ),
-                          Flexible(
-                            child: TextSmall(
-                              'By Creating An Account, I agree to Shipoka’s Term and Conditions.',
-                              fontSize: 10,
-
-                            ),
-                          ),
-                        ],
-                      ),
                       Padding(
                         padding: const EdgeInsets.only(top: 30),
                         child: BusyButton(
-                          title: 'Sign Up',
+                          title: 'Login',
                           onTap: () {
                             Navigator.pushNamed(context, RouteName.setupProfile);
                             // Provider.of<AuthNotifier>(context, listen: false)
@@ -350,30 +292,42 @@ class _SignupState extends State<Signup> {
                             //   phoneNumber: phoneController.text.trim(),
                             // );
                           },
-                          // disabled: !canSubmit,
+                          disabled: true,
                         ),
                       ),
-
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Padding(
+                              padding: const EdgeInsets.all(16.0),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  TextSmall(
+                                    'Forgot Password? ',
+                                  ),
+                                  TextSmall(
+                                    'Reset',
+                                    color: AppColors.primaryColor,
+                                  ),
+                                ],
+                              )
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(right: 10),
+                            child: TextSmall(
+                              'Sign Up',
+                              color: AppColors.primaryColor,
+                            ),
+                          ),
+                        ],
+                      )
                     ],
                   ),
                 ),
               ),
             ),
-            Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    TextSmall(
-                      'Already have an account? ',
-                    ),
-                    TextSmall(
-                      'Sign In',
-                      color: AppColors.primaryColor,
-                    ),
-                  ],
-                )
-            ),
+
           ],
         ),
       ),
