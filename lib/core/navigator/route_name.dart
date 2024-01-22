@@ -12,5 +12,6 @@ class RouteName {
   static const String addPersonContact = '/add_person';
   static const String verifyEmail = '/verify_email';
   static const String login = '/login';
+  static const String homeScreen = '/home_screen';
 
 }

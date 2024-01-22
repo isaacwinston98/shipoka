@@ -93,7 +93,7 @@ class TextBold extends ShipokaTextBase {
         Key? key,
         TextStyle? style,
         double fontSize = 32,
-        FontWeight fontWeight = FontWeight.w700,
+        FontWeight fontWeight = FontWeight.w600,
         Color? color,
         TextAlign textAlign = TextAlign.left,
         TextOverflow overflow = TextOverflow.visible,

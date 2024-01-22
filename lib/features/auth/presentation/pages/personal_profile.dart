@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'dart:io';
-
+import 'package:country_picker/country_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -25,7 +25,8 @@ class PersonalProfile extends StatefulWidget {
 class _PersonalProfileState extends State<PersonalProfile> {
 
   File? image;
-
+  var canSubmit = false;
+  String selectedCountryCode = '';
 
 
   late StreamController<String> _firstNameStreamController;
@@ -36,6 +37,7 @@ class _PersonalProfileState extends State<PersonalProfile> {
   final firstNameFocus = FocusNode();
   final surnameFocus = FocusNode();
   final phoneFocus = FocusNode();
+  final searchFocus = FocusNode();
 
 
   final firstNameController = TextEditingController();
@@ -43,16 +45,12 @@ class _PersonalProfileState extends State<PersonalProfile> {
   final phoneController = TextEditingController();
   final searchController = TextEditingController();
 
-
   @override
   void initState() {
     super.initState();
     _firstNameStreamController = StreamController<String>.broadcast();
     _surnameStreamController = StreamController<String>.broadcast();
     _phoneStreamController = StreamController<String>.broadcast();
-
-
-
 
 
     firstNameController.addListener(() {
@@ -92,8 +90,6 @@ class _PersonalProfileState extends State<PersonalProfile> {
   }
 
   void validateInputs() {
-    // var canSumit = true;
-
     final firstNameError = CustomFormValidation.errorMessage(
       firstNameController.text.trim(),
       'First name is required',
@@ -109,14 +105,18 @@ class _PersonalProfileState extends State<PersonalProfile> {
       'Phone number is required',
     );
 
-    if (
-        firstNameError != '' ||
-        surnameError != '' ||
-        phoneError != ''
-    ) {
-      // canSumit = false;
-    }
-    //_canSubmit.value = canSumit;
+    // Check if the country code is selected
+    final countryCodeError = selectedCountryCode.isEmpty
+        ? 'Country code is required'
+        : '';
+
+    // Update canSubmit based on validation results
+    setState(() {
+      canSubmit = firstNameError.isEmpty &&
+          surnameError.isEmpty &&
+          phoneError.isEmpty &&
+          countryCodeError.isEmpty;
+    });
   }
 
   //Image Picker method to select image from gallery or camera
@@ -344,253 +344,38 @@ class _PersonalProfileState extends State<PersonalProfile> {
                             // Country Code Dropdown
                             GestureDetector(
                               onTap: (){
-                                showModalBottomSheet(
-                                  showDragHandle: true,
-                                  backgroundColor: AppColors.white,
-                                    shape: const RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.only(
-                                            topLeft: Radius.circular(20),
-                                            topRight: Radius.circular(20)
-                                        )
+                                showCountryPicker(
+                                  context: context,
+                                  showPhoneCode: true,
+                                  countryListTheme: CountryListThemeData(
+                                    flagSize: 25,
+                                    backgroundColor: Colors.white,
+                                    textStyle: const TextStyle(fontSize: 16, color: AppColors.textColor),
+                                    bottomSheetHeight: MediaQuery.of(context).size.height * 0.9,
+                                    borderRadius: const BorderRadius.only(
+                                      topLeft: Radius.circular(30.0),
+                                      topRight: Radius.circular(30.0),
                                     ),
-                                    context: context,
-                                    builder: (BuildContext context){
-                                      SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-                                        statusBarColor: Colors.transparent, // Change this to your preferred status bar color
-                                      ));
-                                      return Padding(
-                                        padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 10),
-                                        child: SizedBox(
-
-                                          height: MediaQuery.of(context).size.height * 0.38,
-                                          child: Column(
-                                            crossAxisAlignment: CrossAxisAlignment.start,
-                                            children: [
-                                              Row(
-                                                mainAxisAlignment: MainAxisAlignment.center,
-                                                children: [
-                                                  TextSemiBold(
-                                                    'Select your country',
-                                                    fontSize: 17,
-                                                  ),
-                                                ],
-                                              ),
-                                              const Gap(15),
-                                              InputField(
-                                                  controller: searchController,
-                                                  placeholder: 'Search Country',
-                                                  suffix: SvgPicture.asset(
-                                                  AppAssets.search,
-                                                ),
-                                              ),
-                                              const Gap(20),
-                                              Expanded(
-                                                child: SingleChildScrollView(
-                                                  child: SizedBox(
-                                                    width: double.infinity,
-                                                    child: Column(
-                                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                                      children: [
-                                                        Row(
-                                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                          children: [
-                                                            Row(
-                                                              children: [
-                                                                Image.asset(AppAssets.flag),
-                                                                const Gap(10),
-                                                                TextBody(
-                                                                    'Afghanistan',
-                                                                  fontWeight: FontWeight.w500,
-                                                                )
-                                                              ],
-                                                            ),
-                                                            TextBody(
-                                                              '(+93)',
-                                                              fontWeight: FontWeight.w500,
-                                                            )
-
-                                                          ],
-                                                        ),
-                                                        const Gap(15),
-                                                        Row(
-                                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                          children: [
-                                                            Row(
-                                                              children: [
-                                                                Image.asset(AppAssets.flag),
-                                                                const Gap(10),
-                                                                TextBody(
-                                                                  'Afghanistan',
-                                                                  fontWeight: FontWeight.w500,
-                                                                )
-                                                              ],
-                                                            ),
-                                                            TextBody(
-                                                              '(+93)',
-                                                              fontWeight: FontWeight.w500,
-                                                            )
-
-                                                          ],
-                                                        ),
-                                                        const Gap(15),
-                                                        Row(
-                                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                          children: [
-                                                            Row(
-                                                              children: [
-                                                                Image.asset(AppAssets.flag),
-                                                                const Gap(10),
-                                                                TextBody(
-                                                                  'Afghanistan',
-                                                                  fontWeight: FontWeight.w500,
-                                                                )
-                                                              ],
-                                                            ),
-                                                            TextBody(
-                                                              '(+93)',
-                                                              fontWeight: FontWeight.w500,
-                                                            )
-
-                                                          ],
-                                                        ),
-                                                        const Gap(15),
-                                                        Row(
-                                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                          children: [
-                                                            Row(
-                                                              children: [
-                                                                Image.asset(AppAssets.flag),
-                                                                const Gap(10),
-                                                                TextBody(
-                                                                  'Afghanistan',
-                                                                  fontWeight: FontWeight.w500,
-                                                                )
-                                                              ],
-                                                            ),
-                                                            TextBody(
-                                                              '(+93)',
-                                                              fontWeight: FontWeight.w500,
-                                                            )
-
-                                                          ],
-                                                        ),
-                                                        const Gap(15),
-                                                        Row(
-                                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                          children: [
-                                                            Row(
-                                                              children: [
-                                                                Image.asset(AppAssets.flag),
-                                                                const Gap(10),
-                                                                TextBody(
-                                                                  'Afghanistan',
-                                                                  fontWeight: FontWeight.w500,
-                                                                )
-                                                              ],
-                                                            ),
-                                                            TextBody(
-                                                              '(+93)',
-                                                              fontWeight: FontWeight.w500,
-                                                            )
-
-                                                          ],
-                                                        ),
-                                                        const Gap(15),
-                                                        Row(
-                                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                          children: [
-                                                            Row(
-                                                              children: [
-                                                                Image.asset(AppAssets.flag),
-                                                                const Gap(10),
-                                                                TextBody(
-                                                                  'Afghanistan',
-                                                                  fontWeight: FontWeight.w500,
-                                                                )
-                                                              ],
-                                                            ),
-                                                            TextBody(
-                                                              '(+93)',
-                                                              fontWeight: FontWeight.w500,
-                                                            )
-
-                                                          ],
-                                                        ),
-                                                        const Gap(15),
-                                                        Row(
-                                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                          children: [
-                                                            Row(
-                                                              children: [
-                                                                Image.asset(AppAssets.flag),
-                                                                const Gap(10),
-                                                                TextBody(
-                                                                  'Afghanistan',
-                                                                  fontWeight: FontWeight.w500,
-                                                                )
-                                                              ],
-                                                            ),
-                                                            TextBody(
-                                                              '(+93)',
-                                                              fontWeight: FontWeight.w500,
-                                                            )
-
-                                                          ],
-                                                        ),
-                                                        const Gap(15),
-                                                        Row(
-                                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                          children: [
-                                                            Row(
-                                                              children: [
-                                                                Image.asset(AppAssets.flag),
-                                                                const Gap(10),
-                                                                TextBody(
-                                                                  'Afghanistan',
-                                                                  fontWeight: FontWeight.w500,
-                                                                )
-                                                              ],
-                                                            ),
-                                                            TextBody(
-                                                              '(+93)',
-                                                              fontWeight: FontWeight.w500,
-                                                            )
-
-                                                          ],
-                                                        ),
-                                                        const Gap(15),
-                                                        Row(
-                                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                          children: [
-                                                            Row(
-                                                              children: [
-                                                                Image.asset(AppAssets.flag),
-                                                                const Gap(10),
-                                                                TextBody(
-                                                                  'Afghanistan',
-                                                                  fontWeight: FontWeight.w500,
-                                                                )
-                                                              ],
-                                                            ),
-                                                            TextBody(
-                                                              '(+93)',
-                                                              fontWeight: FontWeight.w500,
-                                                            )
-
-                                                          ],
-                                                        ),
-                                                        const Gap(15),
-
-                                                      ],
-                                                    ),
-                                                  ),
-                                                ),
-                                              ),
-                                            ],
-                                          ),
+                                    inputDecoration: InputDecoration(
+                                      fillColor: AppColors.textFieldBackground,
+                                      hintText: 'Search Country',
+                                      suffix: SvgPicture.asset(
+                                          AppAssets.search
+                                      ),
+                                      border: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(20),
+                                        borderSide: const BorderSide(
+                                          color: AppColors.primaryColor,
                                         ),
-                                      );
-                                    }
+                                      ),
+                                    ),
+                                  ),
+                                  onSelect: (Country country){
+                                    setState(() {
+                                      selectedCountryCode = country.phoneCode; // Update the selected country code
+                                    });
+                                    validateInputs();
+                                  }
                                 );
                               },
                               child: Container(
@@ -604,7 +389,15 @@ class _PersonalProfileState extends State<PersonalProfile> {
                                     padding: const EdgeInsets.symmetric(horizontal: 10),
                                     child: Row(
                                       children: [
-                                        TextSmall('Code'),
+                                        TextSmall(
+                                            selectedCountryCode == ''
+                                            ? 'Code'
+                                            : "+$selectedCountryCode",
+                                          fontWeight: selectedCountryCode == ''
+                                              ? FontWeight.w300
+                                              : FontWeight.w500,
+
+                                            ),
                                         const Gap(5),
                                         const Icon(
                                             Icons.arrow_drop_down_outlined
@@ -657,9 +450,11 @@ class _PersonalProfileState extends State<PersonalProfile> {
                   child: BusyButton(
                     title: 'Continue',
                     onTap: () {
-                      Navigator.pushNamed(context, RouteName.getOTP);
+                      if (canSubmit) {
+                        Navigator.pushNamed(context, RouteName.getOTP);
+                      }
                     },
-                    // disabled: true,
+                    disabled: !canSubmit, // Invert the condition
                   ),
                 ),
               ],

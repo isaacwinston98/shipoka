@@ -28,17 +28,18 @@ class _BusinessProfileState extends State<BusinessProfile> {
   late StreamController<String> _firstNameStreamController;
   late StreamController<String> _surnameStreamController;
   late StreamController<String> _phoneStreamController;
+  late StreamController<String> _businessRegistrationNumberStreamController;
 
 
   final firstNameFocus = FocusNode();
   final surnameFocus = FocusNode();
   final phoneFocus = FocusNode();
-
+  final businessRegistrationNumberFocus = FocusNode();
 
   final firstNameController = TextEditingController();
   final surnameController = TextEditingController();
   final phoneController = TextEditingController();
-
+  final businessRegistrationNumberController = TextEditingController();
 
   //Image Picker method to select image from gallery or camera
   Future pickImage(ImageSource source)async{
@@ -61,8 +62,7 @@ class _BusinessProfileState extends State<BusinessProfile> {
     _firstNameStreamController = StreamController<String>.broadcast();
     _surnameStreamController = StreamController<String>.broadcast();
     _phoneStreamController = StreamController<String>.broadcast();
-
-
+    _businessRegistrationNumberStreamController = StreamController<String>.broadcast();
 
 
     firstNameController.addListener(() {
@@ -86,6 +86,13 @@ class _BusinessProfileState extends State<BusinessProfile> {
       validateInputs();
     });
 
+    businessRegistrationNumberController.addListener(() {
+      _businessRegistrationNumberStreamController.sink.add(
+        businessRegistrationNumberController.text.trim(),
+      );
+      validateInputs();
+    });
+
   }
 
   @override
@@ -95,10 +102,14 @@ class _BusinessProfileState extends State<BusinessProfile> {
     _surnameStreamController.close();
     _firstNameStreamController.close();
     _phoneStreamController.close();
+    _businessRegistrationNumberStreamController.close();
+
 
     firstNameFocus.dispose();
     surnameFocus.dispose();
     phoneFocus.dispose();
+    businessRegistrationNumberFocus.dispose();
+
   }
   void validateInputs() {
     // var canSumit = true;
@@ -118,10 +129,16 @@ class _BusinessProfileState extends State<BusinessProfile> {
       'Phone number is required',
     );
 
+    final businessRegNumberError = CustomFormValidation.errorMessage(
+      businessRegistrationNumberController.text,
+      'Business Registration number is required',
+    );
+
     if (
     firstNameError != '' ||
         surnameError != '' ||
-        phoneError != ''
+        phoneError != '' ||
+        businessRegNumberError != ''
     ) {
       // canSumit = false;
     }
@@ -595,26 +612,25 @@ class _BusinessProfileState extends State<BusinessProfile> {
                         ),
                         const Gap(10),
                         StreamBuilder<String>(
-                          stream: _surnameStreamController.stream,
+                          stream: _businessRegistrationNumberStreamController.stream,
                           builder: (context, snapshot) {
                             return InputField(
-                              fieldFocusNode: surnameFocus,
-                              label: 'Business type',
+                              fieldFocusNode: businessRegistrationNumberFocus,
                               validationColor: snapshot.data == null
                                   ? AppColors.white
                                   : CustomFormValidation.getColor(
                                 snapshot.data,
-                                surnameFocus,
+                                businessRegistrationNumberFocus,
                                 CustomFormValidation.errorMessage(
                                   snapshot.data,
                                   'LastName is required',
                                 ),
                               ),
-                              controller: surnameController,
+                              controller: businessRegistrationNumberController,
                               placeholder: 'Business registration number',
                               validationMessage: CustomFormValidation.errorMessage(
                                 snapshot.data,
-                                'LastName is required',
+                                'Business Registration number is required',
                               ),
                             );
                           },

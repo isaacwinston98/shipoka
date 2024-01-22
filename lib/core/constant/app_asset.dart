@@ -18,4 +18,8 @@ class AppAssets {
   static const String camera = 'assets/icons/camera.svg';
   static const String gallery = 'assets/icons/gallery.svg';
   static const String fingerPrint = 'assets/icons/fingerPrint.svg';
+  static const String home = 'assets/icons/home.svg';
+  static const String bell = 'assets/icons/bell.svg';
+  static const String dot = 'assets/icons/redDot.svg';
+  static const String arrowDown = 'assets/icons/arrowDown.svg';
 }

@@ -50,6 +50,8 @@ class _VerifyOTPState extends State<VerifyOTP> {
                           child: OtpTextField(
                             borderRadius: const BorderRadius.all(Radius.circular(7)),
                             numberOfFields: 6,
+                            filled: true,
+                            fillColor: AppColors.textFieldBackground,
                             fieldWidth: 45,
                             focusedBorderColor:AppColors.primaryColor,
                             showFieldAsBox: true,
@@ -87,16 +89,6 @@ class _VerifyOTPState extends State<VerifyOTP> {
                   title: 'Continue',
                   onTap: () {
                     Navigator.pushNamed(context, RouteName.signUp);
-                    // Provider.of<AuthNotifier>(context, listen: false)
-                    //     .register(
-                    //   context,
-                    //   firstName: firstNameController.text.trim(),
-                    //   lastName: surnameController.text.trim(),
-                    //   email: emailController.text.trim(),
-                    //   countryCode: 'NG',
-                    //   pin: pinController.text.trim(),
-                    //   phoneNumber: phoneController.text.trim(),
-                    // );
                   },
                   // disabled: !canSubmit,
                 ),

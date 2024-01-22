@@ -94,13 +94,13 @@ class _GetOTPState extends State<GetOTP> {
                     ),
                   ],
                 ),
-                Gap(35),
+                const Gap(35),
                 Padding(
                   padding: const EdgeInsets.only(top: 30),
                   child: BusyButton(
                     title: 'Get OTP',
                     onTap: () {
-
+                      Navigator.pushNamed(context, RouteName.verifyOTP);
                     },
                     // disabled: !canSubmit,
                   ),

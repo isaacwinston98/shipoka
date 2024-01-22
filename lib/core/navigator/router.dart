@@ -11,6 +11,7 @@ import 'package:shipoka/features/auth/presentation/pages/personal_profile.dart';
 import 'package:shipoka/features/auth/presentation/pages/setup_profile.dart';
 import 'package:shipoka/features/auth/presentation/pages/signup.dart';
 import 'package:shipoka/features/auth/presentation/pages/verify_email.dart';
+import 'package:shipoka/features/home/presentation/pages/home_screen.dart';
 import 'package:shipoka/features/onboarding/presentation/pages/splash_screen.dart';
 
 Route<T> onGenerateRoute<T>(RouteSettings settings) {
@@ -69,6 +70,11 @@ Route<T> onGenerateRoute<T>(RouteSettings settings) {
       return _getPageRoute(
         routeName: settings.name!,
         viewToShow: const Login(),
+      );
+    case RouteName.homeScreen:
+      return _getPageRoute(
+        routeName: settings.name!,
+        viewToShow: const HomeScreen(),
       );
     default:
       return MaterialPageRoute<T>(

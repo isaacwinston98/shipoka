@@ -313,11 +313,16 @@ class _LoginState extends State<Login> {
                                 ],
                               )
                           ),
-                          Padding(
-                            padding: const EdgeInsets.only(right: 10),
-                            child: TextSmall(
-                              'Sign Up',
-                              color: AppColors.primaryColor,
+                          GestureDetector(
+                            onTap: (){
+                              Navigator.pushNamed(context, RouteName.signUp);
+                            },
+                            child: Padding(
+                              padding: const EdgeInsets.only(right: 10),
+                              child: TextSmall(
+                                'Sign Up',
+                                color: AppColors.primaryColor,
+                              ),
                             ),
                           ),
                         ],
