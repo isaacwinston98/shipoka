@@ -32,20 +32,6 @@ class CustomFormValidation {
     }
   }
 
-  static Color getColorBvn(String? text, FocusNode focus) {
-    if (focus.hasFocus && text == null) {
-      return const Color.fromRGBO(255, 255, 255, 0.1);
-    }
-    if (focus.hasFocus && text != null && text.isEmpty) {
-      return Colors.redAccent;
-    } else if (text != null && text.length != 11) {
-      return Colors.redAccent;
-    } else if (focus.hasFocus && text != null && text.isNotEmpty) {
-      return const Color.fromRGBO(255, 255, 255, 0.1);
-    } else {
-      return const Color.fromRGBO(255, 255, 255, 0.1);
-    }
-  }
 
   static String errorEmailMessage(
     String? text,
@@ -125,21 +111,6 @@ class CustomFormValidation {
     }
   }
 
-  static String errorMessageAccount(
-    String? text,
-    String message, [
-    String? type,
-  ]) {
-    if (text == null) {
-      return '';
-    } else if (text.isEmpty) {
-      return message;
-    } else if (text.length <= 9) {
-      return 'Account number must have 10 characters';
-    } else {
-      return '';
-    }
-  }
 
   static String errorPhoneNumber(String? text, String message, [String? type]) {
     if (text == null) {
@@ -295,33 +266,6 @@ class CustomFormValidation {
     }
   }
 
-  static String errorMessageBvn(String? text, String message, [String? type]) {
-    // var text = text ? '' : message;
-    // return text;
-    if (text == null) {
-      return '';
-    } else if (text.isEmpty) {
-      return message;
-    } else if (text.length != 11) {
-      return 'Please enter a valid BVN';
-    } else {
-      return '';
-    }
-  }
 
-  static String errorMessageWalletAddress(
-    String? text,
-    String message, [
-    String? type,
-  ]) {
-    if (text == null) {
-      return '';
-    } else if (text.isEmpty) {
-      return message;
-    } else if (text.length < 25 || text.length > 35) {
-      return 'Invalid wallet address';
-    } else {
-      return '';
-    }
-  }
+
 }
