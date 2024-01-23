@@ -1,4 +1,7 @@
+//import 'dart:async';
 import 'package:flutter/material.dart';
+//import 'package:shipoka/features/onboarding/presentation/pages/onboarding_screen.dart';
+
 
 class CustomSplashScreen extends StatefulWidget {
   const CustomSplashScreen({super.key});
@@ -14,12 +17,12 @@ class _CustomSplashScreenState extends State<CustomSplashScreen> with SingleTick
   void initState (){
     super.initState();
    // After a delay, navigate to the onboarding screen
-   //  Timer(const Duration(seconds: 4), () {
-   //    Navigator.pushReplacement(
-   //        context,
-   //        MaterialPageRoute(builder: (context) => const OnboardingScreen()),
-   //    );
-   //  });
+    /*Timer(const Duration(seconds: 4), () {
+      Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => const OnboardingScreen()),
+      );
+    });*/
   }
   @override
   Widget build(BuildContext context) {
