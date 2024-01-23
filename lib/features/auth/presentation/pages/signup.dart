@@ -1,11 +1,14 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:shipoka/app/styles/app_color.dart';
 import 'package:shipoka/app/styles/fonts.dart';
 import 'package:shipoka/app/view/widget/busy_button.dart';
 import 'package:shipoka/app/view/widget/input_field.dart';
+import 'package:shipoka/core/constant/app_asset.dart';
+import 'package:shipoka/core/navigator/route_name.dart';
 import 'package:shipoka/core/utils/custom_form_validator.dart';
 
 
@@ -17,44 +20,30 @@ class Signup extends StatefulWidget {
 }
 
 class _SignupState extends State<Signup> {
+
+  bool isChecked = false;
   var canSubmit = false;
 
   late StreamController<String> _emailStreamController;
-  late StreamController<String> _pinStreamController;
-  late StreamController<String> _firstNameStreamController;
-  late StreamController<String> _surnameStreamController;
-  late StreamController<String> _repeatPinStreamController;
-  late StreamController<String> _refferalPinStreamController;
-  late StreamController<String> _phoneStreamController;
+  late StreamController<String> _passwordStreamController;
+  late StreamController<String> _repeatPasswordStreamController;
 
   final emailFocus = FocusNode();
-  final pinFocus = FocusNode();
-  final firstNameFocus = FocusNode();
-  final surnameFocus = FocusNode();
-  final phoneFocus = FocusNode();
-  final repeatPinFocus = FocusNode();
-  final refferalPinFocus = FocusNode();
+  final passwordFocus = FocusNode();
+  final repeatPasswordFocus = FocusNode();
 
   final emailController = TextEditingController();
-  final firstNameController = TextEditingController();
-  final surnameController = TextEditingController();
-  final phoneController = TextEditingController();
-  final pinController = TextEditingController();
-  final repeatPinController = TextEditingController();
-  final refferalController = TextEditingController();
+  final passwordController = TextEditingController();
+  final repeatPasswordController = TextEditingController();
 
-  bool isChecked = false;
+
 
   @override
   void initState() {
     super.initState();
     _emailStreamController = StreamController<String>.broadcast();
-    _pinStreamController = StreamController<String>.broadcast();
-    _firstNameStreamController = StreamController<String>.broadcast();
-    _surnameStreamController = StreamController<String>.broadcast();
-    _phoneStreamController = StreamController<String>.broadcast();
-    _repeatPinStreamController = StreamController<String>.broadcast();
-    _refferalPinStreamController = StreamController<String>.broadcast();
+    _passwordStreamController = StreamController<String>.broadcast();
+    _repeatPasswordStreamController = StreamController<String>.broadcast();
 
     emailController.addListener(() {
       _emailStreamController.sink.add(
@@ -63,46 +52,18 @@ class _SignupState extends State<Signup> {
       validateInputs();
     });
 
-    pinController.addListener(() {
-      _pinStreamController.sink.add(
-        pinController.text.trim(),
+    passwordController.addListener(() {
+      _passwordStreamController.sink.add(
+        passwordController.text.trim(),
       );
-      validateInputs();
+     validateInputs();
     });
 
-    firstNameController.addListener(() {
-      _firstNameStreamController.sink.add(
-        firstNameController.text.trim(),
+    repeatPasswordController.addListener(() {
+      _repeatPasswordStreamController.sink.add(
+        repeatPasswordController.text.trim(),
       );
-      validateInputs();
-    });
-
-    surnameController.addListener(() {
-      _surnameStreamController.sink.add(
-        surnameController.text.trim(),
-      );
-      validateInputs();
-    });
-
-    phoneController.addListener(() {
-      _phoneStreamController.sink.add(
-        phoneController.text.trim(),
-      );
-      validateInputs();
-    });
-
-    repeatPinController.addListener(() {
-      _repeatPinStreamController.sink.add(
-        repeatPinController.text.trim(),
-      );
-      validateInputs();
-    });
-
-    refferalController.addListener(() {
-      _refferalPinStreamController.sink.add(
-        repeatPinController.text.trim(),
-      );
-      validateInputs();
+     validateInputs();
     });
   }
 
@@ -110,45 +71,37 @@ class _SignupState extends State<Signup> {
   void dispose() {
     super.dispose();
     _emailStreamController.close();
-    _pinStreamController.close();
-    _surnameStreamController.close();
-    _firstNameStreamController.close();
-    _repeatPinStreamController.close();
-    _refferalPinStreamController.close();
-    _phoneStreamController.close();
+    _passwordStreamController.close();
+    _repeatPasswordStreamController.close();
 
     emailFocus.dispose();
-    phoneFocus.dispose();
-    pinFocus.dispose();
-    repeatPinFocus.dispose();
+    passwordFocus.dispose();
+    repeatPasswordFocus.dispose();
   }
 
   void validateInputs() {
-
     final emailError = CustomFormValidation.errorEmailMessage(
       emailController.text.trim(),
       'Email is required',
     );
 
-    final pinError = CustomFormValidation.errorMessagePin(
-      pinController.text.trim(),
-      'Pin is required',
+    final passwordError = CustomFormValidation.errorMessagePassword2(
+      passwordController.text.trim(),
+      'Password is required',
     );
 
-    final confirmPinError = CustomFormValidation.errorMessageConfirmPin(
-      repeatPinController.text.trim(),
-      're-enter pin',
-      pinController.text.trim(),
+    final confirmPasswordError = CustomFormValidation.errorMessageConfirmPassword(
+      repeatPasswordController.text.trim(),
+      'Re-enter password',
+      passwordController.text,
     );
 
-    if (emailError != '' ||
-        pinError != '' ||
-        confirmPinError != '') {
-      canSubmit = false;
-    }
-
+    // Check if the checkbox is checked and there are no validation errors
     setState(() {
-      canSubmit =false ;
+      canSubmit = isChecked &&
+          emailError.isEmpty &&
+          passwordError.isEmpty &&
+          confirmPasswordError.isEmpty;
     });
   }
 
@@ -196,12 +149,11 @@ class _SignupState extends State<Signup> {
                           builder: (context, snapshot) {
                             return InputField(
                               fieldFocusNode: emailFocus,
-                              prefix: const Padding(
-                                padding: EdgeInsets.only(top: 6),
-                                child: Icon(
-                                  Icons.email,
+                              prefix:  Padding(
+                                padding: const EdgeInsets.only(top: 6),
+                                child: SvgPicture.asset(
+                                  AppAssets.email,
                                   color: AppColors.textSecondaryColor,
-                                  size: 15,
                                 ),
                               ),
                               label: 'Email',
@@ -226,29 +178,29 @@ class _SignupState extends State<Signup> {
                           },
                         ),
                       ),
+                      const Gap(5),
                       Padding(
                         padding: const EdgeInsets.only(bottom: 0),
                         child: StreamBuilder<String>(
-                          stream: _pinStreamController.stream,
+                          stream: _passwordStreamController.stream,
                           builder: (context, snapshot) {
                             return InputField(
                               label: 'Password',
-                              fieldFocusNode: pinFocus,
+                              fieldFocusNode: passwordFocus,
                               textInputType: TextInputType.text,
                               password: true,
-                              prefix: const Padding(
-                                padding: EdgeInsets.only(top: 6),
-                                child: Icon(
-                                  Icons.lock,
+                              prefix: Padding(
+                                padding: const EdgeInsets.only(top: 6),
+                                child: SvgPicture.asset(
+                                  AppAssets.password,
                                   color: AppColors.textSecondaryColor,
-                                  size: 15,
                                 ),
                               ),
                               validationColor: snapshot.data == null
                                   ? AppColors.white
                                   : CustomFormValidation.getColor(
                                 snapshot.data,
-                                pinFocus,
+                                passwordFocus,
                                 CustomFormValidation.errorMessagePassword2(
                                   snapshot.data,
                                   'Password is required',
@@ -258,53 +210,54 @@ class _SignupState extends State<Signup> {
                                 snapshot.data,
                                 'Password is required',
                               ),
-                              controller: pinController,
+                              controller: passwordController,
                               placeholder: 'Password (Must be at least 8 characters )',
                             );
                           },
                         ),
                       ),
+                      const Gap(5),
                       Padding(
                         padding: const EdgeInsets.only(bottom: 5),
                         child: StreamBuilder<String>(
-                          stream: _repeatPinStreamController.stream,
+                          stream: _repeatPasswordStreamController.stream,
                           builder: (context, snapshot) {
                             return InputField(
-                              fieldFocusNode: refferalPinFocus,
+                              fieldFocusNode: repeatPasswordFocus,
                               label: 'Confirm password',
-                              prefix: const Padding(
-                                padding: EdgeInsets.only(top: 6),
-                                child: Icon(
-                                  Icons.lock,
+                              prefix:  Padding(
+                                padding: const EdgeInsets.only(top: 6),
+                                child: SvgPicture.asset(
+                                  AppAssets.password,
                                   color: AppColors.textSecondaryColor,
-                                  size: 15,
                                 ),
                               ),
                               validationColor: snapshot.data == null
                                   ? AppColors.white
                                   : CustomFormValidation.getColor(
                                 snapshot.data,
-                                repeatPinFocus,
+                                repeatPasswordFocus,
                                 CustomFormValidation.errorMessageConfirmPassword(
                                   snapshot.data,
                                   're-enter password',
-                                  pinController.text,
+                                  passwordController.text,
                                 ),
                               ),
-                              controller: repeatPinController,
+                              controller: repeatPasswordController,
                               placeholder: 'Confirm password',
                               password: true,
                               validationMessage:
                               CustomFormValidation.errorMessageConfirmPassword(
                                 snapshot.data,
                                 'Re-enter password',
-                                pinController.text,
+                                passwordController.text,
                               ),
                               textInputType: TextInputType.text,
                             );
                           },
                         ),
                       ),
+                      const Gap(5),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
@@ -317,6 +270,7 @@ class _SignupState extends State<Signup> {
                             onChanged: (bool? value) {
                               setState(() {
                                 isChecked = value!;
+                                validateInputs();
                               });
 
                             },
@@ -337,21 +291,11 @@ class _SignupState extends State<Signup> {
                         child: BusyButton(
                           title: 'Sign Up',
                           onTap: () {
-                            // Provider.of<AuthNotifier>(context, listen: false)
-                            //     .register(
-                            //   context,
-                            //   firstName: firstNameController.text.trim(),
-                            //   lastName: surnameController.text.trim(),
-                            //   email: emailController.text.trim(),
-                            //   countryCode: 'NG',
-                            //   pin: pinController.text.trim(),
-                            //   phoneNumber: phoneController.text.trim(),
-                            // );
+                            Navigator.pushNamed(context, RouteName.setupProfile);
                           },
                           disabled: !canSubmit,
                         ),
                       ),
-
                     ],
                   ),
                 ),
@@ -365,9 +309,14 @@ class _SignupState extends State<Signup> {
                     TextSmall(
                       'Already have an account? ',
                     ),
-                    TextSmall(
-                      'Sign In',
-                      color: AppColors.primaryColor,
+                    GestureDetector(
+                      onTap: (){
+                        Navigator.pushNamed(context, RouteName.login);
+                      },
+                      child: TextSmall(
+                        'Sign In',
+                        color: AppColors.primaryColor,
+                      ),
                     ),
                   ],
                 )
