@@ -16,5 +16,8 @@ class RouteName {
   static const String verifyEmail = '/verify_email';
   static const String login = '/login';
   static const String homeScreen = '/home_screen';
+  static const String setNewPassword = '/set_new_password';
+  static const String createNewPin = '/create_new_pin';
+
 
 }

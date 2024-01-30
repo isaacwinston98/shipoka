@@ -9,6 +9,7 @@ class AppAssets {
   static const String shop = 'assets/images/shop.png';
   static const String box = 'assets/images/box.png';
   static const String flag = 'assets/images/flag.png';
+  static const String newPasswordNotification = 'assets/images/passwordChangedImage.png';
 
   // app asset Icons here
   static const String arrowBack = 'assets/icons/backArrow.svg';

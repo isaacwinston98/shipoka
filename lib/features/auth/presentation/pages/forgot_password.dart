@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shipoka/app/styles/app_color.dart';
+import 'package:shipoka/app/view/widget/app_back_button.dart';
 import 'package:shipoka/app/view/widget/input_field.dart';
 import 'package:shipoka/features/auth/presentation/pages/reset_password.dart';
 
@@ -34,27 +35,21 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                   },
                   child: Container(
                     padding: EdgeInsets.symmetric(
-                        vertical: 10.0, horizontal: 23.0),
+                        vertical: 10.0),
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       color: Colors.grey.withOpacity(0.1),
                     ),
-                    child: Text(
-                      '<',
-                      style: TextStyle(
-                        fontSize: 27.0,
-                        fontWeight: FontWeight.w100,
-                      ),
-                    ),
+                    child: AppBackButton(),
                   ),
                 ),
-                const SizedBox(width: 20.0,),
+                const SizedBox(width: 15.0,),
                 //Text at the center Top
                 const Center(
                   child: Text(
                     'Forgot Password',
                     style: TextStyle(
-                      fontSize: 20.0,
+                      fontSize: 19.0,
                       fontWeight: FontWeight.w500,
                     ),
                   ),
@@ -99,7 +94,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
             ),
 
 
-            const SizedBox(height: 35.0,),
+            const SizedBox(height: 50.0,),
 
             //Send OTP button
             SizedBox(

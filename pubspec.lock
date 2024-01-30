@@ -267,6 +267,14 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_native_splash:
+    dependency: "direct main"
+    description:
+      name: flutter_native_splash
+      sha256: "9cdb5d9665dab5d098dc50feab74301c2c228cd02ca25c9b546ab572cebcd6af"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.3.9"
   flutter_otp_text_field:
     dependency: "direct main"
     description:
@@ -283,14 +291,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.17"
-  flutter_native_splash:
-    dependency: "direct main"
-    description:
-      name: flutter_native_splash
-      sha256: "9cdb5d9665dab5d098dc50feab74301c2c228cd02ca25c9b546ab572cebcd6af"
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.3.9"
   flutter_svg:
     dependency: "direct main"
     description:
@@ -365,6 +365,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.0.2"
+  image:
+    dependency: transitive
+    description:
+      name: image
+      sha256: "004a2e90ce080f8627b5a04aecb4cdfac87d2c3f3b520aa291260be5a32c033d"
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.1.4"
   image_picker:
     dependency: "direct main"
     description:
@@ -429,14 +437,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.2.1+1"
-  image:
-    dependency: transitive
-    description:
-      name: image
-      sha256: "004a2e90ce080f8627b5a04aecb4cdfac87d2c3f3b520aa291260be5a32c033d"
-      url: "https://pub.dev"
-    source: hosted
-    version: "4.1.4"
   injectable:
     dependency: "direct main"
     description:

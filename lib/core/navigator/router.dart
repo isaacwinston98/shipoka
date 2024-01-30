@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shipoka/core/navigator/route_extentions.dart';
 import 'package:shipoka/core/navigator/route_name.dart';
+import 'package:shipoka/features/auth/presentation/pages/create_new_pin.dart';
 import 'package:shipoka/features/auth/presentation/pages/forgot_password.dart';
 import 'package:shipoka/features/auth/presentation/pages/reset_password.dart';
 import 'package:shipoka/features/auth/presentation/pages/add_person.dart';
@@ -10,6 +11,7 @@ import 'package:shipoka/features/auth/presentation/pages/get_otp.dart';
 import 'package:shipoka/features/auth/presentation/pages/login.dart';
 import 'package:shipoka/features/auth/presentation/pages/otp_verification.dart';
 import 'package:shipoka/features/auth/presentation/pages/personal_profile.dart';
+import 'package:shipoka/features/auth/presentation/pages/set_new_password.dart';
 import 'package:shipoka/features/auth/presentation/pages/setup_profile.dart';
 import 'package:shipoka/features/auth/presentation/pages/signup.dart';
 import 'package:shipoka/features/auth/presentation/pages/verify_email.dart';
@@ -37,6 +39,16 @@ Route<T> onGenerateRoute<T>(RouteSettings settings) {
       return _getPageRoute(
         routeName: settings.name!,
         viewToShow: const InputOTPScreen(),
+      );
+    case RouteName.inputOTP:
+      return _getPageRoute(
+        routeName: settings.name!,
+        viewToShow: const SetNewPasswordScreen(),
+      );
+    case RouteName.createNewPin:
+      return _getPageRoute(
+        routeName: settings.name!,
+        viewToShow: const CreateNewPinScreen(),
       );
     case RouteName.setupProfile:
       return _getPageRoute(

@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
+import 'package:gap/gap.dart';
 import 'package:shipoka/app/styles/app_color.dart';
+import 'package:shipoka/app/view/widget/app_back_button.dart';
+import 'package:shipoka/features/auth/presentation/pages/set_new_password.dart';
 //import 'package:pin_code_fields/pin_code_fields.dart';
 
 class InputOTPScreen extends StatefulWidget {
@@ -34,21 +38,15 @@ class _InputOTPScreenState extends State<InputOTPScreen> {
                   },
                   child: Container(
                     padding: EdgeInsets.symmetric(
-                        vertical: 10.0, horizontal: 23.0),
+                        vertical: 10.0),
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       color: Colors.grey.withOpacity(0.1),
                     ),
-                    child: Text(
-                      '<',
-                      style: TextStyle(
-                        fontSize: 27.0,
-                        fontWeight: FontWeight.w100,
-                      ),
-                    ),
+                    child: AppBackButton(),
                   ),
                 ),
-                const SizedBox(width: 20.0,),
+                const SizedBox(width: 15.0,),
                 //Text at the center Top
                 const Center(
                   child: Text(
@@ -62,7 +60,7 @@ class _InputOTPScreenState extends State<InputOTPScreen> {
               ],
             ),
 
-            const SizedBox(height: 20.0,),
+            const SizedBox(height: 55.0,),
 
             //Text below Forgot Password
             Text(
@@ -73,18 +71,18 @@ class _InputOTPScreenState extends State<InputOTPScreen> {
                 )
             ),
 
-            const SizedBox(height: 50.0,),
+            const SizedBox(height: 7.0,),
 
             // Text above "Email address" TextFormField
             Text(
-              'lease enter the 6-digit verification code that was sent to jerr**ka@gmail.com. The code is valid for 30 minutes',
+              'please enter the 6-digit verification code that was sent to jerr**ka@gmail.com. The code is valid for 30 minutes',
               style: TextStyle(
-                fontSize: 16.0,
+                fontSize: 13.0,
                 // color: Colors.grey,
               ),
             ),
 
-            SizedBox(height: 20.0,),
+            SizedBox(height: 40.0,),
 
 
             // PinCodeTextField for OTP input
@@ -100,24 +98,49 @@ class _InputOTPScreenState extends State<InputOTPScreen> {
               },
             ),*/
 
+            SizedBox(
+              height: 60,
+              child: OtpTextField(
+                borderRadius: const BorderRadius.all(Radius.circular(7)),
+                numberOfFields: 6,
+                filled: true,
+                fillColor: AppColors.textFieldBackground,
+                fieldWidth: 55,
+                focusedBorderColor:AppColors.primaryColor,
+                showFieldAsBox: true,
+                cursorColor:AppColors.primaryColor,
+                textStyle: const TextStyle(
+                  color: AppColors.textSecondaryColor,
+                  fontSize: 20,
+                ),
+                onCodeChanged: (String code) {
+                },
+              ),
+            ),
+
+            const Gap(10),
+
             // Row with two different texts
-            const Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                Text(
-                  'Didn’t receive code?',
-                  style: TextStyle(),
-                ),
-                SizedBox(width: 5.0), // Add space between texts
-                Text(
-                  'Resend',
-                  style: TextStyle(color: Colors.red),
-                ),
-              ],
+            const Padding(
+              padding: EdgeInsets.only(right: 12.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Text(
+                    'Didn’t receive code?',
+                    style: TextStyle(),
+                  ),
+                  SizedBox(width: 5.0), // Add space between texts
+                  Text(
+                    'Resend',
+                    style: TextStyle(color: Colors.red),
+                  ),
+                ],
+              ),
             ),
 
             // SizedBox for spacing
-            SizedBox(height: 20.0),
+            SizedBox(height: 60.0),
 
 
             // Countdown Timer
@@ -128,7 +151,13 @@ class _InputOTPScreenState extends State<InputOTPScreen> {
           width: double.infinity,
           child: ElevatedButton(
             onPressed: () {
-              //Implement the logic for sending OTP
+              //Implement the logic for inputing OTP code
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => SetNewPasswordScreen(),
+                ),
+              );
             },
             style: ElevatedButton.styleFrom(
               backgroundColor: AppColors.primaryColor,
