@@ -88,7 +88,7 @@ class _VerifyOTPState extends State<VerifyOTP> {
                 child: BusyButton(
                   title: 'Continue',
                   onTap: () {
-                    Navigator.pushNamed(context, RouteName.signUp);
+                    Navigator.pushNamed(context, RouteName.homeScreen);
                   },
                   // disabled: !canSubmit,
                 ),

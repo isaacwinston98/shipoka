@@ -23,6 +23,22 @@ class AppColors{
   static const Color lightPink = Color(0xffFBEAE1);
 
 
+  static const Color homeTextColor = Color(0xff080B30);
+  static const Color lightBlue = Color(0xff6941C6);
+  static const Color dividerGrey = Color(0xffEAECF0);
+  static const Color progressbarBackground = Color(0xffB3B3B3);
+  static const Color lightPink = Color(0xffFFF7E4);
+  static const Color borderColor = Color(0xffEEEEEE);
+  static const Color radioColor = Color(0xffD0D5DD);
+  static const Color greyBorderColor = Color(0xfffafafa);
+  static const Color buttonPink = Color(0xffFBEAE1);
+  static const Color scaffoldBackground = Color(0xffF9FAFB);
+  static const Color buttonBlack = Color(0xff333333);
+  static const Color minuteColor = Color(0xffF8F8FA);
+  static const Color amPmColor = Color(0xffBFBFBF);
+  static const Color dayPeriodColor = Color(0xff79747E);
+
+
 
   static const Map<int, Color> colorScratch  = {
     50: Color.fromRGBO(242, 101, 32, .1),
