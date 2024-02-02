@@ -18,6 +18,9 @@ class RouteName {
   static const String homeScreen = '/home_screen';
   static const String setNewPassword = '/set_new_password';
   static const String createNewPin = '/create_new_pin';
+  static const String userProfileAccount = '/user_profile_account';
+  static const String editProfileScreen = '/edit_profile_screen';
+  static const String updateYourPhonrNumber = '/update_your_phone_number';
 
 
 }

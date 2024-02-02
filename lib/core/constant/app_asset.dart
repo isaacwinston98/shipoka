@@ -26,4 +26,5 @@ class AppAssets {
   static const String bell = 'assets/icons/bell.svg';
   static const String dot = 'assets/icons/redDot.svg';
   static const String arrowDown = 'assets/icons/arrowDown.svg';
+  static const String userDisplayPicture = 'assets/icons/userDisplayPicture.svg';
 }

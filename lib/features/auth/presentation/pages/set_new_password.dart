@@ -126,12 +126,12 @@ class _SetNewPasswordScreenState extends State<SetNewPasswordScreen> {
                   alignment: Alignment.center,
                   children: [
                     if (!isLoading)
-                      Text(
+                      const Text(
                         'Continue',
                         style: TextStyle(color: AppColors.white),
                       ),
                     if (isLoading)
-                      CircularProgressIndicator(
+                      const CircularProgressIndicator(
                         valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
                       ),
                   ],
