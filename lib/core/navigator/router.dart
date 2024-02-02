@@ -13,6 +13,19 @@ import 'package:shipoka/features/auth/presentation/pages/signup.dart';
 import 'package:shipoka/features/auth/presentation/pages/verify_email.dart';
 import 'package:shipoka/features/home/presentation/pages/home_screen.dart';
 import 'package:shipoka/features/onboarding/presentation/pages/splash_screen.dart';
+import 'package:shipoka/features/shipment/presentation/pages/check_out.dart';
+import 'package:shipoka/features/shipment/presentation/pages/create_shipment.dart';
+import 'package:shipoka/features/shipment/presentation/pages/destination_details.dart';
+import 'package:shipoka/features/shipment/presentation/pages/destination_list.dart';
+import 'package:shipoka/features/shipment/presentation/pages/multi_package_details.dart';
+import 'package:shipoka/features/shipment/presentation/pages/package_detail.dart';
+import 'package:shipoka/features/shipment/presentation/pages/receiver_information.dart';
+import 'package:shipoka/features/shipment/presentation/pages/schedule_success.dart';
+import 'package:shipoka/features/shipment/presentation/pages/sender_information.dart';
+import 'package:shipoka/features/shipment/presentation/pages/vehicle_details.dart';
+import 'package:shipoka/features/track/presentation/pages/track_shipment.dart';
+
+
 
 Route<T> onGenerateRoute<T>(RouteSettings settings) {
   switch (settings.name) {
@@ -75,6 +88,62 @@ Route<T> onGenerateRoute<T>(RouteSettings settings) {
       return _getPageRoute(
         routeName: settings.name!,
         viewToShow: const HomeScreen(),
+      );
+    case RouteName.createShipment:
+      return _getPageRoute(
+        routeName: settings.name!,
+        viewToShow: const CreateShipment(),
+      );
+    case RouteName.senderInformation:
+      return _getPageRoute(
+        routeName: settings.name!,
+        viewToShow: const SenderInformation(),
+      );
+    case RouteName.receiverInformation:
+      return _getPageRoute(
+        routeName: settings.name!,
+        viewToShow: const ReceiverInformation(),
+      );
+    case RouteName.packageDetails:
+      return _getPageRoute(
+        routeName: settings.name!,
+        viewToShow: const PackageDetail(),
+      );
+    case RouteName.destinationDetails:
+      return _getPageRoute(
+        routeName: settings.name!,
+        viewToShow: const DestinationDetails(),
+      );
+
+    case RouteName.destinationList:
+      return _getPageRoute(
+        routeName: settings.name!,
+        viewToShow: const DestinationList(),
+      );
+    case RouteName.multiPackageDetails:
+      return _getPageRoute(
+        routeName: settings.name!,
+        viewToShow: const MultiPackageDetails(),
+      );
+    case RouteName.vehicleDetails:
+      return _getPageRoute(
+        routeName: settings.name!,
+        viewToShow: const VehicleDetails(),
+      );
+    case RouteName.checkOut:
+      return _getPageRoute(
+        routeName: settings.name!,
+        viewToShow: const CheckOut(),
+      );
+    case RouteName.scheduleSuccess:
+      return _getPageRoute(
+        routeName: settings.name!,
+        viewToShow: const ScheduleSuccess(),
+      );
+    case RouteName.trackShipment:
+      return _getPageRoute(
+        routeName: settings.name!,
+        viewToShow: const TrackShipment(),
       );
     default:
       return MaterialPageRoute<T>(

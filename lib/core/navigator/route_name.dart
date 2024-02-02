@@ -13,5 +13,17 @@ class RouteName {
   static const String verifyEmail = '/verify_email';
   static const String login = '/login';
   static const String homeScreen = '/home_screen';
+  static const String createShipment = '/create_shipment';
+  static const String senderInformation = '/sender_information';
+  static const String receiverInformation = '/receiver_information';
+  static const String packageDetails = '/package_detail';
+  static const String destinationDetails = '/destination_details';
+  static const String destinationList = '/destination_list';
+  static const String multiPackageDetails = '/multi_package_details';
+  static const String vehicleDetails = '/vehicle_details';
+  static const String checkOut = '/check_out';
+  static const String scheduleSuccess = '/schedule_success';
+  static const String trackShipment = '/track_shipment';
+
 
 }
