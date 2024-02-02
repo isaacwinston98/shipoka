@@ -350,6 +350,7 @@ class _BusinessProfileState extends State<BusinessProfile> {
                                     )
                                 ),
                                 context: context,
+                                showDragHandle: true,
                                 builder: (BuildContext context){
                                   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
                                     statusBarColor: Colors.transparent, // Change this to your preferred status bar color
@@ -362,16 +363,6 @@ class _BusinessProfileState extends State<BusinessProfile> {
                                         crossAxisAlignment: CrossAxisAlignment.start,
                                         children: [
                                           const Gap(10),
-                                          Row(
-                                            mainAxisAlignment: MainAxisAlignment.center,
-                                            children: [
-                                              Container(
-                                                height: 3.0,
-                                                width: 50,
-                                                color: Colors.grey,
-                                              ),
-                                            ],
-                                          ),
                                           const Gap(15),
                                           Row(
                                             mainAxisAlignment: MainAxisAlignment.center,
