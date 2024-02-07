@@ -32,6 +32,8 @@ class RouteName {
   static const String checkOut = '/check_out';
   static const String scheduleSuccess = '/schedule_success';
   static const String trackShipment = '/track_shipment';
+  static const String userAccountAddress = '/address_screen';
+  static const String addNewAddress = '/add_new_address';
 
 
 }

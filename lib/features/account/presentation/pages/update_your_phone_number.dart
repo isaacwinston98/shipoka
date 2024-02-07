@@ -7,6 +7,7 @@ import 'package:gap/gap.dart';
 import 'package:shipoka/app/styles/app_color.dart';
 import 'package:shipoka/app/styles/fonts.dart';
 import 'package:shipoka/app/view/widget/busy_button.dart';
+import 'package:shipoka/core/navigator/route_name.dart';
 
 class UpdateYourPhoneNumber extends StatefulWidget {
   const UpdateYourPhoneNumber({super.key});
@@ -94,7 +95,7 @@ class _UpdateYourPhoneNumberState extends State<UpdateYourPhoneNumber> {
                     _handleContinueButton();
                   },
                   // disabled: !canSubmit,
-                  disabled: true,
+                  //disabled: true,
                 ),
               ),
             ],
@@ -116,48 +117,50 @@ class _UpdateYourPhoneNumberState extends State<UpdateYourPhoneNumber> {
       context: context,
       barrierDismissible: false, // Prevent dialog dismissal on outside tap
       builder: (BuildContext context) {
-        Timer(Duration(seconds: 3), () {
-          Navigator.of(context).pop(); // Dismiss the dialog after 3 seconds
-        });
+        // Timer(Duration(seconds: 3), () {
+        //   Navigator.of(context).pop(); // Dismiss the dialog after 3 seconds
+        // });
 
-        return GestureDetector(
-          onTap: () {
-            Navigator.of(context)
-                .pop(); // Dismiss the dialog on outer space tap
-          },
-          child: AlertDialog(
-            content: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                SizedBox(height: 30.0,),
-                Image.asset(
-                  'assets/images/passwordChangedImage.png',
-                  // Replace with your image path
-                  width: 170.0,
-                  height: 170.0,
+        return AlertDialog(
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              SizedBox(height: 30.0,),
+              Image.asset(
+                'assets/images/passwordChangedImage.png',
+                // Replace with your image path
+                width: 170.0,
+                height: 170.0,
+              ),
+              const SizedBox(height: 10.0),
+              Text(
+                'Password Changed',
+                style: TextStyle(
+                  fontSize: 18.0,
+                  fontWeight: FontWeight.bold,
                 ),
-                const SizedBox(height: 10.0),
-                Text(
-                  'Password Changed',
-                  style: TextStyle(
-                    fontSize: 18.0,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                const SizedBox(height: 20.0),
-                Text(
-                  'Your password reset is complete.'
-                      ' You will be redirected to the home page in a few seconds.',
+              ),
+              const SizedBox(height: 20.0),
+              Center(
+                child: Text(
+                  'Your have successfully edited your profile details.',
                   style: TextStyle(
                     fontSize: 16.0,
                     color: Colors.black87,
                   ),
                 ),
-                const SizedBox(height: 100.0),
-              ],
-            ),
-            backgroundColor: Colors.white,
+              ),
+
+              const SizedBox(height: 100.0),
+              BusyButton(
+              title: 'Ok',
+              onTap: () {
+                Navigator.pushNamed(context, RouteName.userAccountAddress);
+          },
+              )
+            ],
           ),
+          backgroundColor: Colors.white,
         );
       },
     );

@@ -20,7 +20,7 @@ class AppColors{
   static const Color personalProfileHint = Color(0xff9E9E9E);
   static const Color lightPrimaryBackground = Color(0xffFFFCF5);
   static const Color grey4 = Color(0xff344054);
-  static const Color lightPink = Color(0xffFBEAE1);
+  static const Color lightPink2 = Color(0xffFBEAE1);
 
 
   static const Color homeTextColor = Color(0xff080B30);

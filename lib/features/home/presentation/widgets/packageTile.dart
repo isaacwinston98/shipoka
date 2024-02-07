@@ -26,7 +26,7 @@ class PackageTile extends StatelessWidget {
               children: [
                 Container(
                   decoration: const BoxDecoration(
-                    color: AppColors.lightPink,
+                    color: AppColors.lightPink2,
                     shape: BoxShape.circle,
                   ),
                   child: Padding(

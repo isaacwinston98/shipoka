@@ -29,21 +29,17 @@ class _ReceiverInformationState extends State<ReceiverInformation> {
           padding: const EdgeInsets.symmetric(horizontal: 15),
           child: Column(
             children: [
-              Column(
+              const Gap(10),
+              Row(
                 children: [
-                  const Gap(10),
-                  Row(
-                    children: [
-                      const AppBackButton(),
-                      const Gap(20),
-                      TextSemiBold(
-                        'Pickup & Delivery Detail',
-                        fontSize: 20,
-                      ),
-
-
-                    ],
+                  const AppBackButton(),
+                  const Gap(20),
+                  TextSemiBold(
+                    'Pickup & Delivery Detail',
+                    fontSize: 20,
                   ),
+
+
                 ],
               ),
               Expanded(

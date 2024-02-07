@@ -107,7 +107,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                       //Implement the logic for sending OTP
                     },
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: AppColors.lightPink,
+                      backgroundColor: AppColors.lightPink2,
                       minimumSize: Size(170.0, 50.0),
                     ),
 
