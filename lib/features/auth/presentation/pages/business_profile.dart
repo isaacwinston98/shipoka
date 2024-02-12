@@ -12,6 +12,7 @@ import 'package:shipoka/app/view/widget/app_back_button.dart';
 import 'package:shipoka/app/view/widget/busy_button.dart';
 import 'package:shipoka/app/view/widget/input_field.dart';
 import 'package:shipoka/core/constant/app_asset.dart';
+import 'package:shipoka/core/navigator/route_name.dart';
 import 'package:shipoka/core/utils/custom_form_validator.dart';
 
 class BusinessProfile extends StatefulWidget {
@@ -637,18 +638,9 @@ class _BusinessProfileState extends State<BusinessProfile> {
                   child: BusyButton(
                     title: 'Next',
                     onTap: () {
-                      // Provider.of<AuthNotifier>(context, listen: false)
-                      //     .register(
-                      //   context,
-                      //   firstName: firstNameController.text.trim(),
-                      //   lastName: surnameController.text.trim(),
-                      //   email: emailController.text.trim(),
-                      //   countryCode: 'NG',
-                      //   pin: pinController.text.trim(),
-                      //   phoneNumber: phoneController.text.trim(),
-                      // );
+                     Navigator.pushNamed(context, RouteName.addPersonContact);
                     },
-                    disabled: true,
+                    disabled: false,
                   ),
                 ),
               ],

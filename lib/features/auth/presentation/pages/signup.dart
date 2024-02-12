@@ -10,6 +10,7 @@ import 'package:shipoka/app/view/widget/input_field.dart';
 import 'package:shipoka/core/constant/app_asset.dart';
 import 'package:shipoka/core/navigator/route_name.dart';
 import 'package:shipoka/core/utils/custom_form_validator.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 
 class Signup extends StatefulWidget {
@@ -123,21 +124,21 @@ class _SignupState extends State<Signup> {
                       Padding(
                         padding: const EdgeInsets.only(bottom: 20,top: 20),
                         child:TextSemiBold(
-                          'Sign Up',
+                          AppLocalizations.of(context).signup,
                           fontSize: 16,
 
                         ),
                       ),
                       const Gap(15),
                       TextBold(
-                        'Create your',
+                        AppLocalizations.of(context).createYour,
                         fontSize: 33,
 
                       ),
                       Padding(
                         padding: const EdgeInsets.only(bottom: 50),
                         child:TextBold(
-                          'Account',
+                          AppLocalizations.of(context).account,
                           fontSize: 33,
 
                         ),
@@ -168,7 +169,7 @@ class _SignupState extends State<Signup> {
                                 ),
                               ),
                               controller: emailController,
-                              placeholder: 'Email',
+                              placeholder:  AppLocalizations.of(context).email,
                               validationMessage:
                               CustomFormValidation.errorEmailMessage(
                                 snapshot.data,
@@ -211,7 +212,7 @@ class _SignupState extends State<Signup> {
                                 'Password is required',
                               ),
                               controller: passwordController,
-                              placeholder: 'Password (Must be at least 8 characters )',
+                              placeholder:AppLocalizations.of(context).password,
                             );
                           },
                         ),
@@ -244,7 +245,7 @@ class _SignupState extends State<Signup> {
                                 ),
                               ),
                               controller: repeatPasswordController,
-                              placeholder: 'Confirm password',
+                              placeholder: AppLocalizations.of(context).confirmPassword,
                               password: true,
                               validationMessage:
                               CustomFormValidation.errorMessageConfirmPassword(
@@ -279,7 +280,7 @@ class _SignupState extends State<Signup> {
                           ),
                           Flexible(
                             child: TextSmall(
-                              'By Creating An Account, I agree to Shipoka’s Term and Conditions.',
+                              AppLocalizations.of(context).agreement,
                               fontSize: 10,
 
                             ),
@@ -289,7 +290,7 @@ class _SignupState extends State<Signup> {
                       Padding(
                         padding: const EdgeInsets.only(top: 30),
                         child: BusyButton(
-                          title: 'Sign Up',
+                          title: AppLocalizations.of(context).buttonSignUp,
                           onTap: () {
                             Navigator.pushNamed(context, RouteName.setupProfile);
                           },
@@ -307,14 +308,14 @@ class _SignupState extends State<Signup> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     TextSmall(
-                      'Already have an account? ',
+                        AppLocalizations.of(context).alreadyHaveAccount,
                     ),
                     GestureDetector(
                       onTap: (){
                         Navigator.pushNamed(context, RouteName.login);
                       },
                       child: TextSmall(
-                        'Sign In',
+                        AppLocalizations.of(context).signIn,
                         color: AppColors.primaryColor,
                       ),
                     ),

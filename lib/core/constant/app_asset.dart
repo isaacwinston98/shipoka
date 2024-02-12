@@ -6,8 +6,25 @@ class AppAssets {
   static const String shop = 'assets/images/shop.png';
   static const String box = 'assets/images/box.png';
   static const String flag = 'assets/images/flag.png';
+  static const String cat = 'assets/images/cat.png';
+  static const String map = 'assets/images/map.png';
+  static const String groups = 'assets/images/groups.png';
+  static const String vector = 'assets/images/vector.png';
+  static const String rectangle = 'assets/images/rectangle.png';
+  static const String man = 'assets/images/man.png';
 
   // app asset Icons here
+  static const String document = 'assets/icons/document.svg';
+  static const String create = 'assets/icons/create.svg';
+  static const String not = 'assets/icons/not.svg';
+  static const String topUp = 'assets/icons/topUp.svg';
+  static const String topSuccess = 'assets/icons/topSuccess.svg';
+  static const String carded = 'assets/icons/carded.svg';
+  static const String star = 'assets/icons/star.svg';
+  static const String master = 'assets/icons/master.svg';
+  static const String masterCard = 'assets/icons/masterCard.svg';
+  static const String tee = 'assets/icons/tee.svg';
+  static const String messageText = 'assets/icons/messageText.svg';
   static const String arrowBack = 'assets/icons/backArrow.svg';
   static const String user = 'assets/icons/user.svg';
   static const String edit = 'assets/icons/edit.svg';
@@ -44,6 +61,17 @@ class AppAssets {
   static const String helpCircle = 'assets/icons/helpCircle.svg';
   static const String rightDir = 'assets/icons/rightDir.svg';
   static const String searchStatus = 'assets/icons/searchStatus.svg';
+  static const String person = 'assets/icons/person.svg';
+  static const String greyBox = 'assets/icons/greyedBox.svg';
+  static const String history = 'assets/icons/history.svg';
+  static const String security = 'assets/icons/security.svg';
+  static const String legal = 'assets/icons/legal.svg';
+  static const String helpCenter = 'assets/icons/helpCenter.svg';
+  static const String payment = 'assets/icons/payment.svg';
+  static const String myCard = 'assets/icons/myCard.svg';
+  static const String logOut = 'assets/icons/logout.svg';
+  static const String address = 'assets/icons/address.svg';
+
 
 
 }

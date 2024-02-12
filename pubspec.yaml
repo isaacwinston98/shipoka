@@ -13,19 +13,27 @@ dependencies:
 
 
   animations: ^2.0.4
+  auto_size_text: ^3.0.0
   camera: ^0.10.5+9
   country_picker: ^2.0.23
   cupertino_icons: ^1.0.2
   device_info_plus: ^9.1.1
   dotted_border: ^2.0.3
   device_preview: ^1.1.0
+  flutter_localizations:
+    sdk: flutter
   flutter_svg: ^2.0.9
   flutter_otp_text_field: ^1.1.1
   google_fonts: ^6.1.0
+  google_nav_bar: ^5.0.6
   gap: ^3.0.1
   image_picker: ^1.0.7
+  iconsax: ^0.0.8
   injectable: ^2.3.2
+  intl: any
   package_info_plus: ^5.0.1
+  persistent_bottom_nav_bar_v2: ^4.2.8
+  smooth_star_rating_null_safety: ^1.0.4+2
 
 dev_dependencies:
   flutter_test:

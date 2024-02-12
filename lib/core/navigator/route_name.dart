@@ -24,6 +24,19 @@ class RouteName {
   static const String checkOut = '/check_out';
   static const String scheduleSuccess = '/schedule_success';
   static const String trackShipment = '/track_shipment';
-
-
+  static const String account = '/my_account';
+  static const String packageReturn = '/package_return';
+  static const String trackOverView = '/track_overview';
+  static const String viewPackage = '/view_package';
+  static const String shipmentComplete = '/shipment_complete';
+  static const String addNewCard = '/add_new_card';
+  static const String manageCard = '/manage_card';
+  static const String cardOtpVerification = '/card_otp_verification';
+  static const String payment = '/payment';
+  static const String currency = '/currency';
+  static const String fundWallet = '/fund_wallet';
+  static const String fundPayment = '/fund_pallet';
+  static const String paymentMethod = '/payment_method';
+  static const String shipokaPin = '/shipoka_pin';
+  static const String navBar = '/home_navbar';
 }

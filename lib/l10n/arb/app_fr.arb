@@ -1,0 +1,14 @@
+{
+    "@@locale": "fr",
+    "signup": "S'inscrire",
+    "createYour": "Crée ton",
+    "account": "compte",
+    "email": "Email",
+    "password": "Mot de passe (doit être d'au moins 8 caractères)",
+    "confirmPassword": "Confirmez le mot de passe",
+    "agreement": "En créant un compte, j'accepte les termes et conditions de Shipoka.",
+    "buttonSignUp": "S'inscrire",
+    "alreadyHaveAccount": "Vous avez déjà un compte?",
+
+    "signIn": "Se connecter"
+}

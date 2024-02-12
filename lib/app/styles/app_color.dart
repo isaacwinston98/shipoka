@@ -33,6 +33,9 @@ class AppColors{
   static const Color minuteColor = Color(0xffF8F8FA);
   static const Color amPmColor = Color(0xffBFBFBF);
   static const Color dayPeriodColor = Color(0xff79747E);
+  static const Color svgColor = Color(0xff292D32);
+  static const Color textRed = Color(0xffF75555);
+  static const Color inActiveIcon = Color(0xff98A2B3);
 
 
 

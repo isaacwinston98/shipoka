@@ -129,6 +129,7 @@ class _InputFieldState extends State<InputField> {
                                   }
                                 : null,
                             controller: widget.controller,
+                            cursorColor: AppColors.primaryColor,
                             keyboardType: widget.textInputType,
                             inputFormatters: widget.formatter ?? [],
                             focusNode: widget.fieldFocusNode,
