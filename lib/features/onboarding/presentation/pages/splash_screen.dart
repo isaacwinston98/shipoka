@@ -1,6 +1,6 @@
-//import 'dart:async';
+import 'dart:async';
 import 'package:flutter/material.dart';
-//import 'package:shipoka/features/onboarding/presentation/pages/onboarding_screen.dart';
+import 'package:shipoka/features/onboarding/presentation/pages/onboarding_screen.dart';
 
 
 class CustomSplashScreen extends StatefulWidget {

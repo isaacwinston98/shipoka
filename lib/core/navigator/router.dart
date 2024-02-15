@@ -3,6 +3,11 @@ import 'package:shipoka/core/navigator/route_extentions.dart';
 import 'package:shipoka/core/navigator/route_name.dart';
 import 'package:shipoka/features/account/presentation/pages/add_new_address.dart';
 import 'package:shipoka/features/account/presentation/pages/address_screen.dart';
+import 'package:shipoka/features/account/presentation/pages/contact_us.dart';
+import 'package:shipoka/features/account/presentation/pages/faq.dart';
+import 'package:shipoka/features/account/presentation/pages/help_center.dart';
+import 'package:shipoka/features/account/presentation/pages/security.dart';
+import 'package:shipoka/features/account/presentation/pages/submit_complaint.dart';
 import 'package:shipoka/features/auth/presentation/pages/create_new_pin.dart';
 import 'package:shipoka/features/account/presentation/pages/edit_profile_screen.dart';
 import 'package:shipoka/features/auth/presentation/pages/forgot_password.dart';
@@ -33,6 +38,7 @@ import 'package:shipoka/features/shipment/presentation/pages/schedule_success.da
 import 'package:shipoka/features/shipment/presentation/pages/sender_information.dart';
 import 'package:shipoka/features/shipment/presentation/pages/vehicle_details.dart';
 import 'package:shipoka/features/track/presentation/pages/track_shipment.dart';
+import 'package:shipoka/features/widget_texting_screen.dart';
 
 
 
@@ -97,6 +103,36 @@ Route<T> onGenerateRoute<T>(RouteSettings settings) {
       return _getPageRoute(
         routeName: settings.name!,
         viewToShow: const AddNewAddressScreen(),
+      );
+    case RouteName.helpCenter:
+      return _getPageRoute(
+        routeName: settings.name!,
+        viewToShow: HelpCenter(),
+      );
+    case RouteName.faq:
+      return _getPageRoute(
+        routeName: settings.name!,
+        viewToShow: const Faq(),
+      );
+    case RouteName.widgetTesting:
+      return _getPageRoute(
+        routeName: settings.name!,
+        viewToShow: const WidgetTesting(),
+      );
+    case RouteName.contactUs:
+      return _getPageRoute(
+        routeName: settings.name!,
+        viewToShow: const ContactUs(),
+      );
+    case RouteName.submitComplaint:
+      return _getPageRoute(
+        routeName: settings.name!,
+        viewToShow: const SubmitComplaint(),
+      );
+    case RouteName.security:
+      return _getPageRoute(
+        routeName: settings.name!,
+        viewToShow: const Security(),
       );
     case RouteName.personalProfile:
       return _getPageRoute(

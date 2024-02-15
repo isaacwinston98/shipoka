@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:shipoka/app/styles/app_color.dart';
+import 'package:shipoka/app/styles/fonts.dart';
 import 'package:shipoka/app/view/widget/app_back_button.dart';
 import 'package:shipoka/app/view/widget/input_field.dart';
 
@@ -49,8 +50,8 @@ class _SetNewPasswordScreenState extends State<SetNewPasswordScreen> {
                 ),
                 const SizedBox(width: 15.0,),
                 // Text at the center Top
-                const Center(
-                  child: Text(
+                 Center(
+                  child: TextSemiBold(
                     'Forgot Password',
                     style: TextStyle(
                       fontSize: 20.0,

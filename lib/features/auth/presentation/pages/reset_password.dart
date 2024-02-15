@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 import 'package:gap/gap.dart';
 import 'package:shipoka/app/styles/app_color.dart';
+import 'package:shipoka/app/styles/fonts.dart';
 import 'package:shipoka/app/view/widget/app_back_button.dart';
 import 'package:shipoka/features/auth/presentation/pages/set_new_password.dart';
 //import 'package:pin_code_fields/pin_code_fields.dart';
@@ -48,8 +49,8 @@ class _InputOTPScreenState extends State<InputOTPScreen> {
                 ),
                 const SizedBox(width: 15.0,),
                 //Text at the center Top
-                const Center(
-                  child: Text(
+                 Center(
+                  child: TextSemiBold(
                     'Forgot Password',
                     style: TextStyle(
                       fontSize: 20.0,
@@ -60,7 +61,7 @@ class _InputOTPScreenState extends State<InputOTPScreen> {
               ],
             ),
 
-            const SizedBox(height: 55.0,),
+            const SizedBox(height: 40.0,),
 
             //Text below Forgot Password
             Text(
@@ -74,7 +75,7 @@ class _InputOTPScreenState extends State<InputOTPScreen> {
             const SizedBox(height: 7.0,),
 
             // Text above "Email address" TextFormField
-            Text(
+            TextSmall(
               'please enter the 6-digit verification code that was sent to jerr**ka@gmail.com. The code is valid for 30 minutes',
               style: TextStyle(
                 fontSize: 13.0,
@@ -118,7 +119,7 @@ class _InputOTPScreenState extends State<InputOTPScreen> {
               ),
             ),
 
-            const Gap(10),
+            const Gap(8),
 
             // Row with two different texts
             const Padding(

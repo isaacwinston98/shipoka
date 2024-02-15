@@ -10,6 +10,9 @@ class AppAssets {
   static const String box = 'assets/images/box.png';
   static const String flag = 'assets/images/flag.png';
   static const String newPasswordNotification = 'assets/images/passwordChangedImage.png';
+  static const String carousel1 = 'assets/images/carousel.jpg';
+  static const String carousel2 = 'assets/images/carousel_2.jpg';
+  static const String carousel3 = 'assets/images/carousel_3.jpg';
 
   // app asset Icons here
   static const String arrowBack = 'assets/icons/backArrow.svg';
@@ -49,6 +52,12 @@ class AppAssets {
   static const String helpCircle = 'assets/icons/helpCircle.svg';
   static const String rightDir = 'assets/icons/rightDir.svg';
   static const String searchStatus = 'assets/icons/searchStatus.svg';
+  static const String messageQuestion = 'assets/icons/messageQuestion.svg';
+  static const String messageText = 'assets/icons/messageText.svg';
+  static const String forwardArrow = 'assets/icons/forwardArrow.svg';
+  static const String dropDown = 'assets/icons/dropDown.svg';
+  static const String calender2 = 'assets/icons/calender.svg';
+  static const String whiteCircle = 'assets/icons/whiteCircle.svg';
 
 
 }

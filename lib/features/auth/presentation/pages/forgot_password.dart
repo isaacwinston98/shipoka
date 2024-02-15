@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shipoka/app/styles/app_color.dart';
+import 'package:shipoka/app/styles/fonts.dart';
 import 'package:shipoka/app/view/widget/app_back_button.dart';
 import 'package:shipoka/app/view/widget/input_field.dart';
 import 'package:shipoka/features/auth/presentation/pages/reset_password.dart';
@@ -24,7 +25,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const SizedBox(height: 50.0,),
+            const SizedBox(height: 40.0,),
 
             //Back Arrow
             Row(
@@ -45,12 +46,11 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                 ),
                 const SizedBox(width: 15.0,),
                 //Text at the center Top
-                const Center(
-                  child: Text(
-                    'Forgot Password',
+                Center(
+                  child: TextSemiBold(
+                    "Forgot Password",
                     style: TextStyle(
                       fontSize: 19.0,
-                      fontWeight: FontWeight.w500,
                     ),
                   ),
                 )
@@ -60,26 +60,26 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
             const SizedBox(height: 20.0,),
 
             //Text below Forgot Password
-            Text(
+            TextBody(
                 'To reset your password, please enter your '
                     'registered email address.',
                 style: TextStyle(
-                  fontSize: 17.0,
+                  fontSize: 15.0,
                 )
             ),
 
             const SizedBox(height: 50.0,),
 
             // Text above "Email address" TextFormField
-            Text(
-              'Enter your email address.',
+            TextBody(
+              'Enter Your Email Address.',
               style: TextStyle(
                 fontSize: 16.0,
                 // color: Colors.grey,
               ),
             ),
 
-            const SizedBox(height: 10.0),
+            const SizedBox(height: 8.0),
 
             // The Email address text Field
             InputField(
