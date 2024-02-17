@@ -86,6 +86,7 @@ class HelpCenter extends StatelessWidget {
                   child: InkWell(
                     onTap: () {
                       //Handle onTap Event
+                      Navigator.pushNamed(context, RouteName.contactUs);
                     },
                     child:  Padding(
                       padding: EdgeInsets.all(12.0),
@@ -129,6 +130,7 @@ class HelpCenter extends StatelessWidget {
                   child: InkWell(
                     onTap: () {
                       //Handle onTap Event
+                      Navigator.pushNamed(context, RouteName.submitComplaint);
                     },
                     child:  Padding(
                       padding: EdgeInsets.all(12.0),

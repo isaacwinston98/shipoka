@@ -40,6 +40,7 @@ class RouteName {
   static const String contactUs = '/contact_us';
   static const String submitComplaint = '/submit_complaint';
   static const String security = '/security';
+  static const String changePassword = '/change_password';
 
 
 }

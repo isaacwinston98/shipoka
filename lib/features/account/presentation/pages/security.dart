@@ -5,6 +5,7 @@ import 'package:shipoka/app/styles/app_color.dart';
 import 'package:shipoka/app/styles/fonts.dart';
 import 'package:shipoka/app/view/widget/app_back_button.dart';
 import 'package:shipoka/core/constant/app_asset.dart';
+import 'package:shipoka/core/navigator/route_name.dart';
 
 class Security extends StatefulWidget {
   const Security({super.key});
@@ -65,16 +66,13 @@ class _SecurityState extends State<Security> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       TextSemiBold(
-                        "Change Pin",
+                        "Change Password",
                         fontSize: 15,
                       ),
                       GestureDetector(
                         onTap: () {
                           // Navigate to another screen
-                          /*Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => NextScreen()),
-                          );*/
+                          Navigator.pushNamed(context, RouteName.changePassword);
                         },
                         child: SvgPicture.asset(
                           AppAssets.forwardRight,
@@ -98,10 +96,7 @@ class _SecurityState extends State<Security> {
                       GestureDetector(
                         onTap: () {
                           // Navigate to another screen
-                         /* Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => NextScreen()),
-                          );*/
+                          Navigator.pushNamed(context, RouteName.changePassword);
                         },
                         child: SvgPicture.asset(
                           AppAssets.forwardRight,

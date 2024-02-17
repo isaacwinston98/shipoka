@@ -3,6 +3,7 @@ import 'package:shipoka/core/navigator/route_extentions.dart';
 import 'package:shipoka/core/navigator/route_name.dart';
 import 'package:shipoka/features/account/presentation/pages/add_new_address.dart';
 import 'package:shipoka/features/account/presentation/pages/address_screen.dart';
+import 'package:shipoka/features/account/presentation/pages/change_password.dart';
 import 'package:shipoka/features/account/presentation/pages/contact_us.dart';
 import 'package:shipoka/features/account/presentation/pages/faq.dart';
 import 'package:shipoka/features/account/presentation/pages/help_center.dart';
@@ -133,6 +134,11 @@ Route<T> onGenerateRoute<T>(RouteSettings settings) {
       return _getPageRoute(
         routeName: settings.name!,
         viewToShow: const Security(),
+      );
+    case RouteName.changePassword:
+      return _getPageRoute(
+        routeName: settings.name!,
+        viewToShow: const ChangePassword(),
       );
     case RouteName.personalProfile:
       return _getPageRoute(
