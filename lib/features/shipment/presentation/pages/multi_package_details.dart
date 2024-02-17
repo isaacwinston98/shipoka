@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:shipoka/app/styles/app_color.dart';
 import 'package:shipoka/app/styles/fonts.dart';
 import 'package:shipoka/app/view/widget/app_back_button.dart';
 import 'package:shipoka/app/view/widget/busy_button.dart';
+import 'package:shipoka/core/constant/app_asset.dart';
 import 'package:shipoka/core/navigator/route_name.dart';
 import 'package:shipoka/features/shipment/presentation/widgets/item_detail.dart';
 
@@ -66,41 +68,45 @@ class _MultiPackageDetailsState extends State<MultiPackageDetails> {
                         borderRadius: BorderRadius.circular(15),
                         color: AppColors.white,
                       ),
-                      child:  const SingleChildScrollView(
+                      child:  SingleChildScrollView(
                         child: Padding(
                           padding: EdgeInsets.symmetric(horizontal: 10),
                           child: Column(
                             children: [
                               //UnComment this code to see "add another package
 
-                              // const Gap(20),
-                              // clicked? Container()
-                              // : GestureDetector(
-                              //   onTap: (){
-                              //     setState(() {
-                              //       clicked=true;
-                              //     });
-                              //   },
-                              //   child: Row(
-                              //     mainAxisAlignment: MainAxisAlignment.end,
-                              //     children: [
-                              //       SvgPicture.asset(AppAssets.add),
-                              //       const Gap(5),
-                              //       TextBody(
-                              //         'Add Another Package',
-                              //         color: AppColors.primaryColor,
-                              //         fontWeight: FontWeight.w400,
-                              //         fontSize: 13,
-                              //       ),
-                              //       const Gap(5),
-                              //     ],
-                              //   ),
-                              // ),
+
                               Gap(10),
-                              ItemDetail()
+                              Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 5),
+                                child: ItemDetail(),
+                              ),
+                              const Gap(20),
+
                             ],
                           ),
                         ),
+                      ),
+                    ),
+                    Gap(20),
+                    GestureDetector(
+                      onTap: (){
+                        setState(() {
+                        });
+                      },
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          SvgPicture.asset(AppAssets.add),
+                          const Gap(5),
+                          TextBody(
+                            'Add Another Package',
+                            color: AppColors.primaryColor,
+                            fontWeight: FontWeight.w400,
+                            fontSize: 13,
+                          ),
+                          const Gap(5),
+                        ],
                       ),
                     ),
                   ],
@@ -110,7 +116,7 @@ class _MultiPackageDetailsState extends State<MultiPackageDetails> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 10),
               child: BusyButton(
-                title: 'Sign Up',
+                title: 'Continue',
                 onTap: () {
                   Navigator.pushNamed(context, RouteName.homeScreen);
                 },

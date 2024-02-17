@@ -1,0 +1,52 @@
+{
+    "@@locale": "en",
+    "signup": "Sign up",
+    "@signup": {
+        "description": "Text shown in the appBar position in the signUp page"
+    },
+
+    "createYour": "Create your",
+    "@createYourAccount": {
+        "description": "Text shown for  \"Create Your\" Signup Screen  "
+    },
+
+    "account": "Account",
+    "@account": {
+        "description": "Text shown for  \"account\"  in Signup Screen"
+    },
+
+    "email": "Email",
+    "@email": {
+        "description": "Text shown for  \"Email\"  in Signup Screen inputField for email address"
+    },
+
+    "password": "Password (Must be at least 8 characters)",
+    "@password": {
+        "description": "Text shown for  \"Password\"  in Signup Screen inputField for password address"
+    },
+
+    "confirmPassword": "Confirm Password",
+    "@confirmPassword": {
+        "description": "Text shown for  \"Confirm Password\"  in Signup Screen inputField for Confirm password address"
+    },
+
+    "agreement": "By Creating An Account, I agree to Shipoka’s Term and Conditions.",
+    "@agreement": {
+        "description": "Agreement Text"
+    },
+
+    "buttonSignUp": "Sign Up",
+    "@buttonSignUp": {
+        "description": "Text displayed on the button for sign up"
+    },
+
+    "alreadyHaveAccount": "Already have an account? ",
+    "@alreadyHaveAccount": {
+        "description": "Text displayed to ask if user already has an account"
+    },
+
+    "signIn": "Sign In",
+    "@signIn": {
+        "description": "Text displayed for users to click and Signin"
+    }
+}

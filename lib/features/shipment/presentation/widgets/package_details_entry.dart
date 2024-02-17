@@ -6,10 +6,14 @@ import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:provider/provider.dart';
 import 'package:shipoka/app/styles/app_color.dart';
 import 'package:shipoka/app/styles/fonts.dart';
 import 'package:shipoka/app/view/widget/input_field.dart';
 import 'package:shipoka/core/constant/app_asset.dart';
+import 'package:shipoka/features/shipment/data/package_category.dart';
+import 'package:shipoka/features/shipment/presentation/changeNotifier/shipment_notifier.dart';
+import 'package:shipoka/features/shipment/presentation/pages/image_viewer.dart';
 
 class PackageDetailsEntry extends StatefulWidget {
   const PackageDetailsEntry({
@@ -35,8 +39,18 @@ class _PackageDetailsEntryState extends State<PackageDetailsEntry> {
     }
 
   }
+
+  List<String> category = [
+    'Clothing',
+    'Documents',
+    'Electronics',
+    'Perishable Goods'
+  ];
+
   @override
   Widget build(BuildContext context) {
+    final selectedCategoryProvider = Provider.of<ShipmentProvider>(context);
+    final selectedCategory = selectedCategoryProvider.selectedCategory;
     return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -46,7 +60,7 @@ class _PackageDetailsEntryState extends State<PackageDetailsEntry> {
           const Gap(15),
           const InputField(
             placeholder: 'Package Title',
-            textInputType: TextInputType.number,
+            textInputType: TextInputType.text,
             controller: null,
           ),
           const Gap(10),
@@ -87,73 +101,31 @@ class _PackageDetailsEntryState extends State<PackageDetailsEntry> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 TextSemiBold(
-                                  'Package Category',
+                                  'Package catergory',
                                   fontSize: 17,
                                 ),
                               ],
                             ),
                             const Gap(20),
                             Expanded(
-                              child: SingleChildScrollView(
-                                child: SizedBox(
-                                  width: double.infinity,
-                                  child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      TextBody(
-                                        'Clothing',
-                                        fontWeight: FontWeight.w500,
-                                      ),
-                                      const Gap(13),
-                                      TextBody(
-                                        'Documents',
-                                        fontWeight: FontWeight.w500,
-                                      ),
-                                      const Gap(13),
-                                      TextBody(
-                                        'Electronics',
-                                        fontWeight: FontWeight.w500,
-                                      ),
-                                      const Gap(13),
-                                      TextBody(
-                                        'Perishable Goods',
-                                        fontWeight: FontWeight.w500,
-                                      ),
-                                      const Gap(13),
-                                      TextBody(
-                                        'Painting',
-                                        fontWeight: FontWeight.w500,
-                                      ),
-                                      const Gap(13),
-                                      TextBody(
-                                        'Media',
-                                        fontWeight: FontWeight.w500,
-                                      ),
-                                      const Gap(13),
-                                      TextBody(
-                                        'Education',
-                                        fontWeight: FontWeight.w500,
-                                      ),
-                                      const Gap(13),
-                                      TextBody('Politics'),
-                                      const Gap(13),
-                                      TextBody('text'),
-                                      const Gap(13),
-                                      TextBody('text'),
-                                      const Gap(10),
-                                      TextBody('text'),
-                                      const Gap(10),
-                                      TextBody('text'),
-                                      TextBody('text'),
-                                      TextBody('text'),
-                                      TextBody('text'),
-                                      TextBody('text'),
-                                      TextBody('text'),
-                                      TextBody('text'),
-                                      TextBody('text'),
-                                    ],
-                                  ),
-                                ),
+                              child: SizedBox(
+                                width: double.infinity,
+                                child: ListView.builder(
+                                  itemCount: category.length,
+                                    itemBuilder: (context, index) {
+                                      return Padding(
+                                          padding: const EdgeInsets.symmetric(vertical: 0.0),
+                                        child: ListTile(
+                                          visualDensity:const VisualDensity(horizontal: 0, vertical: -4),
+                                          title: TextBody(category[index]),
+                                          onTap: () {
+                                            // Update the selected category using provider
+                                            selectedCategoryProvider.selectCategory(category[index].toString());
+                                            Navigator.pop(context); // Close the bottom sheet
+                                          },
+                                        ),
+                                      );
+                                    },)
                               ),
                             ),
                           ],
@@ -174,8 +146,10 @@ class _PackageDetailsEntryState extends State<PackageDetailsEntry> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     TextSmall(
-                      'Package catergory',
-                      color: AppColors.personalProfileHint,
+                      selectedCategory ?? 'Package category',
+                      color: selectedCategory != null ? AppColors.textColor:AppColors.personalProfileHint,
+                      fontWeight: selectedCategory != null ? FontWeight.w500 : FontWeight.w300,
+                      fontSize:  selectedCategory != null ? 14: 12,
                     ),
                     const Icon(
                         Icons.arrow_drop_down_outlined
@@ -201,105 +175,7 @@ class _PackageDetailsEntryState extends State<PackageDetailsEntry> {
                     SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
                       statusBarColor: Colors.transparent, // Change this to your preferred status bar color
                     ));
-                    return Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 10),
-                      child: SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.28,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const Gap(15),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                TextSemiBold(
-                                  'Package weight',
-                                  fontSize: 17,
-                                ),
-                              ],
-                            ),
-                            const Gap(10),
-                            const Divider(
-                              height: 1,
-                              color: AppColors.dividerGrey,
-                            ),
-                            const Gap(10),
-                            Column(
-                              children: [
-                                TextBody(
-                                  'Select Range',
-                                ),
-                                const Gap(10),
-                                Row(
-                                  children: [
-                                    Container(
-                                      decoration: BoxDecoration(
-                                        border: Border.all(color: AppColors.dividerGrey),
-                                        color: AppColors.white
-                                      ),
-                                      child: Padding(
-                                        padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 5),
-                                        child: Column(
-                                          children: [
-                                            TextSmall(
-                                              'Between'
-                                            ),
-                                            const Gap(5),
-                                            TextBody(
-                                              '1-5Kg',
-                                            )
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                    Container(
-                                      decoration: BoxDecoration(
-                                          border: Border.all(color: AppColors.dividerGrey),
-                                          color: AppColors.white
-                                      ),
-                                      child: Padding(
-                                        padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 5),
-                                        child: Column(
-                                          children: [
-                                            TextSmall(
-                                                'Weighs'
-                                            ),
-                                            const Gap(5),
-                                            TextBody(
-                                              '10Kg',
-                                            )
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                    Container(
-                                      decoration: const BoxDecoration(
-                                          color: AppColors.primaryColor
-                                      ),
-                                      child: Padding(
-                                        padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 5),
-                                        child: Column(
-                                          children: [
-                                            TextSmall(
-                                                'Above'
-                                            ),
-                                            const Gap(5),
-                                            TextBody(
-                                              '10Kg',
-                                              color: AppColors.white,
-                                            )
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                )
-                              ],
-                            )
-                          ],
-                        ),
-                      ),
-                    );
+                    return WeightBottomSheet(selectedCategoryProvider: selectedCategoryProvider);
                   }
               );
             },
@@ -314,8 +190,15 @@ class _PackageDetailsEntryState extends State<PackageDetailsEntry> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     TextSmall(
-                      'Package weight ',
-                      color: AppColors.personalProfileHint,
+                      selectedCategoryProvider.selectedWeightIndex == -1
+                          ? 'Package weight'
+                          :   selectedCategoryProvider.selectedWeightIndex == 1
+                          ?   'Below 5' : selectedCategoryProvider.selectedWeightIndex == 2
+                          ?   '10kg' : '> 10kg',
+
+                      color: selectedCategoryProvider.selectedWeightIndex == -1 ? AppColors.personalProfileHint : AppColors.textColor,
+                      fontWeight: selectedCategoryProvider.selectedWeightIndex == -1 ? FontWeight.w300 : FontWeight.w500,
+                      fontSize:  selectedCategoryProvider.selectedWeightIndex == -1 ? 12: 14,
                     ),
                     const Icon(
                         Icons.arrow_drop_down_outlined
@@ -432,7 +315,6 @@ class _PackageDetailsEntryState extends State<PackageDetailsEntry> {
               borderType: BorderType.RRect,
               strokeWidth: 1,
               child: Container(
-                width: 160,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(30),
                 ),
@@ -440,13 +322,23 @@ class _PackageDetailsEntryState extends State<PackageDetailsEntry> {
                   padding: const EdgeInsets.all(10.0),
                   child: Container(
                     child: Row(
+                      mainAxisSize: MainAxisSize.min,
                       children: [
                         image != null
-                        ?Image.file(
-                          image!,
-                          width: 50.0,
-                          height: 30.0,
-                          fit: BoxFit.cover,
+                        ? GestureDetector(
+                          onTap: (){
+                            Navigator.push(context, MaterialPageRoute(
+                              builder: (context)=> image != null
+                                  ? ImageViewer(image: image!.path)
+                                  : Container(),
+                            ),);
+                          },
+                          child: Image.file(
+                            image!,
+                            width: 50.0,
+                            height: 30.0,
+                            fit: BoxFit.cover,
+                          ),
                         )
                         :Container(),
                         const Gap(5)  ,
@@ -480,5 +372,141 @@ class _PackageDetailsEntryState extends State<PackageDetailsEntry> {
           const Gap(10),
 
         ]);
+  }
+}
+
+class WeightBottomSheet extends StatelessWidget {
+  const WeightBottomSheet({
+    super.key,
+    required this.selectedCategoryProvider,
+  });
+
+  final ShipmentProvider selectedCategoryProvider;
+
+  @override
+  Widget build(BuildContext context) {
+    final wightProvider = Provider.of<ShipmentProvider>(context);
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 0),
+      child: SizedBox(
+        height: MediaQuery.of(context).size.height * 0.28,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Gap(1),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                TextSemiBold(
+                  'Package weight',
+                  fontSize: 17,
+                ),
+              ],
+            ),
+            const Gap(10),
+            const Divider(
+              height: 1,
+              color: AppColors.dividerGrey,
+            ),
+            const Gap(15),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                TextBody(
+                  'Select Range',
+                ),
+                const Gap(15),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    GestureDetector(
+                      onTap: (){
+                        selectedCategoryProvider.updateSelectedWight(1);
+                        },
+                      child: Container(
+                        decoration: BoxDecoration(
+                          border: Border.all(color: AppColors.dividerGrey),
+                          borderRadius: BorderRadius.circular(12),
+                          color: wightProvider.selectedWeightIndex == 1 ? AppColors.primaryColor :null,
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 10),
+                          child: Column(
+                            children: [
+                              TextSmall(
+                                'Between'
+                              ),
+                              const Gap(5),
+                              TextBody(
+                                '1-5Kg',
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    Gap(15),
+                    GestureDetector(
+                      onTap: (){
+                        selectedCategoryProvider.updateSelectedWight(2);
+                      },
+                      child: Container(
+                        decoration: BoxDecoration(
+                            border: Border.all(color: AppColors.dividerGrey),
+                          borderRadius: BorderRadius.circular(12),
+                          color: wightProvider.selectedWeightIndex == 2 ? AppColors.primaryColor :null,
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 10),
+                          child: Column(
+                            children: [
+                              TextSmall(
+                                  'Weighs'
+                              ),
+                              const Gap(5),
+                              TextBody(
+                                '10Kg',
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    Gap(15),
+                    GestureDetector(
+                      onTap: (){
+                        selectedCategoryProvider.updateSelectedWight(3);
+                      },
+                      child: Container(
+                        decoration: BoxDecoration(
+                          border: Border.all(color: AppColors.dividerGrey),
+                          borderRadius: BorderRadius.circular(12),
+                          color: wightProvider.selectedWeightIndex == 3 ? AppColors.primaryColor :null,
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 10),
+                          child: Column(
+                            children: [
+                              TextSmall(
+                                  'Above'
+                              ),
+                              const Gap(5),
+                              TextBody(
+                                '10Kg',
+                                color: AppColors.textColor,
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                )
+              ],
+            )
+          ],
+        ),
+      ),
+    );
   }
 }

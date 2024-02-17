@@ -33,9 +33,19 @@ class ItemDetail extends StatelessWidget {
                   ),
                   Row(
                     children: [
-                      SvgPicture.asset(AppAssets.reEdit),
-                      const Gap(10),
-                      SvgPicture.asset(AppAssets.trash),
+                      SvgPicture.asset(
+                          AppAssets.reEdit,
+                        width: 15,
+                        height: 15,
+                        fit: BoxFit.scaleDown,
+                      ),
+                      const Gap(20),
+                      SvgPicture.asset(
+                          AppAssets.trash,
+                        width: 15,
+                        height: 15,
+                        fit: BoxFit.scaleDown,
+                      ),
                     ],
                   )
                 ],
@@ -45,7 +55,7 @@ class ItemDetail extends StatelessWidget {
                 height: 1,
                 color: AppColors.dividerGrey,
               ),
-              const Gap(4),
+              const Gap(10),
               TextBody(
                 'Playstation 2023 Edition',
                 fontWeight: FontWeight.w400,

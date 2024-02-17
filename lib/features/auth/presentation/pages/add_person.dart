@@ -1,12 +1,16 @@
 import 'dart:async';
 
+import 'package:country_picker/country_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:shipoka/app/styles/app_color.dart';
 import 'package:shipoka/app/styles/fonts.dart';
 import 'package:shipoka/app/view/widget/app_back_button.dart';
 import 'package:shipoka/app/view/widget/busy_button.dart';
 import 'package:shipoka/app/view/widget/input_field.dart';
+import 'package:shipoka/core/constant/app_asset.dart';
+import 'package:shipoka/core/navigator/route_name.dart';
 import 'package:shipoka/core/utils/custom_form_validator.dart';
 
 class AddPersonContact extends StatefulWidget {
@@ -97,6 +101,8 @@ class _AddPersonContactState extends State<AddPersonContact> {
       'First name is required',
     );
 
+
+
     final surnameError = CustomFormValidation.errorMessage(
       contactFirstNameController.text.trim(),
       'Surname is required',
@@ -118,6 +124,7 @@ class _AddPersonContactState extends State<AddPersonContact> {
   }
   @override
   Widget build(BuildContext context) {
+    String selectedCountryCode = '';
     return Scaffold(
       backgroundColor: AppColors.white,
       body: SafeArea(
@@ -238,23 +245,65 @@ class _AddPersonContactState extends State<AddPersonContact> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             // Country Code Dropdown
-                            Container(
-                              decoration: BoxDecoration(
-                                color: AppColors.textFieldBackground,
-                                border: Border.all(color: AppColors.textFieldBackground),
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              child: Padding(
-                                padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 11),
-                                child: Row(
-                                  children: [
-                                    TextSmall('Code'),
-                                    Gap(5),
-                                    Icon(
-                                      Icons.arrow_drop_down_outlined
-                                    )
-                                  ],
-                                )
+                            GestureDetector(
+                              onTap:(){
+                                showCountryPicker(
+                                    context: context,
+                                    showPhoneCode: true,
+                                    countryListTheme: CountryListThemeData(
+                                      flagSize: 25,
+                                      backgroundColor: Colors.white,
+                                      textStyle: const TextStyle(fontSize: 16, color: AppColors.textColor),
+                                      bottomSheetHeight: MediaQuery.of(context).size.height * 0.9,
+                                      borderRadius: const BorderRadius.only(
+                                        topLeft: Radius.circular(30.0),
+                                        topRight: Radius.circular(30.0),
+                                      ),
+                                      inputDecoration: InputDecoration(
+                                        fillColor: AppColors.textFieldBackground,
+                                        hintText: 'Search Country',
+                                        suffix: SvgPicture.asset(
+                                            AppAssets.search
+                                        ),
+                                        border: OutlineInputBorder(
+                                          borderRadius: BorderRadius.circular(20),
+                                          borderSide: const BorderSide(
+                                            color: AppColors.primaryColor,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    onSelect: (Country country){
+                                      setState(() {
+                                        selectedCountryCode = country.phoneCode; // Update the selected country code
+                                      });
+                                    }
+                                );
+                              },
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  color: AppColors.textFieldBackground,
+                                  border: Border.all(color: AppColors.textFieldBackground),
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 11),
+                                  child: Row(
+                                    children: [
+                                      TextSmall(
+                                        selectedCountryCode == ''
+                                            ? 'code'
+                                            : "+$selectedCountryCode",
+                                        fontWeight:FontWeight.w500,
+
+                                      ),
+                                      Gap(5),
+                                      Icon(
+                                        Icons.arrow_drop_down_outlined
+                                      )
+                                    ],
+                                  )
+                                ),
                               ),
                             ),
                             const Gap(10),
@@ -302,18 +351,9 @@ class _AddPersonContactState extends State<AddPersonContact> {
                   child: BusyButton(
                     title: 'Continue',
                     onTap: () {
-                      // Provider.of<AuthNotifier>(context, listen: false)
-                      //     .register(
-                      //   context,
-                      //   firstName: firstNameController.text.trim(),
-                      //   lastName: surnameController.text.trim(),
-                      //   email: emailController.text.trim(),
-                      //   countryCode: 'NG',
-                      //   pin: pinController.text.trim(),
-                      //   phoneNumber: phoneController.text.trim(),
-                      // );
+                    Navigator.pushNamed(context, RouteName.navBar);
                     },
-                    disabled: true,
+                    disabled: false,
                   ),
                 ),
               ],

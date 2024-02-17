@@ -29,7 +29,7 @@ class _ScheduleSuccessState extends State<ScheduleSuccess> {
                          child: Column(
                            crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            Gap( MediaQuery.of(context).size.height * 0.01),
+                            Gap( MediaQuery.of(context).size.height * 0.05),
                             SvgPicture.asset(AppAssets.scheduleSuccess),
                             const Gap(15),
                             TextSemiBold(
@@ -102,7 +102,7 @@ class _ScheduleSuccessState extends State<ScheduleSuccess> {
                                               const Gap(5),
                                               TextSmall(
                                                 '1 days 05 hours 15 minutes remaining',
-                                                fontWeight: FontWeight.w500,
+                                                fontWeight: FontWeight.w400,
                                                 maxLines: 3,
                                               ),
                                               const Gap(10),
@@ -133,22 +133,22 @@ class _ScheduleSuccessState extends State<ScheduleSuccess> {
                             child: BusyButton(
                               title: 'Done',
                               onTap: () {
-                                Navigator.pushNamed(context, RouteName.setupProfile);
+                                Navigator.pushNamed(context, RouteName.navBar);
                               },
                              // disabled: !canSubmit,
                             ),
                           ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 10),
-                            child: BusyButton(
-                              color: AppColors.buttonPink,
-                              title: 'Print Shipment label',
-                              onTap: () {
-                                Navigator.pushNamed(context, RouteName.setupProfile);
-                              },
-                              // disabled: !canSubmit,
-                            ),
-                          ),
+                          // Padding(
+                          //   padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 10),
+                          //   child: BusyButton(
+                          //     color: AppColors.buttonPink,
+                          //     title: 'Print Shipment label',
+                          //     onTap: () {
+                          //       Navigator.pushNamed(context, RouteName.setupProfile);
+                          //     },
+                          //     // disabled: !canSubmit,
+                          //   ),
+                          // ),
                         ],
                       ),
 

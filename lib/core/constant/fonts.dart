@@ -1,3 +1,3 @@
 class AppFonts {
-  static const String aeonik = 'Aeonik';
+  static const String dmsans = 'DMSans';
 }
