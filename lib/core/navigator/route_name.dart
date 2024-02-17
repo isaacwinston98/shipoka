@@ -34,10 +34,7 @@ class RouteName {
   static const String trackShipment = '/track_shipment';
   static const String userAccountAddress = '/address_screen';
   static const String addNewAddress = '/add_new_address';
-  static const String helpCenter = '/help_center';
-  static const String faq = '/faq';
   static const String widgetTesting = '/widget_texting_screen';
-  static const String contactUs = '/contact_us';
   static const String submitComplaint = '/submit_complaint';
   static const String security = '/security';
   static const String changePassword = '/change_password';

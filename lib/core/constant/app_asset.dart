@@ -78,7 +78,6 @@ class AppAssets {
   static const String rightDir = 'assets/icons/rightDir.svg';
   static const String searchStatus = 'assets/icons/searchStatus.svg';
   static const String messageQuestion = 'assets/icons/messageQuestion.svg';
-  static const String messageText = 'assets/icons/messageText.svg';
   static const String forwardArrow = 'assets/icons/forwardArrow.svg';
   static const String dropDown = 'assets/icons/dropDown.svg';
   static const String calender2 = 'assets/icons/calender.svg';

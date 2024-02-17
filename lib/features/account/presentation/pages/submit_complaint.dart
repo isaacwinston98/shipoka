@@ -32,7 +32,7 @@ class _SubmitComplaintState extends State<SubmitComplaint> {
       setState(() {
         this.image = temporaryImage;
       });
-    } on PlatformException catch () {
+    } on PlatformException catch (e) {
       //
     }
 
