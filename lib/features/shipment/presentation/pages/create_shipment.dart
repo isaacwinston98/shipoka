@@ -2,12 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
+import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 import 'package:shipoka/app/styles/app_color.dart';
 import 'package:shipoka/app/styles/fonts.dart';
 import 'package:shipoka/app/view/widget/app_back_button.dart';
 import 'package:shipoka/app/view/widget/busy_button.dart';
 import 'package:shipoka/core/constant/app_asset.dart';
+import 'package:shipoka/core/navigator/route_name.dart';
 import 'package:shipoka/core/utils/tool_tip.dart';
+import 'package:shipoka/features/shipment/presentation/pages/schedule_success.dart';
 
 class CreateShipment extends StatefulWidget {
   const CreateShipment({super.key});
@@ -337,7 +340,7 @@ class _CreateShipmentState extends State<CreateShipment> {
                                       const Gap(2),
                                       TextBody(
                                         'International',
-                                        fontSize: 13,
+                                        fontSize: 12,
                                         fontWeight: FontWeight.w400,
                                       ),
                                     ],
@@ -746,7 +749,15 @@ class _CreateShipmentState extends State<CreateShipment> {
                           child: BusyButton(
                             color: AppColors.buttonBlack,
                             title: 'Continue',
-                            onTap: () {  },
+                            onTap: () {
+                              pushNewScreen(
+                                context,
+                                screen: ScheduleSuccess(),
+                                withNavBar: false, // OPTIONAL VALUE. True by default.
+                                pageTransitionAnimation: PageTransitionAnimation.cupertino,
+                              );
+
+                            },
 
                           ),
                         ),

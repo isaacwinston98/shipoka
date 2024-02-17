@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 class AppColors{
 
+  static const Color opaquePink = Color(0xffF8ECE7);
   static const Color primaryColor = Color(0xffF26520);
   static const Color black = Color(0xff000000);
   static const Color deepBlue = Color(0xff001F3F);
@@ -36,6 +37,7 @@ class AppColors{
   static const Color svgColor = Color(0xff292D32);
   static const Color textRed = Color(0xffF75555);
   static const Color inActiveIcon = Color(0xff98A2B3);
+  static const Color orderColor = Color(0xffFEEEE6);
 
 
 

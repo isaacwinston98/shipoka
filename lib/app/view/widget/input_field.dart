@@ -150,7 +150,7 @@ class _InputFieldState extends State<InputField> {
                                 fontSize: 12,
                                 fontWeight: FontWeight.w400,
                                 color: widget.placeholderColor,
-                                fontFamily: AppFonts.aeonik,
+                                fontFamily: AppFonts.dmsans,
                               ),
                             ),
                           ),

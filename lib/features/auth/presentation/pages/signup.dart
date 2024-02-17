@@ -57,14 +57,14 @@ class _SignupState extends State<Signup> {
       _passwordStreamController.sink.add(
         passwordController.text.trim(),
       );
-     validateInputs();
+      validateInputs();
     });
 
     repeatPasswordController.addListener(() {
       _repeatPasswordStreamController.sink.add(
         repeatPasswordController.text.trim(),
       );
-     validateInputs();
+      validateInputs();
     });
   }
 
@@ -266,7 +266,7 @@ class _SignupState extends State<Signup> {
                             visualDensity: const VisualDensity(horizontal: -4.0, vertical: -4.0),
                             value: isChecked,
                             side: const BorderSide(
-                              color: AppColors.primaryColor
+                                color: AppColors.primaryColor
                             ),
                             onChanged: (bool? value) {
                               setState(() {
@@ -276,7 +276,7 @@ class _SignupState extends State<Signup> {
 
                             },
                             activeColor: AppColors.primaryColor, // Make the actual checkbox transparent
-                             // Set the check color to orange
+                            // Set the check color to orange
                           ),
                           Flexible(
                             child: TextSmall(
@@ -308,7 +308,7 @@ class _SignupState extends State<Signup> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     TextSmall(
-                        AppLocalizations.of(context).alreadyHaveAccount,
+                      AppLocalizations.of(context).alreadyHaveAccount,
                     ),
                     GestureDetector(
                       onTap: (){

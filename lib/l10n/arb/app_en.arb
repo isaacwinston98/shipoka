@@ -1,17 +1,16 @@
 {
     "@@locale": "en",
-    "signup": "Signup",
+    "signup": "Sign up",
     "@signup": {
         "description": "Text shown in the appBar position in the signUp page"
     },
 
-
-    "createYour": "Create Your",
+    "createYour": "Create your",
     "@createYourAccount": {
         "description": "Text shown for  \"Create Your\" Signup Screen  "
     },
 
-    "account": "account",
+    "account": "Account",
     "@account": {
         "description": "Text shown for  \"account\"  in Signup Screen"
     },
@@ -41,13 +40,13 @@
         "description": "Text displayed on the button for sign up"
     },
 
-    "alreadyHaveAccount": "Already have an account?",
+    "alreadyHaveAccount": "Already have an account? ",
     "@alreadyHaveAccount": {
         "description": "Text displayed to ask if user already has an account"
     },
 
     "signIn": "Sign In",
     "@signIn": {
-        "description": "Text displayed for users to click and Signin "
+        "description": "Text displayed for users to click and Signin"
     }
 }

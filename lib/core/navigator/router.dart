@@ -5,6 +5,9 @@ import 'package:shipoka/features/account/presentation/pages/add_new_card.dart';
 import 'package:shipoka/features/account/presentation/pages/card_otp_verification.dart';
 import 'package:shipoka/features/account/presentation/pages/manage_card.dart';
 import 'package:shipoka/features/account/presentation/pages/my_account.dart';
+import 'package:shipoka/features/account/presentation/pages/order_history.dart';
+import 'package:shipoka/features/account/presentation/pages/order_history_map.dart';
+import 'package:shipoka/features/account/presentation/pages/order_overview.dart';
 import 'package:shipoka/features/account/presentation/pages/payment/currency.dart';
 import 'package:shipoka/features/account/presentation/pages/payment/fund_payment.dart';
 import 'package:shipoka/features/account/presentation/pages/payment/fund_wallet.dart';
@@ -21,6 +24,15 @@ import 'package:shipoka/features/auth/presentation/pages/personal_profile.dart';
 import 'package:shipoka/features/auth/presentation/pages/setup_profile.dart';
 import 'package:shipoka/features/auth/presentation/pages/signup.dart';
 import 'package:shipoka/features/auth/presentation/pages/verify_email.dart';
+import 'package:shipoka/features/help/presentation/pages/chat.dart';
+import 'package:shipoka/features/help/presentation/pages/contact_us.dart';
+import 'package:shipoka/features/help/presentation/pages/customer_support.dart';
+import 'package:shipoka/features/help/presentation/pages/faq.dart';
+import 'package:shipoka/features/help/presentation/pages/help_center.dart';
+import 'package:shipoka/features/help/presentation/pages/legal.dart';
+import 'package:shipoka/features/help/presentation/pages/privacy_policy.dart';
+import 'package:shipoka/features/help/presentation/pages/shipoka_policies.dart';
+import 'package:shipoka/features/help/presentation/pages/terms_and_conditions.dart';
 import 'package:shipoka/features/home/presentation/pages/home_navbar.dart';
 import 'package:shipoka/features/home/presentation/pages/home_screen.dart';
 import 'package:shipoka/features/onboarding/presentation/pages/splash_screen.dart';
@@ -234,6 +246,66 @@ Route<T> onGenerateRoute<T>(RouteSettings settings) {
       return _getPageRoute(
         routeName: settings.name!,
         viewToShow: const HomeNavigation(),
+      );
+    case RouteName.orderHistory:
+      return _getPageRoute(
+        routeName: settings.name!,
+        viewToShow: const OrderHistory(),
+      );
+    case RouteName.orderHistoryMap:
+      return _getPageRoute(
+        routeName: settings.name!,
+        viewToShow: const OrderHistoryMap(),
+      );
+    case RouteName.legal:
+      return _getPageRoute(
+        routeName: settings.name!,
+        viewToShow: const Legal(),
+      );
+    case RouteName.shipokaPolicies:
+      return _getPageRoute(
+        routeName: settings.name!,
+        viewToShow: const ShipokaPolicies(),
+      );
+    case RouteName.privacyPolicies:
+      return _getPageRoute(
+        routeName: settings.name!,
+        viewToShow: const PrivacyPolicy(),
+      );
+    case RouteName.termsAndConditions:
+      return _getPageRoute(
+        routeName: settings.name!,
+        viewToShow: const TermsAndConditions(),
+      );
+    case RouteName.contactUs:
+      return _getPageRoute(
+        routeName: settings.name!,
+        viewToShow: const ContactUs(),
+      );
+    case RouteName.customerSupport:
+      return _getPageRoute(
+        routeName: settings.name!,
+        viewToShow: const CustomerSupport(),
+      );
+    case RouteName.chat:
+      return _getPageRoute(
+        routeName: settings.name!,
+        viewToShow: const ChatSupport(),
+      );
+    case RouteName.orderOverview:
+      return _getPageRoute(
+        routeName: settings.name!,
+        viewToShow: const OrderOverview(),
+      );
+    case RouteName.helpCenter:
+      return _getPageRoute(
+        routeName: settings.name!,
+        viewToShow: const HelpCenter(),
+      );
+    case RouteName.faq:
+      return _getPageRoute(
+        routeName: settings.name!,
+        viewToShow: const Faq(),
       );
     default:
       return MaterialPageRoute<T>(

@@ -12,8 +12,16 @@ class AppAssets {
   static const String vector = 'assets/images/vector.png';
   static const String rectangle = 'assets/images/rectangle.png';
   static const String man = 'assets/images/man.png';
+  static const String mapTrack = 'assets/images/mapTrack.png';
 
   // app asset Icons here
+  static const String faq = 'assets/icons/faq.svg';
+  static const String chat = 'assets/icons/chat.svg';
+  static const String image = 'assets/icons/image.svg';
+  static const String call = 'assets/icons/call.svg';
+  static const String twoFour = 'assets/icons/twoFour.svg';
+  static const String order = 'assets/icons/order.svg';
+  static const String file = 'assets/icons/file.svg';
   static const String document = 'assets/icons/document.svg';
   static const String create = 'assets/icons/create.svg';
   static const String not = 'assets/icons/not.svg';

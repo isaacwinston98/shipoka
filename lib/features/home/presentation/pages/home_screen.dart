@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
+import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 import 'package:shipoka/app/styles/app_color.dart';
 import 'package:shipoka/app/styles/fonts.dart';
 import 'package:shipoka/app/view/app.dart';
@@ -9,6 +10,8 @@ import 'package:shipoka/core/navigator/route_name.dart';
 import 'package:shipoka/features/home/presentation/widgets/current_shipment.dart';
 import 'package:shipoka/features/home/presentation/widgets/packageTile.dart';
 import 'package:shipoka/features/home/presentation/widgets/welcome.dart';
+
+import '../../../account/presentation/pages/my_account.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -36,23 +39,33 @@ class _HomeScreenState extends State<HomeScreen> {
                       children: [
                         Row(
                           children: [
-                            Container(
-                              height:50,
-                              width:50,
-                              decoration: const BoxDecoration(
-                                shape: BoxShape.circle,
-                                color: AppColors.editPersonColor,
-                              ),
-                              child:Padding(
-                                padding: const EdgeInsets.all(12.0),
-                                child: SvgPicture.asset(
-                                  AppAssets.user,
-                                  height: 23,
-                                  width: 23,
-                                  color: AppColors.textColor,
+                            GestureDetector(
+                              onTap: (){
+                                pushNewScreen(
+                                  context,
+                                  screen: MyAccount(),
+                                  withNavBar: false, // OPTIONAL VALUE. True by default.
+                                  pageTransitionAnimation: PageTransitionAnimation.cupertino,
+                                );
+                              },
+                              child: Container(
+                                height:50,
+                                width:50,
+                                decoration: const BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: AppColors.editPersonColor,
                                 ),
-                              ),
+                                child:Padding(
+                                  padding: const EdgeInsets.all(12.0),
+                                  child: SvgPicture.asset(
+                                    AppAssets.user,
+                                    height: 23,
+                                    width: 23,
+                                    color: AppColors.textColor,
+                                  ),
+                                ),
 
+                              ),
                             ),
                             const Gap(3),
                             Column(

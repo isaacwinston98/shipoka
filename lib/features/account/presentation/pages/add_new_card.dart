@@ -105,3 +105,58 @@ class _AddNewCardScreenState extends State<AddNewCardScreen> {
     );
   }
 }
+
+class AppTextField extends StatelessWidget {
+  final Widget? suffixIcon;
+  final String? label;
+  final String? hint;
+  final double? radius;
+  final TextEditingController? controller;
+  final bool? enabled;
+  final Function(String?)? onChanged;
+  final String? initialValue;
+
+  const AppTextField({
+    super.key,
+    this.suffixIcon,
+    this.label,
+    this.hint, this.radius, this.controller, this.enabled,  this.onChanged, this.initialValue,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      child: TextFormField(
+        controller: controller,
+        enabled: enabled,
+        initialValue: initialValue,
+        onChanged: onChanged,
+
+        style: const TextStyle(color: Color(0xff101828)),
+        decoration: InputDecoration(
+            hintText: hint,
+            floatingLabelBehavior: FloatingLabelBehavior.auto,
+            hintStyle: const TextStyle(
+              fontSize: 14,
+              color: Color(0xff9E9E9E),
+            ),
+            labelStyle: const TextStyle(
+              fontSize: 14,
+              color: Color(0xff9E9E9E),
+            ),
+            labelText: label,
+            filled: true,
+            fillColor: const Color(0xffFAFAFA),
+            enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(radius??10),
+                borderSide: const BorderSide(color: Colors.transparent)),
+            focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(radius??10),
+                borderSide: const BorderSide(
+                  color: Colors.transparent,
+                )),
+            suffixIcon: suffixIcon),
+      ),
+    );
+  }
+}

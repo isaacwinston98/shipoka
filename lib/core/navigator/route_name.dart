@@ -39,4 +39,17 @@ class RouteName {
   static const String paymentMethod = '/payment_method';
   static const String shipokaPin = '/shipoka_pin';
   static const String navBar = '/home_navbar';
+  static const String orderHistory = '/order_history';
+  static const String orderHistoryMap = '/order_history_map';
+  static const String legal = '/legal';
+  static const String shipokaPolicies = '/shipoka_policies';
+  static const String privacyPolicies = '/privacy_policies';
+  static const String termsAndConditions = '/terms_and_condition';
+  static const String contactUs = '/contact_us';
+  static const String customerSupport = '/customer_support';
+  static const String chat = '/chat';
+  static const String orderOverview = '/order_overview';
+  static const String helpCenter = '/help_center';
+  static const String faq = '/faq';
+
 }

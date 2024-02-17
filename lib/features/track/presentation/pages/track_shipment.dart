@@ -25,6 +25,8 @@ class _TrackShipmentState extends State<TrackShipment> with SingleTickerProvider
     _tabController = TabController(vsync: this, length: 4);
   }
 
+  int selectedTabIndex = 0;
+
 
   @override
   Widget build(BuildContext context) {
@@ -32,20 +34,30 @@ class _TrackShipmentState extends State<TrackShipment> with SingleTickerProvider
 
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        leading:const AppBackButton() ,
-        title:TextSemiBold(
-          'Track Shipment',
-          fontSize: 20,
-        ),
-        backgroundColor: AppColors.white,
-        centerTitle: true,
-        bottom:PreferredSize(
-          preferredSize: Size.fromHeight(MediaQuery.of(context).size.height * 0.17),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 15),
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 10),
+          child: SingleChildScrollView(
             child: Column(
-              children: [const Gap(20),
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const Gap(10),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const AppBackButton(),
+                    TextSemiBold(
+                      'Shipment',
+                      fontSize: 20,
+                    ),
+                    const SizedBox(
+                      height: 50,
+                      width: 50,
+                      child: Text(''),
+                    )
+                  ],
+                ),
+                const Gap(20),
                 TextFormField(
                   decoration: InputDecoration(
                     contentPadding:
@@ -76,46 +88,49 @@ class _TrackShipmentState extends State<TrackShipment> with SingleTickerProvider
                     ),
                   ),
                 ),
-                const Gap(10),
-                TabBar(
-                  controller: _tabController,
-                  dividerHeight: 0,
-                  indicator: BoxDecoration(
-                    color: AppColors.primaryColor,
-                    borderRadius: BorderRadius.circular(15),
+                Gap(10),
+                Container(
+                  height: 40,
+                  width: double.infinity,
+                  child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: 4,
+                    itemBuilder: (BuildContext context, int index) {
+                      return GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            selectedTabIndex = index;
+                          });
+                        },
+                        child: Container(
+                          margin: const EdgeInsets.all(3),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(15),
+                            border: Border.all(
+                              color: selectedTabIndex == index
+                                  ? Colors.orange
+                                  : AppColors.dividerGrey,
+                              width: 1,
+                            ),
+                            color: selectedTabIndex == index ? AppColors.primaryColor : null,
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+                            child: Center(
+                              child: TextSmall(
+                                index == 0 ? 'All' : index == 1 ? 'Pending' : index == 2 ? 'On Delivery' : 'Delivered',
+                                color: selectedTabIndex == index ? Colors.white : null,
+                              ),
+                            ),
+                          ),
+                        ),
+                      );
+
+                    },
+
                   ),
-                  isScrollable: true,
-                  indicatorSize: TabBarIndicatorSize.tab,
-                  tabs: [
-                    Tab(
-                      text: 'All',
-                    ),
-                    Tab(
-                      text: 'Pending',
-                    ),
-                    Tab(
-                      text: 'very long text',
-                    )
-                  ],
-
-                )
-              ],
-            ),
-          ),
-        ),
-      ),
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(15),
-          child: SingleChildScrollView(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-
-
-
-
-                const Gap(30),
+                ),
+                Gap(20),
                 ListView.separated(
                   itemBuilder: (context, index) {
                     return GestureDetector(
@@ -230,7 +245,7 @@ class _TrackShipmentState extends State<TrackShipment> with SingleTickerProvider
                   itemCount: shipments.length,
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
-                )
+                ),
               ],
             ),
           ),

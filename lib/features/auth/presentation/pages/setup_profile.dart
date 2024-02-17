@@ -49,6 +49,7 @@ class _SetupProfileState extends State<SetupProfile> {
                             TextSemiBold(
                               'Setup Your Profile',
                               fontSize: 20,
+                              fontWeight: FontWeight.w500,
                             ),
 
 
@@ -58,7 +59,7 @@ class _SetupProfileState extends State<SetupProfile> {
                         Flexible(
                           child: TextSmall(
                             'Choose Your Shipoka App Experience: Tailor Your Profile to Your Needs',
-                            fontSize: 14,
+                            fontSize: 13,
                             color: AppColors.smallTextColor,
                             fontWeight: FontWeight.w400,
 
@@ -107,6 +108,7 @@ class _SetupProfileState extends State<SetupProfile> {
                                         TextSemiBold(
                                           'For my Business',
                                           fontSize: 16,
+                                          fontWeight:FontWeight.w500,
                                         ),
                                         const Gap(5),
                                         TextSmall(

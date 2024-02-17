@@ -20,6 +20,7 @@ dependencies:
   device_info_plus: ^9.1.1
   dotted_border: ^2.0.3
   device_preview: ^1.1.0
+  expandable: ^5.0.1
   flutter_localizations:
     sdk: flutter
   flutter_svg: ^2.0.9
@@ -27,12 +28,14 @@ dependencies:
   google_fonts: ^6.1.0
   google_nav_bar: ^5.0.6
   gap: ^3.0.1
+  get_it:
   image_picker: ^1.0.7
   iconsax: ^0.0.8
   injectable: ^2.3.2
   intl: any
   package_info_plus: ^5.0.1
   persistent_bottom_nav_bar_v2: ^4.2.8
+  provider:
   smooth_star_rating_null_safety: ^1.0.4+2
 
 dev_dependencies:
@@ -40,25 +43,24 @@ dev_dependencies:
     sdk: flutter
 
   flutter_lints: ^2.0.0
+  test: ^1.24.9
 
 flutter:
   fonts:
-    - family: Aeonik
+    - family: DMSans
       fonts:
-        - asset: assets/font/Aeonik-Air.otf
-        - asset: assets/font/Aeonik-AirItalic.otf
-        - asset: assets/font/Aeonik-Black.otf
-        - asset: assets/font/Aeonik-BlackItalic.otf
-        - asset: assets/font/Aeonik-Bold.otf
-        - asset: assets/font/Aeonik-BoldItalic.otf
-        - asset: assets/font/Aeonik-Light.otf
-        - asset: assets/font/Aeonik-LightItalic.otf
-        - asset: assets/font/Aeonik-Medium.otf
-        - asset: assets/font/Aeonik-MediumItalic.otf
-        - asset: assets/font/Aeonik-Regular.otf
-        - asset: assets/font/Aeonik-RegularItalic.otf
-        - asset: assets/font/Aeonik-Thin.otf
-        - asset: assets/font/Aeonik-ThinItalic.otf
+        - asset: assets/font/DMSans-Black.ttf
+        - asset: assets/font/DMSans-BlackItalic.ttf
+        - asset: assets/font/DMSans-Bold.ttf
+        - asset: assets/font/DMSans-BoldItalic.ttf
+        - asset: assets/font/DMSans-italic.ttf
+        - asset: assets/font/DMSans-Light.ttf
+        - asset: assets/font/DMSans-LightItalic.ttf
+        - asset: assets/font/DMSans-Medium.ttf
+        - asset: assets/font/DMSans-MediumItalic.ttf
+        - asset: assets/font/DMSans-Regular.ttf
+        - asset: assets/font/DMSans-Thin.ttf
+        - asset: assets/font/DMSans-ThinItalic.ttf
 
   uses-material-design: true
   generate: true
