@@ -2,6 +2,7 @@ import 'package:country_picker/country_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
+import 'package:provider/provider.dart';
 import 'package:shipoka/app/styles/app_color.dart';
 import 'package:shipoka/app/styles/fonts.dart';
 import 'package:shipoka/app/view/widget/app_back_button.dart';
@@ -9,6 +10,8 @@ import 'package:shipoka/app/view/widget/busy_button.dart';
 import 'package:shipoka/app/view/widget/input_field.dart';
 import 'package:shipoka/core/constant/app_asset.dart';
 import 'package:shipoka/core/navigator/route_name.dart';
+import 'package:shipoka/features/shipment/presentation/changeNotifier/shipment_notifier.dart';
+import 'package:shipoka/features/shipment/presentation/widgets/location_form.dart';
 import 'package:shipoka/features/shipment/presentation/widgets/saved_location.dart';
 
 class SenderInformation extends StatefulWidget {
@@ -24,11 +27,12 @@ class _SenderInformationState extends State<SenderInformation> {
   bool isSaved = false;
   @override
   Widget build(BuildContext context) {
+    final shipmentProvider = Provider.of<ShipmentProvider>(context);
     return Scaffold(
       backgroundColor: AppColors.white,
       body: SafeArea(
           child:Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 15),
+            padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Column(
 
               children: [
@@ -222,14 +226,12 @@ class _SenderInformationState extends State<SenderInformation> {
                          children: [
                            Checkbox(
                              visualDensity: const VisualDensity(horizontal: -4.0, vertical: -4.0),
-                             value: isSaved,
+                             value: shipmentProvider.showSavedLocation,
                              side: const BorderSide(
                                  color: AppColors.primaryColor
                              ),
                              onChanged: (bool? value) {
-                               setState(() {
-                                 isSaved = value!;
-                               });
+                               shipmentProvider.updateShowSavedLocation();
 
                              },
                              activeColor: AppColors.primaryColor, // Make the actual checkbox transparent
@@ -253,7 +255,8 @@ class _SenderInformationState extends State<SenderInformation> {
                          ],
                        ),
                        const Gap(20),
-                       isSaved ? const Column(
+                       shipmentProvider.showSavedLocation
+                           ? const Column(
                          children: [
                            SavedLocation(),
                            Gap(10),
@@ -270,74 +273,7 @@ class _SenderInformationState extends State<SenderInformation> {
                            SavedLocation()
                          ],
                        )
-                           : Column(
-                         children: [
-                           Container(
-                             decoration: BoxDecoration(
-                                 borderRadius: BorderRadius.circular(10),
-                                 color: AppColors.textFieldBackground
-                             ),
-                             child: Padding(
-                               padding: const EdgeInsets.symmetric(vertical: 13,horizontal: 15),
-                               child: Row(
-                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                 children: [
-                                   TextSmall(
-                                     'country/Region',
-                                     color: AppColors.personalProfileHint,
-                                   ),
-                                   const Icon(
-                                       Icons.arrow_drop_down_outlined
-                                   ),
-                                 ],
-                               ),
-                             ),
-                           ),
-                           const Gap(10),
-                           const InputField(
-                             placeholder: 'Address eg 123 kent street',
-                             textInputType: TextInputType.number,
-                             controller: null,
-                           ),
-                           const Gap(10),
-                           Row(
-                             children: [
-                               const Expanded(
-                                 child:InputField(
-                                   placeholder: 'City',
-                                   textInputType: TextInputType.number,
-                                   controller: null,
-                                 ),
-                               ),
-                               const Gap(5),
-                               Expanded(
-                                 child:Container(
-                                   decoration: BoxDecoration(
-                                     color: AppColors.textFieldBackground,
-                                     borderRadius: BorderRadius.circular(10),
-                                   ),
-                                   child: Padding(
-                                     padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 10),
-                                     child: Row(
-                                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                       children: [
-                                         TextSmall(
-                                           'State',
-                                           color: AppColors.personalProfileHint,
-                                         ),
-                                         const Icon(
-                                             Icons.arrow_drop_down_outlined
-                                         ),
-                                       ],
-                                     ),
-                                   ),
-                                 )
-                               )
-                             ],
-                           )
-
-                         ],
-                       ),
+                           : const LocationForm(),
                        const Gap(40),
                        Padding(
                          padding: const EdgeInsets.symmetric(horizontal: 8,vertical: 16),

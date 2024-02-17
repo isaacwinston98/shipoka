@@ -13,6 +13,19 @@ import 'package:shipoka/features/auth/presentation/pages/create_new_pin.dart';
 import 'package:shipoka/features/account/presentation/pages/edit_profile_screen.dart';
 import 'package:shipoka/features/auth/presentation/pages/forgot_password.dart';
 import 'package:shipoka/features/auth/presentation/pages/reset_password.dart';
+import 'package:shipoka/features/account/presentation/pages/add_new_card.dart';
+import 'package:shipoka/features/account/presentation/pages/card_otp_verification.dart';
+import 'package:shipoka/features/account/presentation/pages/manage_card.dart';
+import 'package:shipoka/features/account/presentation/pages/my_account.dart';
+import 'package:shipoka/features/account/presentation/pages/order_history.dart';
+import 'package:shipoka/features/account/presentation/pages/order_history_map.dart';
+import 'package:shipoka/features/account/presentation/pages/order_overview.dart';
+import 'package:shipoka/features/account/presentation/pages/payment/currency.dart';
+import 'package:shipoka/features/account/presentation/pages/payment/fund_payment.dart';
+import 'package:shipoka/features/account/presentation/pages/payment/fund_wallet.dart';
+import 'package:shipoka/features/account/presentation/pages/payment/payment.dart';
+import 'package:shipoka/features/account/presentation/pages/payment/payment_method.dart';
+import 'package:shipoka/features/account/presentation/pages/payment/shipoka_pin.dart';
 import 'package:shipoka/features/auth/presentation/pages/add_person.dart';
 import 'package:shipoka/features/auth/presentation/pages/business_profile.dart';
 import 'package:shipoka/features/auth/presentation/pages/change_number.dart';
@@ -26,6 +39,16 @@ import 'package:shipoka/features/auth/presentation/pages/signup.dart';
 import 'package:shipoka/features/account/presentation/pages/update_your_phone_number.dart';
 import 'package:shipoka/features/account/presentation/pages/user_profile_account.dart';
 import 'package:shipoka/features/auth/presentation/pages/verify_email.dart';
+import 'package:shipoka/features/help/presentation/pages/chat.dart';
+import 'package:shipoka/features/help/presentation/pages/contact_us.dart';
+import 'package:shipoka/features/help/presentation/pages/customer_support.dart';
+import 'package:shipoka/features/help/presentation/pages/faq.dart';
+import 'package:shipoka/features/help/presentation/pages/help_center.dart';
+import 'package:shipoka/features/help/presentation/pages/legal.dart';
+import 'package:shipoka/features/help/presentation/pages/privacy_policy.dart';
+import 'package:shipoka/features/help/presentation/pages/shipoka_policies.dart';
+import 'package:shipoka/features/help/presentation/pages/terms_and_conditions.dart';
+import 'package:shipoka/features/home/presentation/pages/home_navbar.dart';
 import 'package:shipoka/features/home/presentation/pages/home_screen.dart';
 import 'package:shipoka/features/onboarding/presentation/pages/splash_screen.dart';
 import 'package:shipoka/features/shipment/presentation/pages/check_out.dart';
@@ -240,6 +263,141 @@ Route<T> onGenerateRoute<T>(RouteSettings settings) {
       return _getPageRoute(
         routeName: settings.name!,
         viewToShow: const TrackShipment(),
+      );
+    case RouteName.account:
+      return _getPageRoute(
+        routeName: settings.name!,
+        viewToShow: const MyAccount(),
+      );
+    case RouteName.packageReturn:
+      return _getPageRoute(
+        routeName: settings.name!,
+        viewToShow: const PackageReturn(),
+      );
+    case RouteName.trackOverView:
+      return _getPageRoute(
+        routeName: settings.name!,
+        viewToShow: const TrackingOverViewDetail(),
+      );
+    case RouteName.viewPackage:
+      return _getPageRoute(
+        routeName: settings.name!,
+        viewToShow: const ViewPackage(),
+      );
+    case RouteName.shipmentComplete:
+      return _getPageRoute(
+        routeName: settings.name!,
+        viewToShow: const ShipmentComplete(),
+      );
+    case RouteName.addNewCard:
+      return _getPageRoute(
+        routeName: settings.name!,
+        viewToShow: const AddNewCardScreen(),
+      );
+    case RouteName.manageCard:
+      return _getPageRoute(
+        routeName: settings.name!,
+        viewToShow: const ManageCard(),
+      );
+    case RouteName.cardOtpVerification:
+      return _getPageRoute(
+        routeName: settings.name!,
+        viewToShow: const CardOtpVerification(),
+      );
+    case RouteName.payment:
+      return _getPageRoute(
+        routeName: settings.name!,
+        viewToShow: const PaymentScreen(),
+      );
+    case RouteName.currency:
+      return _getPageRoute(
+        routeName: settings.name!,
+        viewToShow: const Currency(),
+      );
+    case RouteName.fundWallet:
+      return _getPageRoute(
+        routeName: settings.name!,
+        viewToShow: const FundWallet(),
+      );
+    case RouteName.fundPayment:
+      return _getPageRoute(
+        routeName: settings.name!,
+        viewToShow: const FundPayment(),
+      );
+    case RouteName.paymentMethod:
+      return _getPageRoute(
+        routeName: settings.name!,
+        viewToShow: const PaymentMethod(),
+      );
+    case RouteName.shipokaPin:
+      return _getPageRoute(
+        routeName: settings.name!,
+        viewToShow: const ShipokaPin(),
+      );
+    case RouteName.navBar:
+      return _getPageRoute(
+        routeName: settings.name!,
+        viewToShow: const HomeNavigation(),
+      );
+    case RouteName.orderHistory:
+      return _getPageRoute(
+        routeName: settings.name!,
+        viewToShow: const OrderHistory(),
+      );
+    case RouteName.orderHistoryMap:
+      return _getPageRoute(
+        routeName: settings.name!,
+        viewToShow: const OrderHistoryMap(),
+      );
+    case RouteName.legal:
+      return _getPageRoute(
+        routeName: settings.name!,
+        viewToShow: const Legal(),
+      );
+    case RouteName.shipokaPolicies:
+      return _getPageRoute(
+        routeName: settings.name!,
+        viewToShow: const ShipokaPolicies(),
+      );
+    case RouteName.privacyPolicies:
+      return _getPageRoute(
+        routeName: settings.name!,
+        viewToShow: const PrivacyPolicy(),
+      );
+    case RouteName.termsAndConditions:
+      return _getPageRoute(
+        routeName: settings.name!,
+        viewToShow: const TermsAndConditions(),
+      );
+    case RouteName.contactUs:
+      return _getPageRoute(
+        routeName: settings.name!,
+        viewToShow: const ContactUs(),
+      );
+    case RouteName.customerSupport:
+      return _getPageRoute(
+        routeName: settings.name!,
+        viewToShow: const CustomerSupport(),
+      );
+    case RouteName.chat:
+      return _getPageRoute(
+        routeName: settings.name!,
+        viewToShow: const ChatSupport(),
+      );
+    case RouteName.orderOverview:
+      return _getPageRoute(
+        routeName: settings.name!,
+        viewToShow: const OrderOverview(),
+      );
+    case RouteName.helpCenter:
+      return _getPageRoute(
+        routeName: settings.name!,
+        viewToShow: const HelpCenter(),
+      );
+    case RouteName.faq:
+      return _getPageRoute(
+        routeName: settings.name!,
+        viewToShow: const Faq(),
       );
     default:
       return MaterialPageRoute<T>(

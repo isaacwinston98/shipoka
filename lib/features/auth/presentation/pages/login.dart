@@ -24,27 +24,14 @@ class _LoginState extends State<Login> {
 
   late StreamController<String> _emailStreamController;
   late StreamController<String> _pinStreamController;
-  late StreamController<String> _firstNameStreamController;
-  late StreamController<String> _surnameStreamController;
-  late StreamController<String> _repeatPinStreamController;
-  late StreamController<String> _refferalPinStreamController;
-  late StreamController<String> _phoneStreamController;
+
 
   final emailFocus = FocusNode();
   final pinFocus = FocusNode();
-  final firstNameFocus = FocusNode();
-  final surnameFocus = FocusNode();
-  final phoneFocus = FocusNode();
-  final repeatPinFocus = FocusNode();
-  final refferalPinFocus = FocusNode();
 
   final emailController = TextEditingController();
-  final firstNameController = TextEditingController();
-  final surnameController = TextEditingController();
-  final phoneController = TextEditingController();
   final pinController = TextEditingController();
-  final repeatPinController = TextEditingController();
-  final refferalController = TextEditingController();
+
 
   bool isChecked = false;
 
@@ -53,11 +40,7 @@ class _LoginState extends State<Login> {
     super.initState();
     _emailStreamController = StreamController<String>.broadcast();
     _pinStreamController = StreamController<String>.broadcast();
-    _firstNameStreamController = StreamController<String>.broadcast();
-    _surnameStreamController = StreamController<String>.broadcast();
-    _phoneStreamController = StreamController<String>.broadcast();
-    _repeatPinStreamController = StreamController<String>.broadcast();
-    _refferalPinStreamController = StreamController<String>.broadcast();
+
 
     emailController.addListener(() {
       _emailStreamController.sink.add(
@@ -73,40 +56,10 @@ class _LoginState extends State<Login> {
       validateInputs();
     });
 
-    firstNameController.addListener(() {
-      _firstNameStreamController.sink.add(
-        firstNameController.text.trim(),
-      );
-      validateInputs();
-    });
 
-    surnameController.addListener(() {
-      _surnameStreamController.sink.add(
-        surnameController.text.trim(),
-      );
-      validateInputs();
-    });
 
-    phoneController.addListener(() {
-      _phoneStreamController.sink.add(
-        phoneController.text.trim(),
-      );
-      validateInputs();
-    });
 
-    repeatPinController.addListener(() {
-      _repeatPinStreamController.sink.add(
-        repeatPinController.text.trim(),
-      );
-      validateInputs();
-    });
 
-    refferalController.addListener(() {
-      _refferalPinStreamController.sink.add(
-        repeatPinController.text.trim(),
-      );
-      validateInputs();
-    });
   }
 
   @override
@@ -114,46 +67,50 @@ class _LoginState extends State<Login> {
     super.dispose();
     _emailStreamController.close();
     _pinStreamController.close();
-    _surnameStreamController.close();
-    _firstNameStreamController.close();
-    _repeatPinStreamController.close();
-    _refferalPinStreamController.close();
-    _phoneStreamController.close();
 
     emailFocus.dispose();
-    phoneFocus.dispose();
     pinFocus.dispose();
-    repeatPinFocus.dispose();
   }
 
-  void validateInputs() {
+  // void validateInputs() {
+  //
+  //   final emailError = CustomFormValidation.errorEmailMessage(
+  //     emailController.text.trim(),
+  //     'Email is required',
+  //   );
+  //
+  //   final pinError = CustomFormValidation.errorMessagePin(
+  //     pinController.text.trim(),
+  //     'Pin is required',
+  //   );
+  //
+  //   if (emailError != '' ||
+  //       pinError != '' ) {
+  //     canSubmit = false;
+  //   }
+  //
+  //   setState(() {
+  //     canSubmit =false ;
+  //   });
+  // }
 
+  void validateInputs() {
     final emailError = CustomFormValidation.errorEmailMessage(
       emailController.text.trim(),
       'Email is required',
     );
 
-    final pinError = CustomFormValidation.errorMessagePin(
+    final pinError = CustomFormValidation.errorMessagePassword2(
       pinController.text.trim(),
-      'Pin is required',
+      'Password is required',
     );
 
-    final confirmPinError = CustomFormValidation.errorMessageConfirmPin(
-      repeatPinController.text.trim(),
-      're-enter pin',
-      pinController.text.trim(),
-    );
-
-    if (emailError != '' ||
-        pinError != '' ||
-        confirmPinError != '') {
-      canSubmit = false;
-    }
-
+    // Check if email is valid and pin has at least 8 characters
     setState(() {
-      canSubmit =false ;
+      canSubmit = emailError.isEmpty && pinError.isEmpty;
     });
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -209,7 +166,7 @@ class _LoginState extends State<Login> {
                                 padding: const EdgeInsets.only(top: 6),
                                 child: SvgPicture.asset(
                                   AppAssets.email,
-                                  color: AppColors.smallTextColor,
+                                  color: AppColors.textSecondaryColor,
                                 ),
                               ),
                               label: 'Email',
@@ -241,6 +198,7 @@ class _LoginState extends State<Login> {
                           stream: _pinStreamController.stream,
                           builder: (context, snapshot) {
                             return InputField(
+                              password: true,
                               label: 'Password',
                               fieldFocusNode: pinFocus,
                               textInputType: TextInputType.text,
@@ -251,6 +209,7 @@ class _LoginState extends State<Login> {
                                 padding: const EdgeInsets.only(top: 6),
                                 child: SvgPicture.asset(
                                   AppAssets.password,
+                                  color: AppColors.textSecondaryColor,
                                 ),
                               ),
                               validationColor: snapshot.data == null
@@ -280,19 +239,10 @@ class _LoginState extends State<Login> {
                         child: BusyButton(
                           title: 'Login',
                           onTap: () {
-                            Navigator.pushNamed(context, RouteName.setupProfile);
-                            // Provider.of<AuthNotifier>(context, listen: false)
-                            //     .register(
-                            //   context,
-                            //   firstName: firstNameController.text.trim(),
-                            //   lastName: surnameController.text.trim(),
-                            //   email: emailController.text.trim(),
-                            //   countryCode: 'NG',
-                            //   pin: pinController.text.trim(),
-                            //   phoneNumber: phoneController.text.trim(),
-                            // );
+                            Navigator.pushNamed(context, RouteName.navBar);
+
                           },
-                          disabled: true,
+                          disabled: !canSubmit,
                         ),
                       ),
                       Row(

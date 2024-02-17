@@ -13,8 +13,33 @@ class AppAssets {
   static const String carousel1 = 'assets/images/carousel.jpg';
   static const String carousel2 = 'assets/images/carousel_2.jpg';
   static const String carousel3 = 'assets/images/carousel_3.jpg';
+  static const String cat = 'assets/images/cat.png';
+  static const String map = 'assets/images/map.png';
+  static const String groups = 'assets/images/groups.png';
+  static const String vector = 'assets/images/vector.png';
+  static const String rectangle = 'assets/images/rectangle.png';
+  static const String man = 'assets/images/man.png';
+  static const String mapTrack = 'assets/images/mapTrack.png';
 
   // app asset Icons here
+  static const String faq = 'assets/icons/faq.svg';
+  static const String chat = 'assets/icons/chat.svg';
+  static const String image = 'assets/icons/image.svg';
+  static const String call = 'assets/icons/call.svg';
+  static const String twoFour = 'assets/icons/twoFour.svg';
+  static const String order = 'assets/icons/order.svg';
+  static const String file = 'assets/icons/file.svg';
+  static const String document = 'assets/icons/document.svg';
+  static const String create = 'assets/icons/create.svg';
+  static const String not = 'assets/icons/not.svg';
+  static const String topUp = 'assets/icons/topUp.svg';
+  static const String topSuccess = 'assets/icons/topSuccess.svg';
+  static const String carded = 'assets/icons/carded.svg';
+  static const String star = 'assets/icons/star.svg';
+  static const String master = 'assets/icons/master.svg';
+  static const String masterCard = 'assets/icons/masterCard.svg';
+  static const String tee = 'assets/icons/tee.svg';
+  static const String messageText = 'assets/icons/messageText.svg';
   static const String arrowBack = 'assets/icons/backArrow.svg';
   static const String user = 'assets/icons/user.svg';
   static const String edit = 'assets/icons/edit.svg';
@@ -58,6 +83,17 @@ class AppAssets {
   static const String dropDown = 'assets/icons/dropDown.svg';
   static const String calender2 = 'assets/icons/calender.svg';
   static const String whiteCircle = 'assets/icons/whiteCircle.svg';
+  static const String person = 'assets/icons/person.svg';
+  static const String greyBox = 'assets/icons/greyedBox.svg';
+  static const String history = 'assets/icons/history.svg';
+  static const String security = 'assets/icons/security.svg';
+  static const String legal = 'assets/icons/legal.svg';
+  static const String helpCenter = 'assets/icons/helpCenter.svg';
+  static const String payment = 'assets/icons/payment.svg';
+  static const String myCard = 'assets/icons/myCard.svg';
+  static const String logOut = 'assets/icons/logout.svg';
+  static const String address = 'assets/icons/address.svg';
+
 
 
 }

@@ -26,7 +26,7 @@ class ShipokaTextBase extends StatelessWidget {
       text ?? '',
       style: const TextStyle(
         fontSize: 15,
-        fontFamily: AppFonts.aeonik,
+        fontFamily: AppFonts.dmsans,
       ).merge(style),
       textAlign: textAlign,
       overflow: overflow,
