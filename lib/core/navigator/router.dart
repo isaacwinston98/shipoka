@@ -5,6 +5,7 @@ import 'package:shipoka/features/account/presentation/pages/add_new_address.dart
 import 'package:shipoka/features/account/presentation/pages/address_screen.dart';
 import 'package:shipoka/features/account/presentation/pages/change_password.dart';
 import 'package:shipoka/features/account/presentation/pages/security.dart';
+import 'package:shipoka/features/account/presentation/pages/security_changed_pin.dart';
 import 'package:shipoka/features/account/presentation/pages/submit_complaint.dart';
 import 'package:shipoka/features/auth/presentation/pages/create_new_pin.dart';
 import 'package:shipoka/features/account/presentation/pages/edit_profile_screen.dart';
@@ -32,7 +33,9 @@ import 'package:shipoka/features/auth/presentation/pages/otp_verification.dart';
 import 'package:shipoka/features/auth/presentation/pages/personal_profile.dart';
 import 'package:shipoka/features/auth/presentation/pages/set_new_password.dart';
 import 'package:shipoka/features/auth/presentation/pages/setup_profile.dart';
-import 'package:shipoka/features/auth/presentation/pages/signup.dart';
+import 'package:shipoka/features/authentication/sign_up_two.dart';
+//import 'package:shipoka/features/auth/presentation/pages/signup.dart';
+import 'package:shipoka/features\authentication\sign_up_two.dart';
 import 'package:shipoka/features/account/presentation/pages/update_your_phone_number.dart';
 import 'package:shipoka/features/account/presentation/pages/user_profile_account.dart';
 import 'package:shipoka/features/auth/presentation/pages/verify_email.dart';
@@ -63,6 +66,7 @@ import 'package:shipoka/features/track/presentation/pages/shipment_complete.dart
 import 'package:shipoka/features/track/presentation/pages/trach_overview.dart';
 import 'package:shipoka/features/track/presentation/pages/track_shipment.dart';
 import 'package:shipoka/features/track/presentation/pages/view_package.dart';
+import 'package:shipoka/features/trackshipment/tracking_overview.dart';
 import 'package:shipoka/features/widget_texting_screen.dart';
 
 
@@ -74,11 +78,11 @@ Route<T> onGenerateRoute<T>(RouteSettings settings) {
         routeName: settings.name!,
         viewToShow: const CustomSplashScreen(),
       );
-    case RouteName.signUp:
+   /* case RouteName.signUp:
       return _getPageRoute(
         routeName: settings.name!,
         viewToShow: const Signup(),
-      );
+      );*/
     case RouteName.forgetPassword:
       return _getPageRoute(
         routeName: settings.name!,
@@ -98,6 +102,11 @@ Route<T> onGenerateRoute<T>(RouteSettings settings) {
       return _getPageRoute(
         routeName: settings.name!,
         viewToShow: const CreateNewPinScreen(),
+      );
+    case RouteName.securityChangePin:
+      return _getPageRoute(
+        routeName: settings.name!,
+        viewToShow: const SecurityChangedPin(),
       );
     case RouteName.setupProfile:
       return _getPageRoute(
@@ -139,10 +148,20 @@ Route<T> onGenerateRoute<T>(RouteSettings settings) {
         routeName: settings.name!,
         viewToShow: const Faq(),
       );
-    case RouteName.widgetTesting:
+    /*case RouteName.widgetTesting:
       return _getPageRoute(
         routeName: settings.name!,
         viewToShow: const WidgetTesting(),
+      );*/
+    case RouteName.trackingOverview:
+      return _getPageRoute(
+        routeName: settings.name!,
+        viewToShow: const TrackingOverview(),
+      );
+    case RouteName.signUpTwo:
+      return _getPageRoute(
+        routeName: settings.name!,
+        viewToShow: const SignUp(),
       );
     case RouteName.contactUs:
       return _getPageRoute(

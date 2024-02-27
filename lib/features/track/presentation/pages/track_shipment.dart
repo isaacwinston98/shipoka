@@ -231,12 +231,11 @@ class _TrackShipmentState extends State<TrackShipment> with SingleTickerProvider
                             ],
                           ),
                           const Divider(color: Color(0xffEAECF0),)
-
-
                         ],
                       ),
                     );
                   },
+
                   separatorBuilder: (_, __) {
                     return const SizedBox(
                       height: 20,

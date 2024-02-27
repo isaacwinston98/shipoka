@@ -92,6 +92,8 @@ class AppAssets {
   static const String myCard = 'assets/icons/myCard.svg';
   static const String logOut = 'assets/icons/logout.svg';
   static const String address = 'assets/icons/address.svg';
+  static const String lockCircle = 'assets/icons/lockCircle.svg';
+  static const String checkCircle = 'assets/icons/checkCircle.svg';
 
 
 

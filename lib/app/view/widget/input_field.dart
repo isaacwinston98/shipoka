@@ -15,6 +15,7 @@ class InputField extends StatefulWidget {
     this.fieldFocusNode,
     this.nextFocusNode,
     this.additionalNote,
+    this.borderColorOnTap, // Initialize the new property
     this.formatter,
     this.onChanged,
     this.maxLines = 1,
@@ -37,6 +38,7 @@ class InputField extends StatefulWidget {
     Key? key,
   }) : super(key: key);
   final Color labelTextColor;
+  final Color? borderColorOnTap; // New property for border color when tapped
   final Color placeholderColor;
   final TextEditingController? controller;
   final TextInputType textInputType;
@@ -68,6 +70,7 @@ class InputField extends StatefulWidget {
 }
 
 class _InputFieldState extends State<InputField> {
+  late Color borderColor; // State variable to track border color
   late bool isPassword;
   double fieldHeight = 64;
   late bool isLabel;
@@ -77,6 +80,7 @@ class _InputFieldState extends State<InputField> {
     super.initState();
     isPassword = widget.password;
     isLabel = widget.showLabel;
+    borderColor = widget.validationColor; // Initialize border color
   }
 
   bool activiateLabe = false;
@@ -97,6 +101,8 @@ class _InputFieldState extends State<InputField> {
                       ? () {
                           setState(() {
                             activiateLabe = true;
+                            // Change the border color when tapped
+                            borderColor = widget.borderColorOnTap ?? AppColors.primaryColor;
                           });
                         }
                       : null,
@@ -105,8 +111,9 @@ class _InputFieldState extends State<InputField> {
                     alignment: Alignment.centerLeft,
                     padding: const EdgeInsets.symmetric(horizontal: 10),
                     decoration: BoxDecoration(
+
                       color: widget.backgroundColor,
-                      border: Border.all(color: widget.validationColor),
+                      border: Border.all(color: borderColor), // Use the borderColor
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: Row(

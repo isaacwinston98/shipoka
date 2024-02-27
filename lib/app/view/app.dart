@@ -40,7 +40,7 @@ class App extends StatelessWidget {
         ],
         theme: AppTheme.themeData,
         onGenerateRoute: onGenerateRoute,
-        initialRoute: RouteName.navBar,
+        initialRoute: RouteName.signUpTwo,
       ),
     );
   }

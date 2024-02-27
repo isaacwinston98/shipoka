@@ -25,6 +25,8 @@ class AppColors{
   static const Color lightGrey = Color(0xffEEEEEE);
   static const Color lightGrey3 = Color(0xffF9FAFB);
   static const Color lightPink3 = Color(0xffF8ECE7);
+  static const Color lightModel = Color(0xffC6F0C2);
+
 
 
   static const Color homeTextColor = Color(0xff080B30);

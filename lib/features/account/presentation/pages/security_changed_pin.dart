@@ -1,26 +1,27 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:shipoka/app/styles/app_color.dart';
 import 'package:shipoka/app/styles/fonts.dart';
 import 'package:shipoka/app/view/widget/app_back_button.dart';
 
 
-class CreateNewPinScreen extends StatefulWidget {
-  const CreateNewPinScreen({Key? key}) : super(key: key);
+class SecurityChangedPin extends StatefulWidget {
+  const SecurityChangedPin({super.key});
 
   @override
-  State<CreateNewPinScreen> createState() => _CreateNewPinScreenState();
+  State<SecurityChangedPin> createState() => _SecurityChangedPinState();
 }
 
-class _CreateNewPinScreenState extends State<CreateNewPinScreen> {
+class _SecurityChangedPinState extends State<SecurityChangedPin> {
   bool isLoading = false;
   TextEditingController newPinController = TextEditingController();
   TextEditingController confirmPinController = TextEditingController();
 
   bool showConfirmPin = false;
+  bool pinMatchError = false; // Track if there's a pin match error
 
   @override
   Widget build(BuildContext context) {
@@ -54,30 +55,21 @@ class _CreateNewPinScreenState extends State<CreateNewPinScreen> {
                           child: AppBackButton(),
                         ),
                       ),
-                      const SizedBox(width: 15.0,),
+                      const Gap(50),
                       //Text at the center Top
-                      const Center(
-                        child: Text(
-                          'Create New PIN',
-                          style: TextStyle(
-                            fontSize: 20.0,
-                            fontWeight: FontWeight.w500,
-                          ),
+                      Center(
+                        child: TextSemiBold(
+                          'Change PIN',
+                          fontSize: 20.0,
                         ),
                       )
                     ],
                   ),
 
-
                   const Gap(40),
 
                   TextBody(
-                      "Add a PIN number to make your Shipoka account more secure"),
-
-                  const Gap(40),
-
-                  TextBody(
-                    "Set PIN",
+                    "Enter current PIN",
                     style: TextStyle(
                       fontSize: 14.0,
                     ),
@@ -89,14 +81,14 @@ class _CreateNewPinScreenState extends State<CreateNewPinScreen> {
 
                   // PinCodeTextField for PIN input
                   SizedBox(
-                    height: 60,
+                    height: 50,
                     child: OtpTextField(
                       borderRadius: const BorderRadius.all(Radius.circular(7)),
                       numberOfFields: 4,
                       filled: true,
                       obscureText: true,
                       fillColor: AppColors.textFieldBackground,
-                      fieldWidth: 75,
+                      fieldWidth: 65,
                       focusedBorderColor:AppColors.primaryColor,
                       showFieldAsBox: true,
                       cursorColor:AppColors.primaryColor,
@@ -122,7 +114,7 @@ class _CreateNewPinScreenState extends State<CreateNewPinScreen> {
                   // Show confirm PIN field if the first PIN is entered
                   // Confirm password inputField
                   Visibility(
-                    visible: showConfirmPin,
+                    visible: true, // Always visible
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -134,14 +126,14 @@ class _CreateNewPinScreenState extends State<CreateNewPinScreen> {
                         ),
                         const Gap(3),
                         SizedBox(
-                          height: 60,
+                          height: 50,
                           child: OtpTextField(
                             borderRadius: BorderRadius.circular(7),
                             numberOfFields: 4,
                             filled: true,
                             obscureText: true,
                             fillColor: AppColors.textFieldBackground,
-                            fieldWidth: 75,
+                            fieldWidth: 65,
                             focusedBorderColor: AppColors.primaryColor,
                             showFieldAsBox: true,
                             cursorColor: AppColors.primaryColor,
@@ -150,13 +142,27 @@ class _CreateNewPinScreenState extends State<CreateNewPinScreen> {
                               fontSize: 30,
                             ),
                             margin: EdgeInsets.symmetric(horizontal: 7), // Add this line
+                            onCodeChanged: (String code) {
+                              setState(() {
+                                confirmPinController.text = code; // Update the controller
+                                pinMatchError = newPinController.text != confirmPinController.text;
+                              });
+                            },
                           ),
                         ),
                       ],
                     ),
                   ),
 
-
+                  // Display error message if pins don't match
+                  if (pinMatchError)
+                    Padding(
+                      padding: const EdgeInsets.only(top: 8.0),
+                      child: Text(
+                        'PIN does not match',
+                        style: TextStyle(color: Colors.red),
+                      ),
+                    ),
 
                   // SizedBox for spacing
                   SizedBox(height: 40.0),
@@ -170,13 +176,78 @@ class _CreateNewPinScreenState extends State<CreateNewPinScreen> {
                     child: ElevatedButton(
                       onPressed: () {
                         // Implement logic for creating a new PIN
+                        if (newPinController.text == confirmPinController.text) {
+                          // Show success dialog
+                          showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return Stack(
+                                children: [
+                                  Positioned(
+                                    top: 30,
+                                    left: 0,
+                                    right: 0,
+                                    child: Container(
+                                      width: MediaQuery.of(context).size.width - 20, // Adjusted width
+                                      margin: EdgeInsets.symmetric(horizontal: 5,), // Adjusted margin
+                                      child: AlertDialog(
+                                        backgroundColor: AppColors.lightModel, // Change background color
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(8), // Adjusted border radius
+                                        ),
+                                        contentPadding: EdgeInsets.symmetric(horizontal: 24, vertical: 20), // Adjust content padding
+                                        content: Row(
+                                          mainAxisAlignment: MainAxisAlignment.start,
+                                          crossAxisAlignment: CrossAxisAlignment.center,
+                                          children: [
+                                            SvgPicture.asset(
+                                              'assets/icons/checkCircle.svg', // Provide your asset path here
+                                            ),
+                                            SizedBox(width: 16),
+                                            TextBody(
+                                              'PIN changed Successfully.',
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              );
+                            },
+                          );
 
+
+
+                        } else {
+                          // Show error message
+                          showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return AlertDialog(
+                                backgroundColor: Colors.red, // Change background color
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8), // Adjusted border radius
+                                ),
+                                title: Text('Error', style: TextStyle(color: Colors.white)), // Change title text color
+                                content: Text('PIN does not match.', style: TextStyle(color: Colors.white)), // Change content text color
+                                actions: [
+                                  TextButton(
+                                    onPressed: () {
+                                      Navigator.pop(context);
+                                    },
+                                    child: Text('OK'),
+                                  ),
+                                ],
+                              );
+                            },
+                          );
+                        }
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: AppColors.primaryColor,
                         minimumSize: Size(200.0, 50.0),
                       ),
-
                       child: Stack(
                         alignment: Alignment.center,
                         children: [
@@ -192,6 +263,7 @@ class _CreateNewPinScreenState extends State<CreateNewPinScreen> {
                         ],
                       ),
                     ),
+
                   ),
                 ],
               ),

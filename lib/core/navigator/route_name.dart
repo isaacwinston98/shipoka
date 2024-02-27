@@ -38,6 +38,7 @@ class RouteName {
   static const String submitComplaint = '/submit_complaint';
   static const String security = '/security';
   static const String changePassword = '/change_password';
+  static const String signUpTwo = '/sign_up_two';
 
   static const String account = '/my_account';
   static const String packageReturn = '/package_return';
@@ -66,5 +67,7 @@ class RouteName {
   static const String orderOverview = '/order_overview';
   static const String helpCenter = '/help_center';
   static const String faq = '/faq';
+  static const String securityChangePin = '/security_changed_pin';
+  static const String trackingOverview = '/tracking_overview';
 
 }
