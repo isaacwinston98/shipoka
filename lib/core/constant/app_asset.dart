@@ -4,8 +4,8 @@ class AppAssets {
   static const String logo = 'assets/images/logo.png';
   static const String splashCircle = 'assets/images/splashCircle.png';
   static const String onboardingSlide1 = 'assets/images/onboardingSlideScreen1.png';
-  static const String onboardingSlide2 = 'assets/images/onboardingSlideScreen2.png';
-  static const String onboardingSlide3 = 'assets/images/onboardingSlideScreen3.png';
+  static const String onboardingSlide2 = 'assets/images/onboardingSlideScreen3.png';
+  static const String onboardingSlide3 = 'assets/images/onboardingSlideScreen2.png';
   static const String shop = 'assets/images/shop.png';
   static const String box = 'assets/images/box.png';
   static const String flag = 'assets/images/flag.png';
@@ -94,7 +94,7 @@ class AppAssets {
   static const String address = 'assets/icons/address.svg';
   static const String lockCircle = 'assets/icons/lockCircle.svg';
   static const String checkCircle = 'assets/icons/checkCircle.svg';
-
+  static const String shopTwo = 'assets/icons/shop.svg';
 
 
 }

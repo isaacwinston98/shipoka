@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:shipoka/features/onboarding/presentation/pages/onboarding_slide_two.dart';
 //import 'package:shipoka/features/onboarding/presentation/pages/onboarding_screen.dart';
 
 
@@ -33,18 +34,17 @@ class _CustomSplashScreenState extends State<CustomSplashScreen> with SingleTick
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
 
-            const SizedBox(height: 20.0),
             // Rotating circles animation
             Stack(
               alignment: Alignment.center,
               children: [
 
-                Padding(
+                /*Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 10, ),
                   child: Image.asset(
                     'assets/images/splashCircle.png', // Replace with your circles image path
                   ),
-                ),
+                ),*/
                 // Your fixed logo
                 Column(
                   children: [
@@ -64,7 +64,6 @@ class _CustomSplashScreenState extends State<CustomSplashScreen> with SingleTick
                 ),
               ],
             ),
-
           ],
         ),
       ),

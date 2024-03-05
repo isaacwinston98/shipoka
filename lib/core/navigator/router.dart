@@ -33,9 +33,9 @@ import 'package:shipoka/features/auth/presentation/pages/otp_verification.dart';
 import 'package:shipoka/features/auth/presentation/pages/personal_profile.dart';
 import 'package:shipoka/features/auth/presentation/pages/set_new_password.dart';
 import 'package:shipoka/features/auth/presentation/pages/setup_profile.dart';
+import 'package:shipoka/features/authentication/otp_verification_two.dart';
 import 'package:shipoka/features/authentication/sign_up_two.dart';
 //import 'package:shipoka/features/auth/presentation/pages/signup.dart';
-import 'package:shipoka/features\authentication\sign_up_two.dart';
 import 'package:shipoka/features/account/presentation/pages/update_your_phone_number.dart';
 import 'package:shipoka/features/account/presentation/pages/user_profile_account.dart';
 import 'package:shipoka/features/auth/presentation/pages/verify_email.dart';
@@ -50,7 +50,10 @@ import 'package:shipoka/features/help/presentation/pages/shipoka_policies.dart';
 import 'package:shipoka/features/help/presentation/pages/terms_and_conditions.dart';
 import 'package:shipoka/features/home/presentation/pages/home_navbar.dart';
 import 'package:shipoka/features/home/presentation/pages/home_screen.dart';
+import 'package:shipoka/features/onboarding/presentation/pages/onboarding_slide_two.dart';
 import 'package:shipoka/features/onboarding/presentation/pages/splash_screen.dart';
+import 'package:shipoka/features/profileSetupAccounts/presentation/pages/personal_profile.dart';
+import 'package:shipoka/features/profileSetupAccounts/presentation/pages/set_up_profile_two.dart';
 import 'package:shipoka/features/shipment/presentation/pages/check_out.dart';
 import 'package:shipoka/features/shipment/presentation/pages/create_shipment.dart';
 import 'package:shipoka/features/shipment/presentation/pages/destination_details.dart';
@@ -148,6 +151,11 @@ Route<T> onGenerateRoute<T>(RouteSettings settings) {
         routeName: settings.name!,
         viewToShow: const Faq(),
       );
+    case RouteName.onboardingSlideTwo:
+      return _getPageRoute(
+        routeName: settings.name!,
+        viewToShow: const OnboardingScreen(),
+      );
     /*case RouteName.widgetTesting:
       return _getPageRoute(
         routeName: settings.name!,
@@ -162,6 +170,11 @@ Route<T> onGenerateRoute<T>(RouteSettings settings) {
       return _getPageRoute(
         routeName: settings.name!,
         viewToShow: const SignUp(),
+      );
+    case RouteName.personalProfileTwo:
+      return _getPageRoute(
+        routeName: settings.name!,
+        viewToShow: const PersonalProfileTwo(),
       );
     case RouteName.contactUs:
       return _getPageRoute(
@@ -328,6 +341,16 @@ Route<T> onGenerateRoute<T>(RouteSettings settings) {
       return _getPageRoute(
         routeName: settings.name!,
         viewToShow: const PaymentScreen(),
+      );
+    case RouteName.otpVerificationTwo:
+      return _getPageRoute(
+        routeName: settings.name!,
+        viewToShow: const OtpVerificationTwo(),
+      );
+    case RouteName.setupProfileTwo:
+      return _getPageRoute(
+        routeName: settings.name!,
+        viewToShow: const SetupProfileTwo(),
       );
     case RouteName.currency:
       return _getPageRoute(

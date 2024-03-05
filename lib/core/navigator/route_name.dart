@@ -20,6 +20,9 @@ class RouteName {
   static const String userProfileAccount = '/user_profile_account';
   static const String editProfileScreen = '/edit_profile_screen';
   static const String updateYourPhonrNumber = '/update_your_phone_number';
+  static const String otpVerificationTwo = '/otp_verification_two';
+  static const String setupProfileTwo = '/set_up_profile_two';
+  static const String personalProfileTwo = '/personal_profile';
 
   static const String createShipment = '/create_shipment';
   static const String senderInformation = '/sender_information';
@@ -39,6 +42,7 @@ class RouteName {
   static const String security = '/security';
   static const String changePassword = '/change_password';
   static const String signUpTwo = '/sign_up_two';
+  static const String onboardingSlideTwo = '/onboarding_slide_two';
 
   static const String account = '/my_account';
   static const String packageReturn = '/package_return';
