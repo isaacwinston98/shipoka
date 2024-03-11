@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 class AppColors{
 
+  static const Color lighterGrey = Color(0xffE5E5E6);
   static const Color opaquePink = Color(0xffF8ECE7);
   static const Color primaryColor = Color(0xffF26520);
   static const Color black = Color(0xff000000);

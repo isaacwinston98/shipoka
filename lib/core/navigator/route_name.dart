@@ -23,6 +23,19 @@ class RouteName {
   static const String otpVerificationTwo = '/otp_verification_two';
   static const String setupProfileTwo = '/set_up_profile_two';
   static const String personalProfileTwo = '/personal_profile';
+  static const String securityVerificationTwo = '/security_verification_two';
+  static const String changePhoneNumberTwo = '/change_phone_number_two';
+  static const String personalOtpVerificationTwo = '/personal_otp_verification_two';
+  static const String personalCreateNewPinTwo = '/personal_create_new_pin_two';
+  static const String businessSetUpProfile = '/business_set_up_profile';
+  static const String businessAddPersonContactTwo = '/business_add_person_contact_two';
+  static const String loginTwo = '/login_two';
+  static const String forgetPasswordTwo = '/forget_Password_two';
+  static const String passwordVerifyEmail = '/password_verify_email';
+  static const String setNewPasswordTwo = '/set_new_password_two';
+  static const String homeScreenTwo = '/home_screen_two';
+  static const String createShipmentTwo = '/create_shipment_two';
+  static const String pickUpAndSenderDetailsTwo = '/pickup_and_sender_details_two';
 
   static const String createShipment = '/create_shipment';
   static const String senderInformation = '/sender_information';

@@ -95,6 +95,7 @@ class AppAssets {
   static const String lockCircle = 'assets/icons/lockCircle.svg';
   static const String checkCircle = 'assets/icons/checkCircle.svg';
   static const String shopTwo = 'assets/icons/shop.svg';
+  static const String userNewTwo = 'assets/icons/userNew.svg';
 
 
 }

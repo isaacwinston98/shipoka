@@ -21,6 +21,8 @@ class _SetupProfileTwoState extends State<SetupProfileTwo> {
 
   @override
   Widget build(BuildContext context) {
+    bool isButtonEnabled = container1Clicked || container2Clicked;
+
     return Scaffold(
       backgroundColor: AppColors.background,
       body: SafeArea(
@@ -59,7 +61,7 @@ class _SetupProfileTwoState extends State<SetupProfileTwo> {
               ),
               const Gap(20),
               TextSmall(
-                  "Choose Your Shipoka App Experience: Tailor Your Profile to Your Needs",
+                "Choose Your Shipoka App Experience: Tailor Your Profile to Your Needs",
                 fontSize: 12,
               ),
               const Gap(40),
@@ -73,25 +75,25 @@ class _SetupProfileTwoState extends State<SetupProfileTwo> {
                 child: Container(
                   padding: EdgeInsets.all(15),
                   decoration: BoxDecoration(
-                    color: container1Clicked ? AppColors.lightPink : AppColors.lightBackground,
-                    borderRadius: BorderRadius.circular(20),
-                    border: Border.all(
-                      color: container1Clicked ? AppColors.primaryColor : Colors.transparent,
-                    )
+                      color: container1Clicked ? AppColors.lightPink : AppColors.lightBackground,
+                      borderRadius: BorderRadius.circular(20),
+                      border: Border.all(
+                        color: container1Clicked ? AppColors.primaryColor : Colors.transparent,
+                      )
                   ),
                   child: Row(
                     children: [
                       Container(
                         padding: EdgeInsets.all(12),
                         decoration: BoxDecoration(
-                          color: Colors.white, // Set your desired color here
+                            color: Colors.white, // Set your desired color here
                             borderRadius: BorderRadius.circular(16)
                         ),
                         child: SizedBox(
                           child: Container(
                             decoration: BoxDecoration(
                                 color: AppColors.lightPink,
-                              shape: BoxShape.circle
+                                shape: BoxShape.circle
                             ),
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
@@ -132,14 +134,14 @@ class _SetupProfileTwoState extends State<SetupProfileTwo> {
               GestureDetector(
                 onTap: () {
                   setState(() {
-                    container2Clicked = !container1Clicked;
+                    container2Clicked = !container2Clicked;
                   });
                 },
                 child: Container(
                   padding: EdgeInsets.all(15),
                   decoration: BoxDecoration(
-                    color: container2Clicked ? AppColors.lightPink : AppColors.lightBackground,
-                    borderRadius: BorderRadius.circular(20),
+                      color: container2Clicked ? AppColors.lightPink : AppColors.lightBackground,
+                      borderRadius: BorderRadius.circular(20),
                       border: Border.all(
                         color: container2Clicked ? AppColors.primaryColor : Colors.transparent,
                       )
@@ -198,14 +200,20 @@ class _SetupProfileTwoState extends State<SetupProfileTwo> {
                 padding: EdgeInsets.only(top: 30),
                 child: BusyButton(
                   title: 'Continue',
-                  onTap: () {
-                    Navigator.pushNamed(context, RouteName.setupProfileTwo);
-                  },// Placeholder function for disabled state
-                  disabled: true,
+                  onTap: isButtonEnabled
+                      ? () {
+                    if (container1Clicked) {
+                      // Navigate to the screen for business setup
+                      Navigator.pushNamed(context, RouteName.businessSetUpProfile);
+                    } else if (container2Clicked) {
+                      // Navigate to the screen for personal setup
+                      Navigator.pushNamed(context, RouteName.personalProfileTwo);
+                    }
+                  }
+                      : () {}, // Provide an empty function when the button is disabled
+                  disabled: !isButtonEnabled,
                 ),
               ),
-
-
 
 
             ],

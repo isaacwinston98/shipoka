@@ -5,21 +5,23 @@ import 'package:gap/gap.dart';
 import 'package:shipoka/app/styles/app_color.dart';
 import 'package:shipoka/app/styles/fonts.dart';
 import 'package:shipoka/app/view/widget/app_back_button.dart';
+import 'package:shipoka/core/navigator/route_name.dart';
 
 
-class CreateNewPinScreen extends StatefulWidget {
-  const CreateNewPinScreen({Key? key}) : super(key: key);
+class PersonalCreateNewPinTwo extends StatefulWidget {
+  const PersonalCreateNewPinTwo({super.key});
 
   @override
-  State<CreateNewPinScreen> createState() => _CreateNewPinScreenState();
+  State<PersonalCreateNewPinTwo> createState() => _PersonalCreateNewPinTwoState();
 }
 
-class _CreateNewPinScreenState extends State<CreateNewPinScreen> {
+class _PersonalCreateNewPinTwoState extends State<PersonalCreateNewPinTwo> {
   bool isLoading = false;
   TextEditingController newPinController = TextEditingController();
   TextEditingController confirmPinController = TextEditingController();
 
   bool showConfirmPin = false;
+
 
   @override
   Widget build(BuildContext context) {
@@ -88,14 +90,14 @@ class _CreateNewPinScreenState extends State<CreateNewPinScreen> {
 
                   // PinCodeTextField for PIN input
                   SizedBox(
-                    height: 60,
+                    height: 50,
                     child: OtpTextField(
                       borderRadius: const BorderRadius.all(Radius.circular(7)),
                       numberOfFields: 4,
                       filled: true,
                       obscureText: true,
                       fillColor: AppColors.textFieldBackground,
-                      fieldWidth: 75,
+                      fieldWidth: 65,
                       focusedBorderColor:AppColors.primaryColor,
                       showFieldAsBox: true,
                       cursorColor:AppColors.primaryColor,
@@ -133,14 +135,14 @@ class _CreateNewPinScreenState extends State<CreateNewPinScreen> {
                         ),
                         const Gap(3),
                         SizedBox(
-                          height: 60,
+                          height: 50,
                           child: OtpTextField(
                             borderRadius: BorderRadius.circular(7),
                             numberOfFields: 4,
                             filled: true,
                             obscureText: true,
                             fillColor: AppColors.textFieldBackground,
-                            fieldWidth: 75,
+                            fieldWidth: 65,
                             focusedBorderColor: AppColors.primaryColor,
                             showFieldAsBox: true,
                             cursorColor: AppColors.primaryColor,
@@ -155,8 +157,6 @@ class _CreateNewPinScreenState extends State<CreateNewPinScreen> {
                     ),
                   ),
 
-
-
                   // SizedBox for spacing
                   SizedBox(height: 40.0),
 
@@ -169,7 +169,7 @@ class _CreateNewPinScreenState extends State<CreateNewPinScreen> {
                     child: ElevatedButton(
                       onPressed: () {
                         // Implement logic for creating a new PIN
-
+                        Navigator.pushNamed(context, RouteName.setupProfileTwo);
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: AppColors.primaryColor,

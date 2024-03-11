@@ -7,6 +7,7 @@ import 'package:shipoka/features/account/presentation/pages/change_password.dart
 import 'package:shipoka/features/account/presentation/pages/security.dart';
 import 'package:shipoka/features/account/presentation/pages/security_changed_pin.dart';
 import 'package:shipoka/features/account/presentation/pages/submit_complaint.dart';
+import 'package:shipoka/features/auth/presentation/pages/business_profile.dart';
 import 'package:shipoka/features/auth/presentation/pages/create_new_pin.dart';
 import 'package:shipoka/features/account/presentation/pages/edit_profile_screen.dart';
 import 'package:shipoka/features/auth/presentation/pages/forgot_password.dart';
@@ -25,7 +26,6 @@ import 'package:shipoka/features/account/presentation/pages/payment/payment.dart
 import 'package:shipoka/features/account/presentation/pages/payment/payment_method.dart';
 import 'package:shipoka/features/account/presentation/pages/payment/shipoka_pin.dart';
 import 'package:shipoka/features/auth/presentation/pages/add_person.dart';
-import 'package:shipoka/features/auth/presentation/pages/business_profile.dart';
 import 'package:shipoka/features/auth/presentation/pages/change_number.dart';
 import 'package:shipoka/features/auth/presentation/pages/get_otp.dart';
 import 'package:shipoka/features/auth/presentation/pages/login.dart';
@@ -33,6 +33,7 @@ import 'package:shipoka/features/auth/presentation/pages/otp_verification.dart';
 import 'package:shipoka/features/auth/presentation/pages/personal_profile.dart';
 import 'package:shipoka/features/auth/presentation/pages/set_new_password.dart';
 import 'package:shipoka/features/auth/presentation/pages/setup_profile.dart';
+import 'package:shipoka/features/authentication/login_two.dart';
 import 'package:shipoka/features/authentication/otp_verification_two.dart';
 import 'package:shipoka/features/authentication/sign_up_two.dart';
 //import 'package:shipoka/features/auth/presentation/pages/signup.dart';
@@ -50,9 +51,19 @@ import 'package:shipoka/features/help/presentation/pages/shipoka_policies.dart';
 import 'package:shipoka/features/help/presentation/pages/terms_and_conditions.dart';
 import 'package:shipoka/features/home/presentation/pages/home_navbar.dart';
 import 'package:shipoka/features/home/presentation/pages/home_screen.dart';
+import 'package:shipoka/features/homeNew/presentation/pages/home_screen_two.dart';
 import 'package:shipoka/features/onboarding/presentation/pages/onboarding_slide_two.dart';
 import 'package:shipoka/features/onboarding/presentation/pages/splash_screen.dart';
+import 'package:shipoka/features/profileSetupAccounts/presentation/pages/business_add_person_contact_two.dart';
+import 'package:shipoka/features/profileSetupAccounts/presentation/pages/business_set_up_profile.dart';
+import 'package:shipoka/features/profileSetupAccounts/presentation/pages/change_phone_number_two.dart';
+import 'package:shipoka/features/profileSetupAccounts/presentation/pages/forget_password_two.dart';
+import 'package:shipoka/features/profileSetupAccounts/presentation/pages/password_verify_email.dart';
+import 'package:shipoka/features/profileSetupAccounts/presentation/pages/personal_create_new_pin_two.dart';
+import 'package:shipoka/features/profileSetupAccounts/presentation/pages/personal_otp_verification_two.dart';
 import 'package:shipoka/features/profileSetupAccounts/presentation/pages/personal_profile.dart';
+import 'package:shipoka/features/profileSetupAccounts/presentation/pages/security_verification_two.dart';
+import 'package:shipoka/features/profileSetupAccounts/presentation/pages/set_new_password_two.dart';
 import 'package:shipoka/features/profileSetupAccounts/presentation/pages/set_up_profile_two.dart';
 import 'package:shipoka/features/shipment/presentation/pages/check_out.dart';
 import 'package:shipoka/features/shipment/presentation/pages/create_shipment.dart';
@@ -64,6 +75,8 @@ import 'package:shipoka/features/shipment/presentation/pages/receiver_informatio
 import 'package:shipoka/features/shipment/presentation/pages/schedule_success.dart';
 import 'package:shipoka/features/shipment/presentation/pages/sender_information.dart';
 import 'package:shipoka/features/shipment/presentation/pages/vehicle_details.dart';
+import 'package:shipoka/features/shipmentTwo/presentation/pages/create_shipment-two.dart';
+import 'package:shipoka/features/shipmentTwo/presentation/pages/pickup_and_sender_details_two.dart';
 import 'package:shipoka/features/track/presentation/pages/package_return.dart';
 import 'package:shipoka/features/track/presentation/pages/shipment_complete.dart';
 import 'package:shipoka/features/track/presentation/pages/trach_overview.dart';
@@ -171,6 +184,66 @@ Route<T> onGenerateRoute<T>(RouteSettings settings) {
         routeName: settings.name!,
         viewToShow: const SignUp(),
       );
+    case RouteName.securityVerificationTwo:
+      return _getPageRoute(
+        routeName: settings.name!,
+        viewToShow: const SecurityVerificationTwo(),
+      );
+    case RouteName.changePhoneNumberTwo:
+      return _getPageRoute(
+        routeName: settings.name!,
+        viewToShow: const ChangePhoneNumberTwo(),
+      );
+    case RouteName.pickUpAndSenderDetailsTwo:
+      return _getPageRoute(
+        routeName: settings.name!,
+        viewToShow: const PickUpAndSenderDetailsTwo(),
+      );
+    case RouteName.personalOtpVerificationTwo:
+      return _getPageRoute(
+        routeName: settings.name!,
+        viewToShow: const PersonalOtpVerificationTwo(),
+      );
+    case RouteName.businessAddPersonContactTwo:
+      return _getPageRoute(
+        routeName: settings.name!,
+        viewToShow: const BusinessAddPersonContactTwo(),
+      );
+    case RouteName.loginTwo:
+      return _getPageRoute(
+        routeName: settings.name!,
+        viewToShow: const LoginTwo(),
+      );
+    case RouteName.forgetPasswordTwo:
+      return _getPageRoute(
+        routeName: settings.name!,
+        viewToShow: const ForgetPasswordTwo(),
+      );
+    case RouteName.passwordVerifyEmail:
+      return _getPageRoute(
+        routeName: settings.name!,
+        viewToShow: const PasswordVerifyEmail(),
+      );
+    case RouteName.setNewPasswordTwo:
+      return _getPageRoute(
+        routeName: settings.name!,
+        viewToShow: const SetNewPasswordTwo(),
+      );
+    case RouteName.createShipmentTwo:
+      return _getPageRoute(
+        routeName: settings.name!,
+        viewToShow: const CreateShipmentTwo(),
+      );
+    case RouteName.homeScreenTwo:
+      return _getPageRoute(
+        routeName: settings.name!,
+        viewToShow: const HomeScreenTwo(),
+      );
+    case RouteName.personalCreateNewPinTwo:
+      return _getPageRoute(
+        routeName: settings.name!,
+        viewToShow: const PersonalCreateNewPinTwo(),
+      );
     case RouteName.personalProfileTwo:
       return _getPageRoute(
         routeName: settings.name!,
@@ -185,6 +258,11 @@ Route<T> onGenerateRoute<T>(RouteSettings settings) {
       return _getPageRoute(
         routeName: settings.name!,
         viewToShow: const SubmitComplaint(),
+      );
+    case RouteName.businessSetUpProfile:
+      return _getPageRoute(
+        routeName: settings.name!,
+        viewToShow: const BusinessSetUpProfile(),
       );
     case RouteName.security:
       return _getPageRoute(

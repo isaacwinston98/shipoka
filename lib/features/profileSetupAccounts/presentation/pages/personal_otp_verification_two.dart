@@ -7,15 +7,17 @@ import 'package:shipoka/app/view/widget/app_back_button.dart';
 import 'package:shipoka/app/view/widget/busy_button.dart';
 import 'package:shipoka/core/navigator/route_name.dart';
 
-class OtpVerificationTwo extends StatefulWidget {
-  const OtpVerificationTwo({Key? key});
+
+class PersonalOtpVerificationTwo extends StatefulWidget {
+  const PersonalOtpVerificationTwo({Key? key});
 
   @override
-  State<OtpVerificationTwo> createState() => _OtpVerificationTwoState();
+  State<PersonalOtpVerificationTwo> createState() => _PersonalOtpVerificationTwoState();
 }
 
-class _OtpVerificationTwoState extends State<OtpVerificationTwo> {
+class _PersonalOtpVerificationTwoState extends State<PersonalOtpVerificationTwo> {
   String otpCode = '';
+
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +25,7 @@ class _OtpVerificationTwoState extends State<OtpVerificationTwo> {
       backgroundColor: AppColors.background,
       body: SafeArea(
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -32,33 +34,13 @@ class _OtpVerificationTwoState extends State<OtpVerificationTwo> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Row(
-                        children: [
-                          GestureDetector(
-                            onTap: () {
-                              Navigator.pop(context);
-                            },
-                            child: Container(
-                              padding: EdgeInsets.symmetric(
-                                vertical: 10.0,
-                              ),
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                color: Colors.grey.withOpacity(0.1),
-                              ),
-                              child: AppBackButton(),
-                            ),
-                          ),
-                          const SizedBox(width: 40.0,),
-                          //Text at the center Top
-                          TextSemiBold(
-                            "Security Verification",
-                            style: TextStyle(
-                              fontSize: 19.0,
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
-                        ],
+                      //Text at the center Top
+                      TextSemiBold(
+                        "OTP Verification",
+                        style: TextStyle(
+                          fontSize: 19.0,
+                          fontWeight: FontWeight.w500,
+                        ),
                       ),
                       const Gap(50),
                       TextBody(
@@ -116,7 +98,7 @@ class _OtpVerificationTwoState extends State<OtpVerificationTwo> {
                 child: BusyButton(
                   title: 'Continue',
                   onTap: () {
-                    Navigator.pushNamed(context, RouteName.setupProfileTwo);
+                    Navigator.pushNamed(context, RouteName.personalCreateNewPinTwo);
                   },
                   disabled: false,
                 ),

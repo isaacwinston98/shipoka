@@ -9,50 +9,16 @@ import 'package:shipoka/app/view/widget/busy_button.dart';
 import 'package:shipoka/app/view/widget/input_field.dart';
 import 'package:shipoka/core/constant/app_asset.dart';
 import 'package:shipoka/core/navigator/route_name.dart';
-import 'package:camera/camera.dart';
 
-class PersonalProfileTwo extends StatefulWidget {
-  const PersonalProfileTwo({Key? key}) : super(key: key);
+class BusinessAddPersonContactTwo extends StatefulWidget {
+  const BusinessAddPersonContactTwo({super.key});
 
   @override
-  State<PersonalProfileTwo> createState() => _PersonalProfileTwoState();
+  State<BusinessAddPersonContactTwo> createState() => _BusinessAddPersonContactTwoState();
 }
 
-class _PersonalProfileTwoState extends State<PersonalProfileTwo> {
+class _BusinessAddPersonContactTwoState extends State<BusinessAddPersonContactTwo> {
   String selectedCountryCode = '';
-  late CameraController _controller;
-  late Future<void> _initializeControllerFuture;
-
-  @override
-  void initState() {
-    super.initState();
-    // Initialize the camera controller
-    _initializeCamera();
-  }
-
-  Future<void> _initializeCamera() async {
-    // Obtain a list of available cameras
-    final cameras = await availableCameras();
-
-    // Use the first camera in the list
-    final firstCamera = cameras.first;
-
-    // Initialize the camera controller with the selected camera
-    _controller = CameraController(
-      firstCamera,
-      ResolutionPreset.medium,
-    );
-
-    // Initialize the controller future
-    _initializeControllerFuture = _controller.initialize();
-  }
-
-  @override
-  void dispose() {
-    // Dispose of the camera controller when not needed
-    _controller.dispose();
-    super.dispose();
-  }
 
 
   @override
@@ -89,7 +55,7 @@ class _PersonalProfileTwoState extends State<PersonalProfileTwo> {
                           const SizedBox(width: 20.0),
                           //Text at the center Top
                           TextSemiBold(
-                            "Fill Your Profile",
+                            "Add Person Contact",
                             style: TextStyle(
                               fontSize: 19.0,
                               fontWeight: FontWeight.w500,
@@ -98,119 +64,17 @@ class _PersonalProfileTwoState extends State<PersonalProfileTwo> {
                         ],
                       ),
                       const Gap(10),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Stack(
-                            children: [
-                              Container(
-                                width: 130,
-                                height: 130,
-                                decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  color: AppColors.lightBackground,
-                                ),
-                                child: Padding(
-                                  padding: const EdgeInsets.all(30.0),
-                                  child: SvgPicture.asset(AppAssets.user),
-                                ),
-                              ),
-                              Positioned(
-                                bottom: -30,
-                                right: 0,
-                                child: GestureDetector(
-                                  // Inside your GestureDetector onTap handler for the edit icon
-                                  onTap: () {
-                                    showModalBottomSheet(
-                                      context: context,
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.only(
-                                          topLeft: Radius.circular(20),
-                                          topRight: Radius.circular(20),
-                                        ),
-                                      ),
-                                      builder: (BuildContext context) {
-                                        return Container(
-                                          height: 200, // Adjust the height as needed
-                                          child: Column(
-                                            crossAxisAlignment: CrossAxisAlignment.stretch,
-                                            children: [
-                                              Container(
-                                                height: 4, // Height of the draggable handle
-                                                width: 20, // Width of the draggable handle
-                                                margin: EdgeInsets.symmetric(vertical: 10, horizontal: 130),
-                                                decoration: BoxDecoration(
-                                                  color: Colors.grey.withOpacity(0.9),
-                                                  borderRadius: BorderRadius.circular(2),
-                                                ),
-                                              ),
-                                              TextSemiBold(
-                                                'Upload Image',
-                                                style: TextStyle(
-                                                  fontSize: 20,
-                                                ),
-                                                textAlign: TextAlign.center,
-                                              ),
-                                              const Gap(20),
-                                              // First Row
-                                              ListTile(
-                                                dense: true,
-                                                leading: SvgPicture.asset(AppAssets.camera),
-                                                title: Text('Take a picture'),
-                                                onTap: () async {
-                                                  // Ensure that the camera is initialized before opening it
-                                                  await _initializeControllerFuture;
-
-                                                  // Open the camera and wait for the user to take a picture
-                                                  final XFile? picture = await _controller.takePicture();
-
-                                                  // If the user took a picture, you can use it
-                                                  if (picture != null) {
-                                                    // TODO: Upload the picture and fill the container
-                                                  }
-
-                                                  // Close the bottom sheet
-                                                  Navigator.pop(context);
-                                                },
-                                              ),
-
-                                              // Second Row
-                                              ListTile(
-                                                dense: true,
-                                                leading:  SvgPicture.asset(AppAssets.gallery),
-                                                title: Text(
-                                                    'Choose from Gallery',
-                                                ),
-                                                onTap: () {
-                                                  // Handle upload from gallery action
-                                                  Navigator.pop(context);
-                                                },
-                                              ),
-                                            ],
-                                          ),
-                                        );
-                                      },
-                                    );
-                                  },
-
-
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(30.0),
-                                    child: SvgPicture.asset(AppAssets.edit),
-                                  ),
-                                ),
-                              )
-                            ],
-                          ),
-                        ],
+                      TextSmall(
+                          'Youre Just One Step Away from Completion: '
+                          'Share Your Business Contact Info'
                       ),
-                      const Gap(20),
+                      const Gap(30),
                       TextField(
                         cursorColor: AppColors.primaryColor,
                         decoration: InputDecoration(
                           filled: true,
                           fillColor: AppColors.lightBackground,
-                          hintText: 'First Name',
+                          hintText: 'Contact First Name',
                           contentPadding: const EdgeInsets.all(15),
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(10),
@@ -225,14 +89,28 @@ class _PersonalProfileTwoState extends State<PersonalProfileTwo> {
                         decoration: InputDecoration(
                           filled: true,
                           fillColor: AppColors.lightBackground,
-                          hintText: 'Last Name',
-
+                          hintText: 'Contact Last Name',
                           contentPadding: const EdgeInsets.all(15),
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(10),
                             borderSide: BorderSide.none,
                           ),
-                          //floatingLabelBehavior: FloatingLabelBehavior.always, // Display label text
+                          //floatingLabelBehavior: FloatingLabelBehavior.always, // Display label text always
+                        ),
+                      ),
+                      const Gap(10),
+                      TextField(
+                        cursorColor: AppColors.primaryColor,
+                        decoration: InputDecoration(
+                          filled: true,
+                          fillColor: AppColors.lightBackground,
+                          hintText: 'Contact Email Address',
+                          contentPadding: const EdgeInsets.all(15),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                            borderSide: BorderSide.none,
+                          ),
+                          //floatingLabelBehavior: FloatingLabelBehavior.always, // Display label text always
                         ),
                       ),
                       const Gap(10),
@@ -323,7 +201,7 @@ class _PersonalProfileTwoState extends State<PersonalProfileTwo> {
               child: BusyButton(
                 title: 'Continue',
                 onTap: () {
-                  Navigator.pushNamed(context, RouteName.securityVerificationTwo);
+                  Navigator.pushNamed(context, RouteName.loginTwo);
                 },// Placeholder function for disabled state
                 disabled: false,
               ),

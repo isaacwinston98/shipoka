@@ -40,7 +40,7 @@ class App extends StatelessWidget {
         ],
         theme: AppTheme.themeData,
         onGenerateRoute: onGenerateRoute,
-        initialRoute: RouteName.personalProfileTwo,
+        initialRoute: RouteName.pickUpAndSenderDetailsTwo,
       ),
     );
   }
